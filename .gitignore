@@ -18,6 +18,9 @@
 [Xx]64/
 [Xx]86/
 [Bb]uild/
+
+x64/
+x86/
 bld/
 [Bb]in/
 [Oo]bj/
@@ -140,10 +143,15 @@ publish/
 *.[Pp]ublish.xml
 *.azurePubxml
 
+
 # TODO: Un-comment the next line if you do not want to checkin 
 # your web deploy settings because they may include unencrypted
 # passwords
 #*.pubxml
+
+# TODO: Comment the next line if you want to checkin your web deploy settings 
+# but database connection strings (with potential passwords) will be unencrypted
+*.pubxml
 *.publishproj
 
 # NuGet Packages
@@ -182,6 +190,7 @@ BundleArtifacts/
 # Others
 ClientBin/
 [Ss]tyle[Cc]op.*
+
 ~$*
 *~
 *.dbmdl
