@@ -17,6 +17,16 @@ namespace Project_Broban
         /// <summary>
         /// Renders the gameobject to the screen using the spritebatch
         /// </summary>
-        void Render(SpriteBatch sb);
+        void Draw(SpriteBatch sb);
+
+        /// <summary>
+        /// Loads necessary content of the gameobject
+        /// </summary>
+        void LoadContent();
+
+        /// <summary>
+        /// Unloads content from the gameobject
+        /// </summary>
+        void UnloadContent();
     }
 }
