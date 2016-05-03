@@ -17,5 +17,12 @@ Use the following name conventions:
 
 `{name}` should be replaced with a few words describing of what the branch is about, without the { and }.
 
+Emojis are implemented in the commit messages and the following emojis are used like this:
+
+Commit type | Emoji
+------------- | ------------
+bug	      | :+1: `:+1:`
+documentation | :books:  `:books:`
+
 When you are done with the feature/fix/update, send a pull request to `master`. Someone else will then review
 your code and merge it to `master` if it looks good :)
