@@ -56,6 +56,11 @@ body {
         padding-bottom: 0px;
     }
 
+.menu li a.current {
+    border-bottom-color: rgba(255, 255, 255, 1);
+    padding-bottom: 0px;
+}
+
 .banner {
     color: white;
     width: 100%;
