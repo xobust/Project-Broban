@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace Project_Broban
 {
@@ -20,7 +21,23 @@ namespace Project_Broban
 
         public void Update()
         {
-            //Todo handle input 
+            KeyboardState state = Keyboard.GetState();
+
+            if (state.IsKeyDown(Keys.W)) {
+                Position.Y --;
+            }
+            if (state.IsKeyDown(Keys.A))
+            {
+                Position.X --;
+            }
+            if (state.IsKeyDown(Keys.S))
+            {
+                Position.Y ++;
+            }
+            if (state.IsKeyDown(Keys.D))
+            {
+                Position.X ++;
+            }
         }
 
         public void Draw(SpriteBatch sb)
