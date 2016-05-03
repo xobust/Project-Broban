@@ -2,11 +2,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Project Broban - Scoreboard</title>
+<title>Project Broban - Download</title>
 <link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 
-<body>
+<body class="Home">
     <nav>
         <ul class="menu">
             <li><a href="index.php">Home</a></li>
