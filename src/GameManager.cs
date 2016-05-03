@@ -41,7 +41,7 @@ namespace Project_Broban
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            player.LoadContent(GraphicsDevice);
+            player.LoadContent(GraphicsDevice, Content);
 
         }
 

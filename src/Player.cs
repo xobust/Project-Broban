@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Content;
 
 namespace Project_Broban
 {
@@ -45,10 +46,10 @@ namespace Project_Broban
             sb.Draw(PlayerTexture, Position, Color.White);
         }
 
-        public void LoadContent(GraphicsDevice gd)
+        public void LoadContent(GraphicsDevice gd, ContentManager cm)
         {
             //Temporary test texture
-            PlayerTexture = new Texture2D(gd , 100, 100);
+            PlayerTexture = cm.Load<Texture2D>("player");
         }
 
         public void UnloadContent()
