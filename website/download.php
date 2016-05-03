@@ -16,7 +16,8 @@
     </nav>
     <div class="banner">
       <div class="bannerContent">
-
+          <h2>Get the latest version of the game here:</h2>
+          <a href="https://github.com/xobust/Project-Broban" class="button">Download</a>
       </div>
     </div>
 </body>
