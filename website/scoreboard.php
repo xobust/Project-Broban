@@ -11,7 +11,7 @@
         <ul class="menu">
             <li><a href="index.php">Home</a></li>
             <li><a href="download.php">Download</a></li>
-            <li><a href="scoreboard.php">Scoreboard</a></li>
+            <li><a href="scoreboard.php" class="current">Scoreboard</a></li>
         </ul>
     </nav>
     <div class="banner">

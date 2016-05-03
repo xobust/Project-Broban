@@ -52,7 +52,7 @@ h1 {
     text-decoration: none;
     font-size: 22px;
     padding-bottom: 10px;
-    border-bottom: rgba(0, 0, 0, 0) 2px solid;
+    border-bottom: rgba(0, 0, 0, 0) 1px solid;
     transition: 300ms all;
 }
 

@@ -10,7 +10,7 @@
     <nav>
         <ul class="menu">
             <li><a href="index.php">Home</a></li>
-            <li><a href="download.php">Download</a></li>
+            <li><a href="download.php" class="current">Download</a></li>
             <li><a href="scoreboard.php">Scoreboard</a></li>
         </ul>
     </nav>
