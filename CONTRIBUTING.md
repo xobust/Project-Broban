@@ -17,6 +17,7 @@ Commit type | Emoji
 Bugfix	         | :ok_hand: `:ok_hand:`
 Documentation    | :books:  `:books:`
 Work in progress | :construction: `:construction:`
+Feature		 | :v: `:v:`
 
 ## Implementing new features and working with branches
 
