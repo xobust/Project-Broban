@@ -3,7 +3,7 @@
 ## Implementing new features and working with branches 
 
 Before implementing a new feature, create a new issue with the `feature` label and either `game` or `website` depending
-which is appropriate and assign yourself. 
+which is appropriate. 
 
 When implementing the feature, create a new _feature branch_ and work on that. 
 
