@@ -10,6 +10,14 @@ For the commit messages, write them with the following points in mind:
 - Keep your messages brief and make sure the sentence is short enough to
 not cause a line break (happens around 70 characters).
 
+Emojis are implemented in the commit messages and the following emojis are used like this:
+
+Commit type | Emoji
+---------------- | ------------
+Bugfix	         | :ok_hand: `:ok_hand:`
+Documentation    | :books:  `:books:`
+Work in progress | :construction: `:construction:`
+
 ## Implementing new features and working with branches
 
 Before implementing a new feature, create a new issue with the `feature` label and either `game` or `website` depending
