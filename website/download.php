@@ -6,7 +6,7 @@
 <?php require("head.php") ?>
 </head>
 
-<body class="Home">
+<body class="Download">
     <nav>
         <ul class="menu">
             <li><a href="index.php">Home</a></li>

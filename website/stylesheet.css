@@ -7,6 +7,11 @@
           box-sizing: border-box;
 }
 
+body.Scoreboard {
+    background: url("images/banner.jpg");
+    background-size: cover;
+}
+
 a {
     color: inherit;
 }
@@ -44,6 +49,10 @@ body {
 
 	/*--Removes horizontal scrollbar for when the sidebar opens--*/
 	overflow-x: hidden;
+}
+
+h1 {
+    font-size: 72px;
 }
 
 h1, h2 {
@@ -120,4 +129,36 @@ h1, h2 {
     max-width: 800px;
     font-size: 52px;
     text-shadow: none;
+}
+
+.scoreTable {
+    color: white;
+    text-align: center;
+    width: 400px;
+    margin: 100px auto;
+}
+
+table.scoreTable {
+    margin: 0 auto;
+    border: none;
+    border-collapse: collapse;
+}
+
+th {
+    background: rgba(0,0,0,0.7);
+    width: 50%;
+}
+
+th, td {
+    text-align: center;
+    margin: 0;
+    padding: 20px 40px;
+}
+
+tr:nth-child(odd) {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.6);
 }
