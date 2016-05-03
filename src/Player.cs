@@ -30,7 +30,8 @@ namespace Project_Broban
 
         public void LoadContent()
         {
-            //Todo load sprite
+            //Temporary test texture
+            PlayerTexture = new Texture2D(GraphicsDevice, 100, 100);
         }
 
         public void UnloadContent()
