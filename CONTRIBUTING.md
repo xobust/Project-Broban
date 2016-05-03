@@ -1,17 +1,33 @@
 # Contributing
 
+
+## Implementing new features and working with branches 
+=======
+## Commit messages
+
+For the commit messages, write them with the following points in mind:
+
+- Write the messages in imperative form, `Add new feature` instead of `Added new feature`.
+- Capital letters at the beginning of the sentence.
+- No period at the end of the sentence.
+- Keep your messages brief and make sure the sentence is short enough to
+not cause a line break (happens around 70 characters).
+
+Emojis are implemented in the commit messages and the following emojis are used like this:
+
 Commit type | Emoji
 ---------------- | ------------
 Bugfix	         | :ok_hand: `:ok_hand:`
 Documentation    | :books:  `:books:`
 Work in progress | :construction: `:construction:`
 
-## Implementing new features and working with branches 
+## Implementing new features and working with branches
+>>>>>>> dd0c16b64982e70629731947deb0fa5cd057df3b
 
 Before implementing a new feature, create a new issue with the `feature` label and either `game` or `website` depending
-which is appropriate. 
+which is appropriate.
 
-When implementing the feature, create a new _feature branch_ and work on that. 
+When implementing the feature, create a new _feature branch_ and work on that.
 
 Whenever you start working on something new, create a new branch and commit to that.
 
@@ -22,8 +38,6 @@ Use the following name conventions:
 - `update/{name}` for refactoring or updating code
 
 `{name}` should be replaced with a few words describing of what the branch is about, without the { and }.
-
-Emojis are implemented in the commit messages and the following emojis are used like this:
 
 When you are done with the feature/fix/update, send a pull request to `master`. Someone else will then review
 your code and merge it to `master` if it looks good :)

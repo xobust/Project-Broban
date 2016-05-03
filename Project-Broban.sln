@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project-Broban", "Project-Broban.csproj", "{11459815-1B1E-4769-83B6-E185E19051C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project-Broban-win", "Project-Broban-win.csproj", "{B514ADFA-2D35-4067-886E-7F2FA79F525D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -15,6 +17,10 @@ Global
 		{11459815-1B1E-4769-83B6-E185E19051C2}.Debug|x86.Build.0 = Debug|x86
 		{11459815-1B1E-4769-83B6-E185E19051C2}.Release|x86.ActiveCfg = Release|x86
 		{11459815-1B1E-4769-83B6-E185E19051C2}.Release|x86.Build.0 = Release|x86
+		{B514ADFA-2D35-4067-886E-7F2FA79F525D}.Debug|x86.ActiveCfg = Debug|x86
+		{B514ADFA-2D35-4067-886E-7F2FA79F525D}.Debug|x86.Build.0 = Debug|x86
+		{B514ADFA-2D35-4067-886E-7F2FA79F525D}.Release|x86.ActiveCfg = Release|x86
+		{B514ADFA-2D35-4067-886E-7F2FA79F525D}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
