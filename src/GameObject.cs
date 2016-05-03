@@ -22,7 +22,7 @@ namespace Project_Broban
         /// <summary>
         /// Loads necessary content of the gameobject
         /// </summary>
-        void LoadContent();
+        void LoadContent(GraphicsDevice gd);
 
         /// <summary>
         /// Unloads content from the gameobject
