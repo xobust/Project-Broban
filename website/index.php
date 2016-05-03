@@ -18,9 +18,15 @@
       <div class="bannerContent">
         <h1>Project Broban</h1><br>
         <p>
-            "Indie game of the year" -IGN
+            Short description of the game.
         </p>
       </div>
     </div>
+    <section class="content">
+        <h1>Heading</h1>
+        <p>
+            This is where we put a longer description of the game.
+        </p>
+    </section>
 </body>
 </html>
