@@ -13,7 +13,7 @@ namespace Project_Broban
         private Texture2D PlayerTexture;
         Vector2 Position;
 
-        Player()
+        public Player()
         {
             Position = new Vector2(0, 0);
         }
