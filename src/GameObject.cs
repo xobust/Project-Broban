@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Content;
 
 namespace Project_Broban
 {
@@ -22,7 +25,7 @@ namespace Project_Broban
         /// <summary>
         /// Loads necessary content of the gameobject
         /// </summary>
-        void LoadContent();
+        void LoadContent(GraphicsDevice gd, ContentManager cm);
 
         /// <summary>
         /// Unloads content from the gameobject

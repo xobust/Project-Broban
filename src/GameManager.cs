@@ -11,11 +11,13 @@ namespace Project_Broban
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Player player;
 
         public GameManager()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "content";
+            player = new Player();
         }
 
         /// <summary>
@@ -39,8 +41,8 @@ namespace Project_Broban
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            player.LoadContent(GraphicsDevice, Content);
 
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -49,7 +51,7 @@ namespace Project_Broban
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            player.UnloadContent();
         }
 
         /// <summary>
@@ -65,6 +67,7 @@ namespace Project_Broban
             // TODO: Add your update logic here
 
             base.Update(gameTime);
+            player.Update();
         }
 
         /// <summary>
@@ -75,7 +78,9 @@ namespace Project_Broban
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            player.Draw(spriteBatch);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
