@@ -41,7 +41,7 @@ namespace Project_Broban
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Robban.LoadContent();
+            Robban.LoadContent(GraphicsDevice);
 
         }
 
@@ -78,7 +78,9 @@ namespace Project_Broban
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            spriteBatch.Begin();
             Robban.Draw(spriteBatch);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

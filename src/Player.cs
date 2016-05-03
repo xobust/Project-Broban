@@ -28,10 +28,10 @@ namespace Project_Broban
             sb.Draw(PlayerTexture, Position, Color.White);
         }
 
-        public void LoadContent()
+        public void LoadContent(GraphicsDevice gd)
         {
             //Temporary test texture
-            PlayerTexture = new Texture2D(GraphicsDevice, 100, 100);
+            PlayerTexture = new Texture2D(gd , 100, 100);
         }
 
         public void UnloadContent()
