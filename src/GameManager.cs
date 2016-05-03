@@ -15,7 +15,7 @@ namespace Project_Broban
         public GameManager()
         {
             graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
+            Content.RootDirectory = "content";
         }
 
         /// <summary>
