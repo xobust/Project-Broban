@@ -21,11 +21,16 @@ body {
 	width: 100%;
 
 	/*--Default font for the whole site--*/
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Raleway', sans-serif;
 	font-size: 16px;
 
 	/*--Removes horizontal scrollbar for when the sidebar opens--*/
 	overflow-x: hidden;
+}
+
+h1 {
+    font-family: 'Bitter', serif;
+    font-weight: 300;
 }
 
 .menu {
