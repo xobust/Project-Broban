@@ -1,11 +1,21 @@
 # Contributing
 
-## Implementing new features and working with branches 
+## Commit messages
+
+For the commit messages, write them with the following points in mind:
+
+- Write the messages in imperative form, `Add new feature` instead of `Added new feature`.
+- Capital letters at the beginning of the sentence.
+- No period at the end of the sentence.
+- Keep your messages brief and make sure the sentence is short enough to
+not cause a line break (happens around 70 characters).
+
+## Implementing new features and working with branches
 
 Before implementing a new feature, create a new issue with the `feature` label and either `game` or `website` depending
-which is appropriate. 
+which is appropriate.
 
-When implementing the feature, create a new _feature branch_ and work on that. 
+When implementing the feature, create a new _feature branch_ and work on that.
 
 Whenever you start working on something new, create a new branch and commit to that.
 
