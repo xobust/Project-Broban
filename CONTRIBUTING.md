@@ -20,9 +20,11 @@ Use the following name conventions:
 Emojis are implemented in the commit messages and the following emojis are used like this:
 
 Commit type | Emoji
-------------- | ------------
-bug	      | :+1: `:+1:`
-documentation | :books:  `:books:`
+---------------- | ------------
+Bugfix	         | :ok_hand: `:ok_hand:`
+Documentation    | :books:  `:books:`
+Work in progress | :construction: `:construction:`
+
 
 When you are done with the feature/fix/update, send a pull request to `master`. Someone else will then review
 your code and merge it to `master` if it looks good :)
