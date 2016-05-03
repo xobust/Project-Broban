@@ -11,13 +11,13 @@ namespace Project_Broban
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Player Robban;
+        Player player;
 
         public GameManager()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "content";
-            Robban = new Player();
+            player = new Player();
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Project_Broban
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Robban.LoadContent(GraphicsDevice);
+            player.LoadContent(GraphicsDevice);
 
         }
 
@@ -51,7 +51,7 @@ namespace Project_Broban
         /// </summary>
         protected override void UnloadContent()
         {
-            Robban.UnloadContent();
+            player.UnloadContent();
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Project_Broban
             // TODO: Add your update logic here
 
             base.Update(gameTime);
-            Robban.Update();
+            player.Update();
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Project_Broban
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            Robban.Draw(spriteBatch);
+            player.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
