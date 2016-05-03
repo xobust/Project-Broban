@@ -2,8 +2,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<?php require("head.php") ?>
 <title>Project Broban - Home</title>
-<link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 
 <body class="Home">

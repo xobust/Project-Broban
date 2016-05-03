@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Project Broban - Scoreboard</title>
-<link rel="stylesheet" type="text/css" href="stylesheet.css">
+<?php require("head.php") ?>
 </head>
 
 <body>
@@ -16,7 +16,7 @@
     </nav>
     <div class="banner">
       <div class="bannerContent">
-        
+
       </div>
     </div>
 </body>
