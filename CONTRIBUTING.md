@@ -1,8 +1,5 @@
 # Contributing
 
-
-## Implementing new features and working with branches 
-=======
 ## Commit messages
 
 For the commit messages, write them with the following points in mind:
@@ -22,7 +19,6 @@ Documentation    | :books:  `:books:`
 Work in progress | :construction: `:construction:`
 
 ## Implementing new features and working with branches
->>>>>>> dd0c16b64982e70629731947deb0fa5cd057df3b
 
 Before implementing a new feature, create a new issue with the `feature` label and either `game` or `website` depending
 which is appropriate.
