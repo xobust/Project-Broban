@@ -29,3 +29,8 @@ Use the following name conventions:
 
 When you are done with the feature/fix/update, send a pull request to `master`. Someone else will then review
 your code and merge it to `master` if it looks good :)
+
+## Contributing
+
+We use mostly use pascal case for the naming of classes, methods and other nameable things:  
+https://msdn.microsoft.com/en-us/library/x2dbyw72(v=vs.71).aspx
