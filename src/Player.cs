@@ -24,16 +24,20 @@ namespace Project_Broban
         {
             KeyboardState state = Keyboard.GetState();
 
-            if (state.IsKeyDown(Keys.W)) {
+            if (state.IsKeyDown(Keys.W))
+            {
                 Position.Y --;
             }
-            if (state.IsKeyDown(Keys.A)) {
+            if (state.IsKeyDown(Keys.A))
+            {
                 Position.X --;
             }
-            if (state.IsKeyDown(Keys.S)) {
+            if (state.IsKeyDown(Keys.S))
+            {
                 Position.Y ++;
             }
-            if (state.IsKeyDown(Keys.D)) {
+            if (state.IsKeyDown(Keys.D))
+            {
                 Position.X ++;
             }
         }
