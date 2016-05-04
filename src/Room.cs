@@ -8,5 +8,6 @@ namespace Project_Broban
 {
     class Room
     {
+
     }
 }
