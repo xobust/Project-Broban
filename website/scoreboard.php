@@ -22,6 +22,7 @@
                 <th>Time</th>
             </tr>
             <?php
+                require("config.php");
                 $database = new PDO("mysql:host=.$DB_HOST;dbname=$DB_NAME", $DB_USER, $DB_PASSWORD); 
                 $stmt = $database->prepare("SELECT * FROM highscore ORDER BY Time");
                 $stmt->execute();

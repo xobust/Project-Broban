@@ -5,7 +5,7 @@
 * Author: Alexander Bladh
 * Date: 2016-05-04 
 */
-requre("config.php");
+require("config.php");
 
 $mysql = new PDO("mysql:host=$DB_HOST", $DB_USER, $DB_PASSWORD); 
 $pstatement = $mysql->prepare("CREATE DATABASE IF NOT EXISTS $dbname");
