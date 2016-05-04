@@ -12,6 +12,7 @@ namespace Project_Broban
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Player player;
+        TileRenderer tr = new TileRenderer();
 
         public GameManager()
         {
@@ -42,6 +43,7 @@ namespace Project_Broban
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             player.LoadContent(GraphicsDevice, Content);
+            tr.LoadContent(GraphicsDevice, Content);
 
         }
 
@@ -79,7 +81,16 @@ namespace Project_Broban
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
+
+            string[][] map = new string[2][];
+            map[0] = new string[2] { "1", "1" };
+            map[1] = new string[2] { "1", "1" };
+            tr.Draw(spriteBatch, map);
+
+
             player.Draw(spriteBatch);
+
+
             spriteBatch.End();
 
             base.Draw(gameTime);
