@@ -82,9 +82,15 @@ namespace Project_Broban
 
             spriteBatch.Begin();
 
-            string[][] map = new string[2][];
-            map[0] = new string[2] { "1", "1" };
-            map[1] = new string[2] { "1", "1" };
+            string[][] map = new string[10][];
+            for (int i = 0; i < map.Length; i++)
+            {
+                map[i] = new string[30];
+                for (int j = 0; j < 30; j++)
+                {
+                    map[i][j] = "1";
+                }
+            }
             tr.Draw(spriteBatch, map);
 
 
