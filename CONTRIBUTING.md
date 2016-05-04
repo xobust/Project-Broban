@@ -24,7 +24,7 @@ Feature		 | :v: `:v:`
 Before implementing a new feature, create a new issue with the `feature` label and either `game` or `website` depending
 which is appropriate.
 
-Always git pull before committing to prevent an unnecessary commit for a merge after the commit.
+Always `git pull` before committing to prevent an unnecessary commit for a merge after the commit.
 
 When implementing the feature, create a new _feature branch_ and work on that.
 
@@ -40,6 +40,7 @@ Use the following name conventions:
 
 When you are done with the feature/fix/update, send a pull request to `master`. Someone else will then review
 your code and merge it to `master` if it looks good :)
+Make sure to delete the branch after it is merged!
 
 ## Coding standard
 
