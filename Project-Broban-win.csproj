@@ -35,8 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>content\Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="properties\AssemblyInfo.cs" />
@@ -57,7 +56,7 @@
     <Content Include="content\player.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="content\content.mgcb" />
+    <MonoGameContentReference Include="content\content.mgcb" />
     <None Include="content\OpenTK.dll.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

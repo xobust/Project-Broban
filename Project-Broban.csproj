@@ -35,8 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>content\Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="properties\AssemblyInfo.cs" />
@@ -59,7 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="content\content.mgcb" />
+    <MonoGameContentReference Include="content\content.mgcb" />
     <None Include="content\OpenTK.dll.config" />
   </ItemGroup>
   <ItemGroup>
