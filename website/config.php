@@ -7,9 +7,9 @@
 * Date: 2016-05-04
 */
 
-define ("DB_USER", "mysql_user");
-define ("DB_PASSWORD", "mysql_password");
-define ("DB_DATABASE", "database_name");
-define ("DB_HOST", "localhost");
+define ("DB_USER", "root");
+define ("DB_PASSWORD", "");
+define ("DB_NAME", "broban-scoreboard");
+define ("DB_HOST", "127.0.0.1");
 
 ?>

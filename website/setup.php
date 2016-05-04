@@ -7,15 +7,15 @@
 */
 require("config.php");
 
-$mysql = new PDO("mysql:host=$DB_HOST", $DB_USER, $DB_PASSWORD); 
-$pstatement = $mysql->prepare("CREATE DATABASE IF NOT EXISTS $DB_NAME");
+$mysql = new PDO("mysql:host=".DB_HOST, DB_USER, DB_PASSWORD); 
+$pstatement = $mysql->prepare("CREATE DATABASE IF NOT EXISTS ".DB_NAME);
 $pstatment->execute();
 
-$database = new PDO("mysql:host=.$DB_HOST;dbname=$DB_NAME", $DB_USER, $DB_PASSWORD); 
+$database = new PDO("mysql:host=".DB_HOST";dbname="DB_NAME, DB_USER, DB_PASSWORD); 
 $table= "highscore";
 $columns = "ID INT( 11 ) AUTO_INCREMENT PRIMARY KEY, Name VARCHAR(15) NOT NULL, Time INT(10) NOT NULL";
 
-$createTable = $db->exec("CREATE TABLE IF NOT EXISTS $DB_NAME.$table ($columns)");
+$createTable = $db->exec("CREATE TABLE IF NOT EXISTS ".DB_NAME.$table ($columns)");
 if ($createTable) 
 {
     echo "Table $table - Created!<br /><br />";
