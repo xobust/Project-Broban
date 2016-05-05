@@ -24,9 +24,9 @@
             <?php
                 require("config.php");
                 $database = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD); 
-                $stmt = $database->prepare("SELECT * FROM highscore ORDER BY Time");
+                $stmt = $database->prepare("SELECT * FROM highscore ORDER BY Time LIMIT 10");
                 $stmt->execute();
-                while ($row = $result->fetch(PDO::FETCH_ASSOC))
+		while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
                 {
                     echo "<tr>";
                     echo "<td>".$row["Name"]."</td>";
