@@ -55,6 +55,7 @@ namespace Project_Broban
         /// </summary>
         public void Update()
         {
+            WorldMap[CurrentXPossition][CurrentYPossition].Update();
         }
 
         /// <summary>
@@ -62,6 +63,7 @@ namespace Project_Broban
         /// </summary>
         public void Draw(SpriteBatch sb)
         {
+            WorldMap[CurrentXPossition][CurrentYPossition].Draw(sb);
         }
 
         /// <summary>
