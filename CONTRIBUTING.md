@@ -46,3 +46,5 @@ Make sure to delete the branch after it is merged!
 
 We use mostly use pascal case for the naming of classes, methods and other nameable things:  
 https://msdn.microsoft.com/en-us/library/x2dbyw72(v=vs.71).aspx
+
+All new classes should be placed in hte namespace Project_Broban `NOT` Project_Broban.src
