@@ -35,13 +35,26 @@ namespace Project_Broban
             CurrentYPossition = startY;
         }
 
+        /// <summary>
+        /// This function is executed when the player enters a room
+        /// </summary>
+        /// <param name="x">X possition for the room</param>
+        /// <param name="y">Y possition for the room</param>
+        public void EnterRoom(int x, int y)
+        {
+            if(WorldMap[x][y] == null)
+            {
+                WorldMap[x][y] = new Room(x, y);
+            }
+            CurrentXPossition = x;
+            CurrentYPossition = y;
+        }
 
         /// <summary>
         /// Updates the state of the world 
         /// </summary>
         public void Update()
         {
-
         }
 
         /// <summary>
