@@ -21,7 +21,7 @@ namespace Project_Broban
         /// <param name="size">The size of the world</param>
         /// <param name="startX">The starting possition for the player in axis X</param>
         /// <param name="startY">The starting possition for the player in axis Y</param>
-        World(int size, int startX, int startY)
+        public World(int size, int startX, int startY)
         {
             WorldMap = new Room[size][];
             for (int i = 0; i < size; i++)

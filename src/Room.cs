@@ -15,7 +15,7 @@ namespace Project_Broban
 
         // TODO add tile map here int[][] TileMap;
 
-        Room(int xPossition, int yPossition)
+        public Room(int xPossition, int yPossition)
         {
             XPossition = xPossition;
             YPossition = yPossition;
