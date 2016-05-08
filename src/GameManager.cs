@@ -12,12 +12,14 @@ namespace Project_Broban
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Player player;
+        World GameWorld;
 
         public GameManager()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "content";
             player = new Player();
+            GameWorld = new World(10, 5, 5);
         }
 
         /// <summary>
@@ -42,6 +44,7 @@ namespace Project_Broban
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             player.LoadContent(GraphicsDevice, Content);
+            GameWorld.LoadContent(GraphicsDevice, Content);
 
         }
 
@@ -52,6 +55,7 @@ namespace Project_Broban
         protected override void UnloadContent()
         {
             player.UnloadContent();
+            GameWorld.UnloadContent();
         }
 
         /// <summary>
@@ -68,6 +72,7 @@ namespace Project_Broban
 
             base.Update(gameTime);
             player.Update();
+            GameWorld.Update();
         }
 
         /// <summary>
@@ -79,6 +84,7 @@ namespace Project_Broban
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
+            GameWorld.Draw(spriteBatch);
             player.Draw(spriteBatch);
             spriteBatch.End();
 
