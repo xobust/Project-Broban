@@ -44,6 +44,8 @@
     <Compile Include="src\GameObject.cs" />
     <Compile Include="src\Player.cs" />
     <Compile Include="src\Program.cs" />
+    <Compile Include="src\Room.cs" />
+    <Compile Include="src\World.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
