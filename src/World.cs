@@ -31,6 +31,7 @@ namespace Project_Broban
 
             //TODO create a special Room class for the starting room
             WorldMap[startX][startY] = new Room(startX, startY);
+            WorldMap[startX][startY].Generate();
             CurrentXPossition = startX;
             CurrentYPossition = startY;
         }
@@ -45,6 +46,7 @@ namespace Project_Broban
             if(WorldMap[x][y] == null)
             {
                 WorldMap[x][y] = new Room(x, y);
+                WorldMap[x][y].Generate();
             }
             CurrentXPossition = x;
             CurrentYPossition = y;
