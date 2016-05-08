@@ -13,7 +13,7 @@ namespace Project_Broban
         int XPossition;
         int YPossition;
 
-
+        // TODO add tile map here int[][] TileMap;
 
         Room(int xPossition, int yPossition)
         {
@@ -26,7 +26,7 @@ namespace Project_Broban
         /// </summary>
         public void Generate()
         {
-
+            // TODO write room generation code here 
         }
         /// <summary>
         /// Updates the state of the gameobject
@@ -41,8 +41,9 @@ namespace Project_Broban
         /// </summary>
         public void Draw(SpriteBatch sb)
         {
-
+            // TODO create a singelton object that renders the tilemap here. TileRenderer.Draw(TileMap);
         }
+
         /// <summary>
         /// Loads necessary content of the gameobject
         /// </summary>
