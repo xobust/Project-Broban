@@ -11,12 +11,28 @@ namespace Project_Broban
 {
     class World : GameObject
     {
-        Vector2 CurrentPossition = new Vector2( 0, 0 );
+        int CurrentXPossition;
+        int CurrentYPossition;
         Room[][] WorldMap;
 
-        World(int size)
+        /// <summary>
+        /// Creates a world with a given size
+        /// </summary>
+        /// <param name="size">The size of the world</param>
+        /// <param name="startX">The starting possition for the player in axis X</param>
+        /// <param name="startY">The starting possition for the player in axis Y</param>
+        World(int size, int startX, int startY)
         {
+            WorldMap = new Room[size][];
+            for (int i = 0; i < size; i++)
+            {
+                WorldMap[i] = new Room[size];
+            }
 
+            //TODO create a special Room class for the starting room
+            WorldMap[startX][startY] = new Room(startX, startY);
+            CurrentXPossition = startX;
+            CurrentYPossition = startY;
         }
 
 
