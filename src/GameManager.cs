@@ -12,13 +12,14 @@ namespace Project_Broban
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Player player;
-        TileRenderer tr = new TileRenderer();
+        TileRenderer tr;
 
         public GameManager()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "content";
             player = new Player();
+            tr = TileRenderer.Instance;
         }
 
         /// <summary>

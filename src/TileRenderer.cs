@@ -11,10 +11,26 @@ namespace Project_Broban
 {
     class TileRenderer
     {
+        private static TileRenderer instance;
         private Texture2D tileSet;                  // The sprite sheet for the tiles
         private const int tileHeight = 32;          // The height of one tile
         private const int tileWidth = 64;           // The width of one tile
         private const int tileOffset = tileWidth/2; // The position offset when placing diagonal tiles
+
+
+        private TileRenderer() { }
+
+        public static TileRenderer Instance
+        {
+            get
+            {
+                if(instance == null)
+                {
+                    instance = new TileRenderer();
+                }
+                return instance;
+            }
+        }
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
