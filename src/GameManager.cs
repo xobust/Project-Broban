@@ -12,12 +12,14 @@ namespace Project_Broban
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Player player;
+        TileRenderer tr;
 
         public GameManager()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "content";
             player = new Player();
+            tr = TileRenderer.Instance;
         }
 
         /// <summary>
@@ -42,6 +44,7 @@ namespace Project_Broban
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             player.LoadContent(GraphicsDevice, Content);
+            tr.LoadContent(GraphicsDevice, Content);
 
         }
 
@@ -79,7 +82,23 @@ namespace Project_Broban
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
+
+            // Generates a placeholder map, feel free to remove
+            string[][] map = new string[10][];
+            for (int i = 0; i < map.Length; i++)
+            {
+                map[i] = new string[30];
+                for (int j = 0; j < 30; j++)
+                {
+                    map[i][j] = "1";
+                }
+            }
+            tr.Draw(spriteBatch, map);
+
+
             player.Draw(spriteBatch);
+
+
             spriteBatch.End();
 
             base.Draw(gameTime);
