@@ -8,7 +8,7 @@
 }
 
 body.Scoreboard {
-    background: url("/images/banner.jpg");
+    background: url("images/banner.jpg");
     background-size: cover;
 }
 
@@ -98,7 +98,7 @@ h1, h2 {
     color: white;
     width: 100%;
     height: 100%;
-    background: url("/images/banner.jpg");
+    background: url("images/banner.jpg");
     background-size: cover;
     text-align: center;
     font-size: 20px;

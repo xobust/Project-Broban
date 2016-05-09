@@ -21,18 +21,19 @@
                 <th>Name</th>
                 <th>Time</th>
             </tr>
-            <tr>
-                <td>Robert Kindwall</td>
-                <td>00:21</td>
-            </tr>
-            <tr>
-                <td>Willy Liu</td>
-                <td>13:37</td>
-            </tr>
-            <tr>
-                <td>Alexander Bladh</td>
-                <td>21:02</td>
-            </tr>
+            <?php
+                require("config.php");
+                $database = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD); 
+                $stmt = $database->prepare("SELECT * FROM highscore ORDER BY Time LIMIT 10");
+                $stmt->execute();
+		while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+                {
+                    echo "<tr>";
+                    echo "<td>".$row["Name"]."</td>";
+                    echo "<td>".$row["Time"]."</td>";
+                    echo "</tr>";
+                }
+            ?>
         </table>
     </section>
 </body>
