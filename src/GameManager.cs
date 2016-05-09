@@ -82,6 +82,7 @@ namespace Project_Broban
 
             spriteBatch.Begin();
 
+            // Generates a placeholder map, feel free to remove
             string[][] map = new string[10][];
             for (int i = 0; i < map.Length; i++)
             {
