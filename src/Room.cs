@@ -15,7 +15,7 @@ namespace Project_Broban
         private const int mapSizeX = 10;
         private const int mapSizeY = 10;
 
-        public void Generate(SpriteBatch sb)
+        public void Generate()
         {
             for(int x = 0; x < mapSizeX; x++)
             {
