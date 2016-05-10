@@ -15,7 +15,7 @@ namespace Project_Broban
         private const int mapSizeX = 10;
         private const int mapSizeY = 10;
 
-        public void Generate()
+        public string[][] Generate()
         {
             for(int x = 0; x < mapSizeX; x++)
             {
@@ -24,6 +24,7 @@ namespace Project_Broban
                     map[x][y] = "Grass";
                 }
             }
+            return map;
         }
     }
 }
