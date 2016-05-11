@@ -12,6 +12,7 @@ namespace Project_Broban
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Player player;
+        TileRenderer tr;
         World GameWorld;
 
         public GameManager()
@@ -20,6 +21,7 @@ namespace Project_Broban
             Content.RootDirectory = "content";
             player = new Player();
             GameWorld = new World(10, 5, 5);
+            tr = TileRenderer.Instance;
         }
 
         /// <summary>
@@ -44,6 +46,7 @@ namespace Project_Broban
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             player.LoadContent(GraphicsDevice, Content);
+            tr.LoadContent(GraphicsDevice, Content);
             GameWorld.LoadContent(GraphicsDevice, Content);
 
         }
@@ -86,6 +89,7 @@ namespace Project_Broban
             spriteBatch.Begin();
             GameWorld.Draw(spriteBatch);
             player.Draw(spriteBatch);
+
             spriteBatch.End();
 
             base.Draw(gameTime);

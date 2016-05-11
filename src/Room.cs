@@ -12,25 +12,42 @@ namespace Project_Broban
     {
         int XPossition;
         int YPossition;
-
-        // TODO add tile map here int[][] TileMap;
+        private string[][] map;
+        private const int mapSizeX = 10;
+        private const int mapSizeY = 10;
 
         public Room(int xPossition, int yPossition)
         {
             XPossition = xPossition;
             YPossition = yPossition;
+            map = new string[mapSizeX][];
+            for (int x = 0; x < mapSizeX; x++)
+            {
+                map[x] = new string[mapSizeY];
+                for (int y = 0; y < mapSizeY; y++)
+                {
+                    map[x][y] = null;
+                }
+            }
         }
 
         /// <summary>
-        /// Generates the world 
+        /// Generates the room map
         /// </summary>
+        /// <returns></returns>
         public void Generate()
         {
-            // TODO write room generation code here 
+            for (int x = 0; x < mapSizeX; x++)
+            {
+                for (int y = 0; y < mapSizeY; y++)
+                {
+                    map[x][y] = "Grass";
+                }
+            }
         }
-        /// <summary>
-        /// Updates the state of the gameobject
-        /// </summary>
+           /// <summary>
+           /// Updates the state of the gameobject
+           /// </summary>
         public void Update()
         {
 
