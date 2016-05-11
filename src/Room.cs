@@ -12,14 +12,16 @@ namespace Project_Broban
     class Room
     {
         private string[][] map;
-        private const int mapSizeX = 10;
-        private const int mapSizeY = 10;
+        private const int mapSizeX = 12;
+        private const int mapSizeY = 29;
 
         public string[][] Generate()
         {
-            for(int x = 0; x < mapSizeX; x++)
+            map = new string[mapSizeX][];
+            for (int x = 0; x < mapSizeX; x++)
             {
-                for(int y = 0; y < mapSizeY; y++)
+                map[x] = new string[mapSizeY];
+                for (int y = 0; y < mapSizeY; y++)
                 {
                     map[x][y] = "Grass";
                 }
