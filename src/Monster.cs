@@ -17,6 +17,7 @@ namespace Project_Broban
         private const int hp = 1;
         private const float moveSpeed = 1;
         private const int damage = 1;
+        private Texture2D texture;
         Vector2 position;
 
         public Monster(float x, float y)
@@ -31,12 +32,13 @@ namespace Project_Broban
 
         public void Draw(SpriteBatch sb)
         {
-            
+            sb.Draw(texture, position, Color.White);
         }
 
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
         {
-            
+            // Load temporary texture (Like the player class)
+            texture = cm.Load<Texture2D>("player");
         }
 
         public void UnloadContent()
