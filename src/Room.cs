@@ -13,8 +13,8 @@ namespace Project_Broban
         int XPossition;
         int YPossition;
         private string[][] map;
-        private const int mapSizeX = 10;
-        private const int mapSizeY = 10;
+        private const int mapSizeX = 12;
+        private const int mapSizeY = 29;
 
         public Room(int xPossition, int yPossition)
         {
