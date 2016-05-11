@@ -12,7 +12,7 @@ namespace Project_Broban
 {
     class Monster : GameObject
     {
-        private const float size = 1;
+        private const float size = 0.5f;
         private const float speed = 1;
         private const int hp = 1;
         private const float moveSpeed = 1;
@@ -32,7 +32,8 @@ namespace Project_Broban
 
         public void Draw(SpriteBatch sb)
         {
-            sb.Draw(texture, position, Color.White);
+            sb.Draw(texture, position, null, Color.White, 0, Vector2.Zero, 
+                    size, SpriteEffects.None, 0);
         }
 
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
