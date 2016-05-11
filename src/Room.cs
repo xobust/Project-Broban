@@ -58,7 +58,7 @@ namespace Project_Broban
         /// </summary>
         public void Draw(SpriteBatch sb)
         {
-            // TODO create a singelton object that renders the tilemap here. TileRenderer.Draw(TileMap);
+            TileRenderer.Instance.Draw(sb, map);
         }
 
         /// <summary>
