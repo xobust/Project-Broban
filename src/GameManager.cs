@@ -13,12 +13,14 @@ namespace Project_Broban
         SpriteBatch spriteBatch;
         Player player;
         TileRenderer tr;
+        World GameWorld;
 
         public GameManager()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "content";
             player = new Player();
+            GameWorld = new World(10, 5, 5);
             tr = TileRenderer.Instance;
         }
 
@@ -30,8 +32,6 @@ namespace Project_Broban
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
@@ -45,6 +45,7 @@ namespace Project_Broban
             spriteBatch = new SpriteBatch(GraphicsDevice);
             player.LoadContent(GraphicsDevice, Content);
             tr.LoadContent(GraphicsDevice, Content);
+            GameWorld.LoadContent(GraphicsDevice, Content);
 
         }
 
@@ -55,6 +56,7 @@ namespace Project_Broban
         protected override void UnloadContent()
         {
             player.UnloadContent();
+            GameWorld.UnloadContent();
         }
 
         /// <summary>
@@ -71,6 +73,7 @@ namespace Project_Broban
 
             base.Update(gameTime);
             player.Update();
+            GameWorld.Update();
         }
 
         /// <summary>
@@ -82,22 +85,8 @@ namespace Project_Broban
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-
-            // Generates a placeholder map, feel free to remove
-            string[][] map = new string[10][];
-            for (int i = 0; i < map.Length; i++)
-            {
-                map[i] = new string[30];
-                for (int j = 0; j < 30; j++)
-                {
-                    map[i][j] = "1";
-                }
-            }
-            tr.Draw(spriteBatch, map);
-
-
+            GameWorld.Draw(spriteBatch);
             player.Draw(spriteBatch);
-
 
             spriteBatch.End();
 
