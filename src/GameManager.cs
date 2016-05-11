@@ -12,6 +12,7 @@ namespace Project_Broban
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Player player;
+        Monster monster;
         TileRenderer tr;
         Room room;
         string[][] map;
@@ -21,6 +22,7 @@ namespace Project_Broban
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "content";
             player = new Player();
+            monster = new Monster(300,100);
             room = new Room();
             tr = TileRenderer.Instance;
         }
@@ -47,8 +49,8 @@ namespace Project_Broban
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             player.LoadContent(GraphicsDevice, Content);
+            monster.LoadContent(GraphicsDevice, Content);
             tr.LoadContent(GraphicsDevice, Content);
-
         }
 
         /// <summary>
@@ -88,6 +90,7 @@ namespace Project_Broban
             
             tr.Draw(spriteBatch, map);
             player.Draw(spriteBatch);
+            monster.Draw(spriteBatch);
 
             spriteBatch.End();
 
