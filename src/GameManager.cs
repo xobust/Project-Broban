@@ -14,16 +14,17 @@ namespace Project_Broban
         Player player;
         Monster monster;
         TileRenderer tr;
-        Room room;
-        string[][] map;
+        World GameWorld;
 
         public GameManager()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "content";
             player = new Player();
+
             monster = new Monster(300,100);
-            room = new Room();
+
+            GameWorld = new World(10, 5, 5);
             tr = TileRenderer.Instance;
         }
 
@@ -35,8 +36,6 @@ namespace Project_Broban
         /// </summary>
         protected override void Initialize()
         {
-            map = room.Generate();
-
             base.Initialize();
         }
 
@@ -51,6 +50,7 @@ namespace Project_Broban
             player.LoadContent(GraphicsDevice, Content);
             monster.LoadContent(GraphicsDevice, Content);
             tr.LoadContent(GraphicsDevice, Content);
+            GameWorld.LoadContent(GraphicsDevice, Content);
         }
 
         /// <summary>
@@ -60,6 +60,7 @@ namespace Project_Broban
         protected override void UnloadContent()
         {
             player.UnloadContent();
+            GameWorld.UnloadContent();
         }
 
         /// <summary>
@@ -76,6 +77,7 @@ namespace Project_Broban
 
             base.Update(gameTime);
             player.Update();
+            GameWorld.Update();
         }
 
         /// <summary>
@@ -87,8 +89,7 @@ namespace Project_Broban
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            
-            tr.Draw(spriteBatch, map);
+            GameWorld.Draw(spriteBatch);
             player.Draw(spriteBatch);
             monster.Draw(spriteBatch);
 
