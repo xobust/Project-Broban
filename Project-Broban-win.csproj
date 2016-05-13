@@ -40,6 +40,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\MonsterController.cs" />
+    <Compile Include="src\Controller.cs" />
     <Compile Include="src\GameManager.cs" />
     <Compile Include="src\GameObject.cs" />
     <Compile Include="src\Player.cs" />
