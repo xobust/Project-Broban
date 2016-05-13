@@ -17,7 +17,7 @@ namespace Project_Broban
 
         public void Update()
         {
-            
+            // TODO: Implement movement controlling.
         }
     }
 }
