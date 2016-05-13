@@ -10,16 +10,16 @@ namespace Project_Broban
 {
     class Room : GameObject
     {
-        int XPossition;
-        int YPossition;
+        int XPosition;
+        int YPosition;
         private string[][] map;
         private const int mapSizeX = 12;
         private const int mapSizeY = 29;
 
-        public Room(int xPossition, int yPossition)
+        public Room(int xPosition, int yPosition)
         {
-            XPossition = xPossition;
-            YPossition = yPossition;
+            XPosition = xPosition;
+            YPosition = yPosition;
             map = new string[mapSizeX][];
             for (int x = 0; x < mapSizeX; x++)
             {
