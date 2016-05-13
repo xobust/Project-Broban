@@ -13,7 +13,7 @@ namespace Project_Broban
     public class Player : GameObject
     {
         private Texture2D PlayerTexture;
-        Vector2 Position;
+        public Vector2 Position;
 
         public Player()
         {
