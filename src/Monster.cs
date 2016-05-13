@@ -13,8 +13,8 @@ namespace Project_Broban
     class Monster : GameObject
     {
         private const float size = 0.5f;
-        private const float speed = 1;
         private const float moveSpeed = 1;
+        private const float range = 1;
         private const int damage = 1;
         private int hp = 1;
         private Texture2D texture;
@@ -23,6 +23,11 @@ namespace Project_Broban
         public Monster(float x, float y)
         {
             position = new Vector2(x, y);
+        }
+
+        public void Move()
+        {
+
         }
 
         public void Update()
