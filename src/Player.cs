@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Project_Broban
 {
-    class Player : GameObject
+    public class Player : GameObject
     {
         private Texture2D PlayerTexture;
         Vector2 Position;
