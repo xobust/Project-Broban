@@ -11,15 +11,18 @@ namespace Project_Broban
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        public World GameWorld;
         public Player player;
+        MonsterController monsterController;
         TileRenderer tr;
-        World GameWorld;
+        
 
         public GameManager()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "content";
             player = new Player();
+            monsterController = new MonsterController(this);
 
             GameWorld = new World(10, 5, 5);
             tr = TileRenderer.Instance;
@@ -72,8 +75,9 @@ namespace Project_Broban
             // TODO: Add your update logic here
 
             base.Update(gameTime);
-            player.Update();
             GameWorld.Update();
+            player.Update();
+            monsterController.Update();
         }
 
         /// <summary>
