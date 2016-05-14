@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Project_Broban
 {
-    class Monster : GameObject
+    public class Monster : GameObject
     {
         private float size = 1;
         private const float moveSpeed = 1;
@@ -25,14 +25,17 @@ namespace Project_Broban
             position = new Vector2(x, y);
         }
 
-        public void Move()
+        public void Move(int x, int y)
         {
+            float deltaY = y - position.Y;
+            float deltaX = x - position.X;
 
+            position.X = moveSpeed * (float)Math.Cos(Math.Atan2(deltaY, deltaX));
+            position.Y = moveSpeed * (float)Math.Sin(Math.Atan2(deltaY, deltaX));
         }
 
         public void Update()
         {
-
         }
 
         public void Draw(SpriteBatch sb)
