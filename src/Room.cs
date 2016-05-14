@@ -15,11 +15,15 @@ namespace Project_Broban
         private string[][] map;
         private const int mapSizeX = 12;
         private const int mapSizeY = 29;
+        private Monster[] monsters;
 
         public Room(int xPossition, int yPossition)
         {
             XPossition = xPossition;
             YPossition = yPossition;
+
+            monsters = new Monster[10];
+
             map = new string[mapSizeX][];
             for (int x = 0; x < mapSizeX; x++)
             {
@@ -43,6 +47,14 @@ namespace Project_Broban
                 {
                     map[x][y] = "Grass";
                 }
+            }
+        }
+
+        public void SpawnMonsters()
+        {
+            for (int i = 0; i < monsters.Length; i++)
+            {
+                monsters[i] = new Monster(20, 20);
             }
         }
            /// <summary>
