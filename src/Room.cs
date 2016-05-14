@@ -8,18 +8,20 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Project_Broban
 {
-    class Room : GameObject
+    public class Room : GameObject
     {
         int XPosition;
         int YPosition;
         private string[][] map;
         private const int mapSizeX = 12;
         private const int mapSizeY = 29;
-        private Monster[] monsters;
+        public Monster[] monsters;
+        private Random rngGenerator;
 
         public Room(int xPosition, int yPosition)
         {
             monsters = new Monster[10];
+            rngGenerator = new Random();
             
             XPosition = xPosition;
             YPosition = yPosition;
@@ -33,6 +35,8 @@ namespace Project_Broban
                     map[x][y] = null;
                 }
             }
+
+            SpawnMonsters();
         }
 
         /// <summary>
@@ -54,7 +58,8 @@ namespace Project_Broban
         {
             for (int i = 0; i < monsters.Length; i++)
             {
-                monsters[i] = new Monster(20, 20);
+                monsters[i] = new Monster(rngGenerator.Next(0,700),
+                                          rngGenerator.Next(0,400));
             }
         }
            /// <summary>
@@ -71,6 +76,10 @@ namespace Project_Broban
         public void Draw(SpriteBatch sb)
         {
             TileRenderer.Instance.Draw(sb, map);
+            foreach (Monster monster in monsters)
+            {
+                monster.Draw(sb);
+            }
         }
 
         /// <summary>
@@ -78,7 +87,10 @@ namespace Project_Broban
         /// </summary>
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
         {
-
+            foreach (Monster monster in monsters)
+            {
+                monster.LoadContent(gd, cm);
+            }
         }
 
         /// <summary>
