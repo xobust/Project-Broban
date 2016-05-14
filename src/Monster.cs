@@ -13,7 +13,7 @@ namespace Project_Broban
     public class Monster : GameObject
     {
         private float size = 1;
-        private const float moveSpeed = 1;
+        private const float moveSpeed = 0.2f;
         private const float range = 1;
         private const int damage = 1;
         private int hp = 1;
@@ -25,13 +25,13 @@ namespace Project_Broban
             position = new Vector2(x, y);
         }
 
-        public void Move(int x, int y)
+        public void Move(float x, float y)
         {
             float deltaY = y - position.Y;
             float deltaX = x - position.X;
 
-            position.X = moveSpeed * (float)Math.Cos(Math.Atan2(deltaY, deltaX));
-            position.Y = moveSpeed * (float)Math.Sin(Math.Atan2(deltaY, deltaX));
+            position.X += moveSpeed * (float)Math.Cos(Math.Atan2(deltaY, deltaX));
+            position.Y += moveSpeed * (float)Math.Sin(Math.Atan2(deltaY, deltaX));
         }
 
         public void Update()
@@ -40,8 +40,8 @@ namespace Project_Broban
 
         public void Draw(SpriteBatch sb)
         {
-            sb.Draw(texture, position, null, Color.White, 0, Vector2.Zero, 
-                    size, SpriteEffects.None, 0);
+            sb.Draw(texture, position, null, Color.White, 0,
+                    Vector2.Zero, size, SpriteEffects.None, 0);
         }
 
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
