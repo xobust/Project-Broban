@@ -67,7 +67,6 @@ namespace Project_Broban
            /// </summary>
         public void Update()
         {
-
         }
 
         /// <summary>
@@ -87,10 +86,6 @@ namespace Project_Broban
         /// </summary>
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
         {
-            foreach (Monster monster in monsters)
-            {
-                monster.LoadContent(gd, cm);
-            }
         }
 
         /// <summary>

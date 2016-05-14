@@ -77,9 +77,6 @@ namespace Project_Broban
         /// </summary>
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
         {
-            // We should make it so this runs every time a new room is entered.
-            // Maybe make a singleton for all textures?
-            currentRoom.LoadContent(gd, cm);
         }
 
         /// <summary>
