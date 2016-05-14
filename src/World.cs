@@ -9,11 +9,12 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Project_Broban
 {
-    class World : GameObject
+    public class World : GameObject
     {
         int CurrentXPosition;
         int CurrentYPosition;
         Room[][] WorldMap;
+        public Room currentRoom;
 
         /// <summary>
         /// Creates a world with a given size
@@ -34,6 +35,8 @@ namespace Project_Broban
             WorldMap[startX][startY].Generate();
             CurrentXPosition = startX;
             CurrentYPosition = startY;
+
+            currentRoom = WorldMap[startX][startY];
         }
 
         /// <summary>
@@ -50,6 +53,7 @@ namespace Project_Broban
             }
             CurrentXPosition = x;
             CurrentYPosition = y;
+            currentRoom = WorldMap[CurrentXPosition][CurrentYPosition];
         }
 
         /// <summary>
@@ -57,7 +61,7 @@ namespace Project_Broban
         /// </summary>
         public void Update()
         {
-            WorldMap[CurrentXPosition][CurrentYPosition].Update();
+            currentRoom.Update();
         }
 
         /// <summary>
@@ -65,7 +69,7 @@ namespace Project_Broban
         /// </summary>
         public void Draw(SpriteBatch sb)
         {
-            WorldMap[CurrentXPosition][CurrentYPosition].Draw(sb);
+            currentRoom.Draw(sb);
         }
 
         /// <summary>
@@ -75,7 +79,7 @@ namespace Project_Broban
         {
             // We should make it so this runs every time a new room is entered.
             // Maybe make a singleton for all textures?
-            WorldMap[CurrentXPosition][CurrentYPosition].LoadContent(gd, cm);
+            currentRoom.LoadContent(gd, cm);
         }
 
         /// <summary>
