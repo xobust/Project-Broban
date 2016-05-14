@@ -73,7 +73,7 @@ namespace Project_Broban
         /// </summary>
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
         {
-
+            WorldMap[CurrentXPosition][CurrentYPosition].LoadContent(gd, cm);
         }
 
         /// <summary>
