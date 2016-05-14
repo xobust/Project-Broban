@@ -50,7 +50,7 @@ namespace Project_Broban
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
         {
             //Temporary test texture
-            PlayerTexture = cm.Load<Texture2D>("player");
+            PlayerTexture = cm.Load<Texture2D>("playerTemp");
         }
 
         public void UnloadContent()

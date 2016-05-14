@@ -11,18 +11,18 @@ namespace Project_Broban
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        public World GameWorld;
         public Player player;
-        Monster monster;
+        MonsterController monsterController;
         TileRenderer tr;
-        World GameWorld;
+        
 
         public GameManager()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "content";
             player = new Player();
-
-            monster = new Monster(300,100);
+            monsterController = new MonsterController(this);
 
             GameWorld = new World(10, 5, 5);
             tr = TileRenderer.Instance;
@@ -48,7 +48,6 @@ namespace Project_Broban
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             player.LoadContent(GraphicsDevice, Content);
-            monster.LoadContent(GraphicsDevice, Content);
             tr.LoadContent(GraphicsDevice, Content);
             GameWorld.LoadContent(GraphicsDevice, Content);
         }
@@ -76,8 +75,9 @@ namespace Project_Broban
             // TODO: Add your update logic here
 
             base.Update(gameTime);
-            player.Update();
             GameWorld.Update();
+            player.Update();
+            monsterController.Update();
         }
 
         /// <summary>
@@ -91,7 +91,6 @@ namespace Project_Broban
             spriteBatch.Begin();
             GameWorld.Draw(spriteBatch);
             player.Draw(spriteBatch);
-            monster.Draw(spriteBatch);
 
             spriteBatch.End();
 
