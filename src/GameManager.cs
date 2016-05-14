@@ -11,7 +11,7 @@ namespace Project_Broban
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Player player;
+        public Player player;
         TileRenderer tr;
         World GameWorld;
 
