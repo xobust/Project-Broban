@@ -12,7 +12,7 @@ namespace Project_Broban
 {
     class Monster : GameObject
     {
-        private const float size = 0.5f;
+        private float size = 1;
         private const float moveSpeed = 1;
         private const float range = 1;
         private const int damage = 1;
@@ -44,7 +44,7 @@ namespace Project_Broban
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
         {
             // Load temporary texture (Like the player class)
-            texture = cm.Load<Texture2D>("player");
+            texture = cm.Load<Texture2D>("blobbie");
         }
 
         public void UnloadContent()
