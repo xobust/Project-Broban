@@ -17,8 +17,10 @@ namespace Project_Broban
         private const float range = 1;
         private const int damage = 1;
         private int hp = 1;
-        private Texture2D texture;
         Vector2 position;
+
+        //The texture is static and shared across instances
+        private static Texture2D texture;
 
         public Monster(float x, float y)
         {
