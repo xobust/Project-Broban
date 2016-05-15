@@ -15,7 +15,7 @@ namespace Project_Broban
         private string[][] map;
         private const int mapSizeX = 12;
         private const int mapSizeY = 29;
-        public Monster[] monsters;
+        public List<Monster> monsters;
         private Random rngGenerator;
 
         //Todo: calculate this
@@ -23,7 +23,7 @@ namespace Project_Broban
 
         public Room(int xPosition, int yPosition)
         {
-            monsters = new Monster[10];
+            monsters = new List<Monster>();
             rngGenerator = new Random();
             
             XPosition = xPosition;
@@ -61,8 +61,9 @@ namespace Project_Broban
         {
             for (int i = 0; i < MonsterAmount; i++)
             {
-                monsters[i] = new Monster(rngGenerator.Next(0,700),
+                Monster tempmonstedr = new Monster(rngGenerator.Next(0,700),
                                           rngGenerator.Next(0,400));
+                monsters.Add(tempmonstedr);
             }
         }
            /// <summary>
