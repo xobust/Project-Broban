@@ -16,7 +16,7 @@ namespace Project_Broban
         private const int damage = 1;
         private float size;
         private int hp;
-        private Texture2D texture;
+        private TextureManager Textures;
         public float range;
         public float pullRange;
         public Vector2 startPos;
@@ -24,7 +24,7 @@ namespace Project_Broban
 
         public Monster(float x, float y, TextureManager tm)
         {
-            texture = tm.GetTexture("blobbie");
+            Textures = tm;
             position = new Vector2(x, y);
             hp = 1;
             size = 1;
@@ -58,8 +58,7 @@ namespace Project_Broban
 
         public void Draw(SpriteBatch sb)
         {
-            sb.Draw(texture, position, null, Color.White, 0,
-                    Vector2.Zero, size, SpriteEffects.None, 0);
+            Textures.DrawTexture("blobbie", sb, position, size);
         }
 
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
