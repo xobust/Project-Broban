@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 
 namespace Project_Broban.src
 {
@@ -15,9 +16,9 @@ namespace Project_Broban.src
         /// <summary>
         /// Loads alla textures into our texture dicionary
         /// </summary>
-        public void LoadContent()
+        public void LoadContent(ContentManager cm)
         {
-            //Load all textures ayy lamao
+            TextureDicionary.Add("blobbie", cm.Load<Texture2D>("blobbie")); 
         }
         
         public Texture2D GetTexture(String name)
