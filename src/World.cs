@@ -15,6 +15,7 @@ namespace Project_Broban
         int CurrentYPosition;
         Room[][] WorldMap;
         public Room currentRoom;
+        public Player player;
 
         /// <summary>
         /// Creates a world with a given size
@@ -24,6 +25,7 @@ namespace Project_Broban
         /// <param name="startY">The starting position for the player in axis Y</param>
         public World(int size, int startX, int startY)
         {
+            player = new Player();
             WorldMap = new Room[size][];
             for (int i = 0; i < size; i++)
             {
@@ -62,6 +64,7 @@ namespace Project_Broban
         public void Update()
         {
             currentRoom.Update();
+            player.Update();
         }
 
         /// <summary>
@@ -70,6 +73,7 @@ namespace Project_Broban
         public void Draw(SpriteBatch sb)
         {
             currentRoom.Draw(sb);
+            player.Draw(sb);
         }
 
         /// <summary>
@@ -77,6 +81,7 @@ namespace Project_Broban
         /// </summary>
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
         {
+            player.LoadContent(gd, cm);
         }
 
         /// <summary>
@@ -84,7 +89,7 @@ namespace Project_Broban
         /// </summary>
         public void UnloadContent()
         {
-
+            player.UnloadContent();
         }
     }
 }

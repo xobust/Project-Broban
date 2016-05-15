@@ -12,7 +12,6 @@ namespace Project_Broban
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         public World GameWorld;
-        public Player player;
         MonsterController monsterController;
         TileRenderer tr;
         
@@ -21,7 +20,6 @@ namespace Project_Broban
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "content";
-            player = new Player();
             monsterController = new MonsterController(this);
 
             GameWorld = new World(10, 5, 5);
@@ -47,10 +45,9 @@ namespace Project_Broban
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            player.LoadContent(GraphicsDevice, Content);
             tr.LoadContent(GraphicsDevice, Content);
             GameWorld.LoadContent(GraphicsDevice, Content);
-            //Ceate a throwaway object to invoke the load content method and load static textures
+            //Load static contet for monsters
             Monster.LoadStaticContent(Content);
         }
 
@@ -60,7 +57,6 @@ namespace Project_Broban
         /// </summary>
         protected override void UnloadContent()
         {
-            player.UnloadContent();
             GameWorld.UnloadContent();
         }
 
@@ -78,7 +74,6 @@ namespace Project_Broban
 
             base.Update(gameTime);
             GameWorld.Update();
-            player.Update();
             monsterController.Update();
         }
 
@@ -92,8 +87,6 @@ namespace Project_Broban
 
             spriteBatch.Begin();
             GameWorld.Draw(spriteBatch);
-            player.Draw(spriteBatch);
-
             spriteBatch.End();
 
             base.Draw(gameTime);
