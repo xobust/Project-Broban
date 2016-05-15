@@ -22,8 +22,9 @@ namespace Project_Broban
         public Vector2 startPos;
         Vector2 position;
 
-        public Monster(float x, float y)
+        public Monster(float x, float y, TextureManager tm)
         {
+            texture = tm.GetTexture("blobbie");
             position = new Vector2(x, y);
             hp = 1;
             size = 1;
@@ -63,8 +64,6 @@ namespace Project_Broban
 
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
         {
-            // Load temporary texture (Like the player class)
-            texture = cm.Load<Texture2D>("blobbie");
         }
 
         public void UnloadContent()

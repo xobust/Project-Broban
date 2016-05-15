@@ -17,9 +17,11 @@ namespace Project_Broban
         private const int mapSizeY = 29;
         public Monster[] monsters;
         private Random rngGenerator;
+        private TextureManager Textures;
 
-        public Room(int xPosition, int yPosition)
+        public Room(int xPosition, int yPosition, TextureManager tm)
         {
+            Textures = tm;
             monsters = new Monster[10];
             rngGenerator = new Random();
             
@@ -35,8 +37,6 @@ namespace Project_Broban
                     map[x][y] = null;
                 }
             }
-
-            SpawnMonsters();
         }
 
         /// <summary>
@@ -52,6 +52,7 @@ namespace Project_Broban
                     map[x][y] = "Grass";
                 }
             }
+            SpawnMonsters();
         }
 
         public void SpawnMonsters()
@@ -59,7 +60,7 @@ namespace Project_Broban
             for (int i = 0; i < monsters.Length; i++)
             {
                 monsters[i] = new Monster(rngGenerator.Next(0,700),
-                                          rngGenerator.Next(0,400));
+                                          rngGenerator.Next(0,400), Textures);
             }
         }
            /// <summary>
@@ -87,10 +88,6 @@ namespace Project_Broban
         /// </summary>
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
         {
-            foreach (Monster monster in monsters)
-            {
-                monster.LoadContent(gd, cm);
-            }
         }
 
         /// <summary>

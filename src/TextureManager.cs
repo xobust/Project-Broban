@@ -8,12 +8,12 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Project_Broban
 {
-    class TextureManager
+    public class TextureManager
     {
 
         Dictionary<String, Texture2D> TextureDicionary;
 
-        TextureManager()
+        public TextureManager()
         {
             TextureDicionary = new Dictionary<String, Texture2D>();
         }

@@ -15,6 +15,7 @@ namespace Project_Broban
         int CurrentYPosition;
         Room[][] WorldMap;
         public Room currentRoom;
+        private TextureManager Textures;
 
         /// <summary>
         /// Creates a world with a given size
@@ -24,6 +25,7 @@ namespace Project_Broban
         /// <param name="startY">The starting position for the player in axis Y</param>
         public World(int size, int startX, int startY)
         {
+            Textures = new TextureManager();
             WorldMap = new Room[size][];
             for (int i = 0; i < size; i++)
             {
@@ -31,8 +33,7 @@ namespace Project_Broban
             }
 
             //TODO create a special Room class for the starting room
-            WorldMap[startX][startY] = new Room(startX, startY);
-            WorldMap[startX][startY].Generate();
+            WorldMap[startX][startY] = new Room(startX, startY, Textures);
             CurrentXPosition = startX;
             CurrentYPosition = startY;
 
@@ -48,7 +49,7 @@ namespace Project_Broban
         {
             if(WorldMap[x][y] == null)
             {
-                WorldMap[x][y] = new Room(x, y);
+                WorldMap[x][y] = new Room(x, y, Textures);
                 WorldMap[x][y].Generate();
             }
             CurrentXPosition = x;
@@ -80,6 +81,8 @@ namespace Project_Broban
             // We should make it so this runs every time a new room is entered.
             // Maybe make a singleton for all textures?
             currentRoom.LoadContent(gd, cm);
+            Textures.LoadContent(cm);
+            currentRoom.Generate();
         }
 
         /// <summary>
