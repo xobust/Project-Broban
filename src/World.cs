@@ -39,6 +39,7 @@ namespace Project_Broban
             CurrentYPosition = startY;
 
             currentRoom = WorldMap[startX][startY];
+            currentRoom.SceneObjects.Add(player); 
         }
 
         /// <summary>
@@ -56,6 +57,7 @@ namespace Project_Broban
             CurrentXPosition = x;
             CurrentYPosition = y;
             currentRoom = WorldMap[CurrentXPosition][CurrentYPosition];
+            currentRoom.SceneObjects.Add(player);
         }
 
         /// <summary>
