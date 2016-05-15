@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 
 namespace Project_Broban
 {
@@ -17,7 +18,7 @@ namespace Project_Broban
             this.gameManager = gameManager;
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             // The monster list and player position changes so I'm keeping it in the update function
             monsters = gameManager.GameWorld.currentRoom.monsters;

@@ -23,7 +23,7 @@ namespace Project_Broban
             Size = 1;
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             KeyboardState state = Keyboard.GetState();
 
