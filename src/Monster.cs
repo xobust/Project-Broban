@@ -46,10 +46,15 @@ namespace Project_Broban
                     Vector2.Zero, size, SpriteEffects.None, 0);
         }
 
-        public void LoadContent(GraphicsDevice gd, ContentManager cm)
+        public static void LoadStaticContent(ContentManager cm)
         {
             // Load temporary texture (Like the player class)
             texture = cm.Load<Texture2D>("blobbie");
+        }
+
+
+        public void LoadContent(GraphicsDevice gd, ContentManager cm)
+        {
         }
 
         public void UnloadContent()
