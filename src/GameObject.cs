@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Project_Broban
 {
-    interface GameObject
+    public interface GameObject
     {
         /// <summary>
         /// Updates the state of the gameobject

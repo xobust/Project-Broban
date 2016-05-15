@@ -9,7 +9,7 @@ namespace Project_Broban
     class MonsterController : Controller
     {
         GameManager gameManager;
-        Monster[] monsters;
+        List<Monster> monsters;
         Player player;
 
         public MonsterController(GameManager gameManager)
