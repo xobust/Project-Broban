@@ -18,10 +18,12 @@ namespace Project_Broban
         public Monster[] monsters;
         private Random rngGenerator;
         private TextureManager Textures;
+        private TileRenderer Tiles;
 
-        public Room(int xPosition, int yPosition, TextureManager tm)
+        public Room(int xPosition, int yPosition, TextureManager tm, TileRenderer tr)
         {
             Textures = tm;
+            Tiles = tr;
             monsters = new Monster[10];
             rngGenerator = new Random();
             
@@ -76,7 +78,7 @@ namespace Project_Broban
         /// </summary>
         public void Draw(SpriteBatch sb)
         {
-            TileRenderer.Instance.Draw(sb, map);
+            Tiles.Draw(sb, map);
             foreach (Monster monster in monsters)
             {
                 monster.Draw(sb);
