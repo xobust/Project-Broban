@@ -13,11 +13,14 @@ namespace Project_Broban
     public class Player : GameObject
     {
         private Texture2D PlayerTexture;
+        private float Size;
         public Vector2 Position;
+        private Vector2 Origin;
 
         public Player()
         {
             Position = new Vector2(0, 0);
+            Size = 1;
         }
 
         public void Update()
@@ -44,7 +47,13 @@ namespace Project_Broban
 
         public void Draw(SpriteBatch sb)
         {
-            sb.Draw(PlayerTexture, Position, Color.White);
+            // Temporary origin 
+            // The original texture should have the origin in the middle-bottom
+            Origin = new Vector2((PlayerTexture.Width * Size) / 5,
+                                 (PlayerTexture.Height * Size));
+
+            sb.Draw(PlayerTexture, Position, null, Color.White, 0,
+                    Origin, Size, SpriteEffects.None, 0);
         }
 
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
