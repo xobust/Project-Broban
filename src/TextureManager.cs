@@ -13,6 +13,11 @@ namespace Project_Broban.src
 
         Dictionary<String, Texture2D> TextureDicionary;
 
+        TextureManager()
+        {
+            TextureDicionary = new Dictionary<String, Texture2D>();
+        }
+
         /// <summary>
         /// Loads alla textures into our texture dicionary
         /// </summary>
