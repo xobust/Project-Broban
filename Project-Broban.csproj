@@ -38,9 +38,11 @@
     <ApplicationIcon>content\Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="src\Controller.cs" />
     <Compile Include="src\GameManager.cs" />
     <Compile Include="src\GameObject.cs" />
     <Compile Include="src\Monster.cs" />
+    <Compile Include="src\MonsterController.cs" />
     <Compile Include="src\Player.cs" />
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

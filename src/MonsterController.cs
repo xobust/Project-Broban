@@ -9,6 +9,8 @@ namespace Project_Broban
     class MonsterController : Controller
     {
         GameManager gameManager;
+        Monster[] monsters;
+        Player player;
 
         public MonsterController(GameManager gameManager)
         {
@@ -17,7 +19,24 @@ namespace Project_Broban
 
         public void Update()
         {
-            // TODO: Implement movement controlling.
+            // The monster list and player position changes so I'm keeping it in the update function
+            monsters = gameManager.GameWorld.currentRoom.monsters;
+            player = gameManager.player;
+
+            foreach (Monster monster in monsters)
+            {
+                double distToPlayer = monster.Distance(player.Position);
+                if (distToPlayer < monster.range)
+                {
+                    // do attack
+                } else if (distToPlayer < monster.pullRange)
+                {
+                    monster.Move(player.Position);
+                } else
+                {
+                    monster.Move(monster.startPos);
+                }
+            }
         }
     }
 }
