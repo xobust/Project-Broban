@@ -78,6 +78,10 @@ namespace Project_Broban
         /// </summary>
         public void Update()
         {
+            foreach (GameObject obj in SceneObjects)
+            {
+                obj.Update();
+            }
         }
 
         /// <summary>
@@ -86,9 +90,9 @@ namespace Project_Broban
         public void Draw(SpriteBatch sb)
         {
             TileRenderer.Instance.Draw(sb, map);
-            foreach (Monster monster in monsters)
+            foreach (GameObject obj in SceneObjects)
             {
-                monster.Draw(sb);
+                obj.Draw(sb);
             }
         }
 

@@ -66,7 +66,6 @@ namespace Project_Broban
         public void Update()
         {
             currentRoom.Update();
-            player.Update();
         }
 
         /// <summary>
@@ -75,7 +74,6 @@ namespace Project_Broban
         public void Draw(SpriteBatch sb)
         {
             currentRoom.Draw(sb);
-            player.Draw(sb);
         }
 
         /// <summary>
