@@ -15,12 +15,17 @@ namespace Project_Broban
         private string[][] map;
         private const int mapSizeX = 12;
         private const int mapSizeY = 29;
-        public Monster[] monsters;
+        public List<Monster> monsters;
+        public List<GameObject> SceneObjects;
         private Random rngGenerator;
+
+        //Todo: calculate this
+        private int MonsterAmount = 10;
 
         public Room(int xPosition, int yPosition)
         {
-            monsters = new Monster[10];
+            monsters = new List<Monster>();
+            SceneObjects = new List<GameObject>();
             rngGenerator = new Random();
             
             XPosition = xPosition;
@@ -56,18 +61,27 @@ namespace Project_Broban
 
         public void SpawnMonsters()
         {
-            for (int i = 0; i < monsters.Length; i++)
+            for (int i = 0; i < MonsterAmount; i++)
             {
-                monsters[i] = new Monster(rngGenerator.Next(0,700),
+                Monster tempmonster = new Monster(rngGenerator.Next(0,700),
                                           rngGenerator.Next(0,400));
+                monsters.Add(tempmonster);
+                SceneObjects.Add(tempmonster);
             }
+            //Test that bothe monster and SceneObjects carry the same reference
+            //Console.WriteLine("ReferenceEquals(a, b) = {0}", 
+            //      Object.ReferenceEquals(monsters[0], SceneObjects[0]));
+
         }
-           /// <summary>
-           /// Updates the state of the gameobject
-           /// </summary>
+        /// <summary>
+        /// Updates the state of the gameobject
+        /// </summary>
         public void Update()
         {
-
+            foreach (GameObject obj in SceneObjects)
+            {
+                obj.Update();
+            }
         }
 
         /// <summary>
@@ -76,9 +90,9 @@ namespace Project_Broban
         public void Draw(SpriteBatch sb)
         {
             TileRenderer.Instance.Draw(sb, map);
-            foreach (Monster monster in monsters)
+            foreach (GameObject obj in SceneObjects)
             {
-                monster.Draw(sb);
+                obj.Draw(sb);
             }
         }
 
@@ -87,10 +101,6 @@ namespace Project_Broban
         /// </summary>
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
         {
-            foreach (Monster monster in monsters)
-            {
-                monster.LoadContent(gd, cm);
-            }
         }
 
         /// <summary>

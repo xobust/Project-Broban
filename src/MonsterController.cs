@@ -9,7 +9,7 @@ namespace Project_Broban
     class MonsterController : Controller
     {
         GameManager gameManager;
-        Monster[] monsters;
+        List<Monster> monsters;
         Player player;
 
         public MonsterController(GameManager gameManager)
@@ -21,7 +21,7 @@ namespace Project_Broban
         {
             // The monster list and player position changes so I'm keeping it in the update function
             monsters = gameManager.GameWorld.currentRoom.monsters;
-            player = gameManager.player;
+            player = gameManager.GameWorld.player;
 
             foreach (Monster monster in monsters)
             {
