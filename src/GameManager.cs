@@ -50,6 +50,8 @@ namespace Project_Broban
             player.LoadContent(GraphicsDevice, Content);
             tr.LoadContent(GraphicsDevice, Content);
             GameWorld.LoadContent(GraphicsDevice, Content);
+            //Ceate a throwaway object to invoke the load content method and load static textures
+            Monster.LoadStaticContent(Content);
         }
 
         /// <summary>
