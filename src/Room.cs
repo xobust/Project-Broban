@@ -18,6 +18,9 @@ namespace Project_Broban
         public Monster[] monsters;
         private Random rngGenerator;
 
+        //Todo: calculate this
+        private int MonsterAmount = 10;
+
         public Room(int xPosition, int yPosition)
         {
             monsters = new Monster[10];
@@ -56,7 +59,7 @@ namespace Project_Broban
 
         public void SpawnMonsters()
         {
-            for (int i = 0; i < monsters.Length; i++)
+            for (int i = 0; i < MonsterAmount; i++)
             {
                 monsters[i] = new Monster(rngGenerator.Next(0,700),
                                           rngGenerator.Next(0,400));
