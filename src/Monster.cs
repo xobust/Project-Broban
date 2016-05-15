@@ -34,6 +34,11 @@ namespace Project_Broban
             startPos.Y = y;
         }
 
+        public void Attack(Player player)
+        {
+            
+        }
+
         public void Move(Vector2 targetPos)
         {
             float deltaY = targetPos.Y - position.Y;
@@ -51,8 +56,9 @@ namespace Project_Broban
             return Math.Abs(Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2)));
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
+
         }
 
         public void Draw(SpriteBatch sb)
