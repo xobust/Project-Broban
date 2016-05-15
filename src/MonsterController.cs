@@ -25,7 +25,17 @@ namespace Project_Broban
 
             foreach (Monster monster in monsters)
             {
-                monster.Move(player.Position.X, player.Position.Y);
+                double distToPlayer = monster.Distance(player.Position);
+                if (distToPlayer < monster.range)
+                {
+                    // do attack
+                } else if (distToPlayer < monster.pullRange)
+                {
+                    monster.Move(player.Position);
+                } else
+                {
+                    monster.Move(monster.startPos);
+                }
             }
         }
     }
