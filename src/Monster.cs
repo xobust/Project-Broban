@@ -22,6 +22,7 @@ namespace Project_Broban
         private int hp;
         private Texture2D texture;
         private Player target;
+        private Vector2 origin; // The "base" of the monster
         public float range;
         public float pullRange;
         public Boolean attacking;
@@ -33,7 +34,7 @@ namespace Project_Broban
             texture = tm.GetTexture("blobbie");
             position = new Vector2(x, y);
             hp = 1;
-            size = 1;
+            size = 1; // 1 means 100% of the sprite
             range = 10;
             pullRange = 150;
             attacking = false;
@@ -92,8 +93,11 @@ namespace Project_Broban
 
         public void Draw(SpriteBatch sb)
         {
+            // The original texture should have the origin in the middle-bottom
+            origin = new Vector2((texture.Width * size) / 2,
+                                 (texture.Height * size));
             sb.Draw(texture, position, null, Color.White, 0,
-                    Vector2.Zero, size, SpriteEffects.None, 0);
+                    origin, size, SpriteEffects.None, 0);
         }
 
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
