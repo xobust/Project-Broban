@@ -72,7 +72,6 @@ namespace Project_Broban
                 waitingForAttack += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 if (coolDown < waitingForAttack)
                 {
-                    target.Position.X += 1;
                     attackChargeTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                     // Implement attack animation here
                     if (attackTime < attackChargeTime)
