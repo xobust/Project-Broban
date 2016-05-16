@@ -49,9 +49,8 @@ namespace Project_Broban
 
         public void Draw(SpriteBatch sb)
         {
-            // Temporary origin 
             // The original texture should have the origin in the middle-bottom
-            Origin = new Vector2((PlayerTexture.Width * Size) / 5,
+            Origin = new Vector2((PlayerTexture.Width * Size) / 2,
                                  (PlayerTexture.Height * Size));
 
             sb.Draw(PlayerTexture, Position, null, Color.White, 0,
@@ -60,8 +59,7 @@ namespace Project_Broban
 
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
         {
-            //Temporary test texture
-            PlayerTexture = cm.Load<Texture2D>("playerTemp");
+            PlayerTexture = cm.Load<Texture2D>("player");
         }
 
         public void UnloadContent()
