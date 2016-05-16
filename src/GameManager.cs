@@ -21,6 +21,12 @@ namespace Project_Broban
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "content";
+            graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
+            graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
+
+
             player = new Player();
             monsterController = new MonsterController(this);
 
