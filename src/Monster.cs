@@ -14,11 +14,17 @@ namespace Project_Broban
     {
         private const float moveSpeed = 0.5f;
         private const int damage = 1;
+        private const float attackTime = 100; // in milliseconds
+        private const float coolDown = 2000;
+        private float waitingForAttack;
+        private float attackChargeTime;
         private float size;
         private int hp;
         private Texture2D texture;
+        private Player target;
         public float range;
         public float pullRange;
+        public Boolean attacking;
         public Vector2 startPos;
         Vector2 position;
 
@@ -29,14 +35,16 @@ namespace Project_Broban
             size = 1;
             range = 10;
             pullRange = 150;
+            attacking = false;
 
             startPos.X = x;
             startPos.Y = y;
         }
 
-        public void Attack(Player player)
+        public void Attacking(Player player)
         {
-            
+            target = player;
+            attacking = true;
         }
 
         public void Move(Vector2 targetPos)
@@ -58,7 +66,29 @@ namespace Project_Broban
 
         public void Update(GameTime gameTime)
         {
-
+            if (attacking)
+            {
+                waitingForAttack += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (coolDown < waitingForAttack)
+                {
+                    target.Position.X += 1;
+                    attackChargeTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                    // Implement attack animation here
+                    if (attackTime < attackChargeTime)
+                    {
+                        target.hp -= damage;
+                        target.Position.X += 1;
+                        attackChargeTime = 0;
+                        waitingForAttack = 0;
+                    }
+                }
+            } else
+            {
+                waitingForAttack = 0;
+                attackChargeTime = 0;
+            }
+            attacking = false; // Reset attacking so it has to check each frame if
+                               // it can still attack the target.
         }
 
         public void Draw(SpriteBatch sb)
