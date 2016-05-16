@@ -15,7 +15,7 @@ namespace Project_Broban
         private const float moveSpeed = 0.5f;
         private const int damage = 1;
         private const float attackTime = 100; // in milliseconds
-        private const float coolDown = 2000;
+        private const float coolDown = 1000;
         private float waitingForAttack;
         private float attackChargeTime;
         private float size;
@@ -77,7 +77,6 @@ namespace Project_Broban
                     if (attackTime < attackChargeTime)
                     {
                         target.hp -= damage;
-                        target.Position.X += 1;
                         attackChargeTime = 0;
                         waitingForAttack = 0;
                     }
