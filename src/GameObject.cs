@@ -15,7 +15,7 @@ namespace Project_Broban
         /// <summary>
         /// Updates the state of the gameobject
         /// </summary>
-        void Update();
+        void Update(GameTime gameTime);
 
         /// <summary>
         /// Renders the gameobject to the screen using the spritebatch
