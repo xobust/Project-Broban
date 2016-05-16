@@ -14,16 +14,18 @@ namespace Project_Broban
     {
         private Texture2D PlayerTexture;
         private float Size;
+        public int hp;
         public Vector2 Position;
         private Vector2 Origin;
 
         public Player()
         {
-            Position = new Vector2(0, 0);
+            Position = new Vector2(100, 100);
             Size = 1;
+            hp = 100;
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             KeyboardState state = Keyboard.GetState();
 
