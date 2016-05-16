@@ -72,9 +72,9 @@ namespace Project_Broban
             // TODO: Add your update logic here
 
             base.Update(gameTime);
-            GameWorld.Update();
-            player.Update();
-            monsterController.Update();
+            GameWorld.Update(gameTime);
+            player.Update(gameTime);
+            monsterController.Update(gameTime);
         }
 
         /// <summary>

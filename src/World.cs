@@ -62,9 +62,9 @@ namespace Project_Broban
         /// <summary>
         /// Updates the state of the world 
         /// </summary>
-        public void Update()
+        public void Update(GameTime gameTime)
         {
-            currentRoom.Update();
+            currentRoom.Update(gameTime);
         }
 
         /// <summary>
