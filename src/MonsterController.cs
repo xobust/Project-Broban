@@ -29,7 +29,7 @@ namespace Project_Broban
                 double distToPlayer = monster.Distance(player.Position);
                 if (distToPlayer < monster.range)
                 {
-                    // do attack
+                    monster.Attacking(player);
                 } else if (distToPlayer < monster.pullRange)
                 {
                     monster.Move(player.Position);
