@@ -21,7 +21,7 @@ namespace Project_Broban
 
         public Room(int xPosition, int yPosition)
         {
-            monsters = new Monster[10];
+            monsters = new Monster[20];
             rngGenerator = new Random();
             
             XPosition = xPosition;
@@ -68,7 +68,10 @@ namespace Project_Broban
            /// </summary>
         public void Update(GameTime gameTime)
         {
-
+            foreach (Monster monster in monsters)
+            {
+                monster.Update(gameTime);
+            }
         }
 
         /// <summary>
