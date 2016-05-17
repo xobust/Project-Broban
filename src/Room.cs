@@ -24,8 +24,8 @@ namespace Project_Broban
         public Room(int xPosition, int yPosition, TextureManager tm, TileRenderer tr)
         {
             Textures = tm;
+            monsters = new Monster[30];
             Tiles = tr;
-            monsters = new Monster[10];
             rngGenerator = new Random();
             
             XPosition = xPosition;

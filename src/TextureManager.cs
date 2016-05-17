@@ -33,9 +33,11 @@ namespace Project_Broban
         /// <param name="name"></param>
         /// <param name="possition"></param>
         /// <param name="size"></param>
-        public void DrawTexture(String name, SpriteBatch sb, Vector2 position, float size)
+        public void DrawTexture(String name, SpriteBatch sb, Vector2 position, float size, float depth)
         {
-            sb.Draw(GetTexture(name), position, Color.White); 
+            // The origin of the texture will have to be added to this aswell
+            sb.Draw(GetTexture(name), position, null, Color.White, 0, 
+                    Vector2.Zero, size, SpriteEffects.None, depth); 
         }
 
         //Todo: Implement Draw function for sprite sheets, animation etc.

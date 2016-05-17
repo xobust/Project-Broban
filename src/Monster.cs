@@ -19,6 +19,7 @@ namespace Project_Broban
         private float waitingForAttack;
         private float attackChargeTime;
         private float size;
+        private float depth;
         private int hp;
         private Player target;
         private TextureManager Textures;
@@ -33,7 +34,7 @@ namespace Project_Broban
             Textures = tm;
             position = new Vector2(x, y);
             hp = 1;
-            size = 1;
+            size = 2;
             range = 10;
             pullRange = 150;
             attacking = false;
@@ -92,7 +93,13 @@ namespace Project_Broban
 
         public void Draw(SpriteBatch sb)
         {
-            Textures.DrawTexture("blobbie", sb, position, size);
+            // We need to make it 1 - the depth since we want 1 to be on 
+            // the top of the screen instead of 0 being on the top.
+            // Example 1 - 0.2 = 0.8 reverts 0.2 at the top to 0.8 instead
+            depth = 1 - (position.Y / GameManager.screenHeight); 
+            depth = MathHelper.Clamp(depth, 0, 0.99f);
+            
+            Textures.DrawTexture("blobbie", sb, position, size, depth);
         }
 
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
