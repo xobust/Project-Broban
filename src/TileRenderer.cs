@@ -81,8 +81,9 @@ namespace Project_Broban
 
             //TODO: Implement some if-statements that differentiate between tile types
             //below this line
-
-            sb.Draw(tileSet, destination, tileSource, Color.White);
+            
+            sb.Draw(tileSet, destination, tileSource, Color.White, 0, new Vector2(0, 0),
+                    SpriteEffects.None, 1);
         }
 
         public void UnloadContent()
