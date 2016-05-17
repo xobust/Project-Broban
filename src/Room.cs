@@ -23,7 +23,7 @@ namespace Project_Broban
         public Room(int xPosition, int yPosition, TextureManager tm)
         {
             Textures = tm;
-            monsters = new Monster[20];
+            monsters = new Monster[30];
             rngGenerator = new Random();
             
             XPosition = xPosition;
