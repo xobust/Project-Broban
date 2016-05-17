@@ -16,7 +16,6 @@ namespace Project_Broban
         public World GameWorld;
         public Player player;
         MonsterController monsterController;
-        TileRenderer tr;
         
 
         public GameManager()
@@ -29,7 +28,6 @@ namespace Project_Broban
             monsterController = new MonsterController(this);
 
             GameWorld = new World(10, 5, 5);
-            tr = TileRenderer.Instance;
         }
 
         /// <summary>
@@ -52,7 +50,6 @@ namespace Project_Broban
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             player.LoadContent(GraphicsDevice, Content);
-            tr.LoadContent(GraphicsDevice, Content);
             GameWorld.LoadContent(GraphicsDevice, Content);
         }
 

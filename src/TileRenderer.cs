@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Project_Broban
 {
-    class TileRenderer
+    public class TileRenderer
     {
         private static TileRenderer instance;
         private Texture2D tileSet;                  // The sprite sheet for the tiles
@@ -18,19 +18,8 @@ namespace Project_Broban
         private const int tileOffset = tileWidth/2; // The position offset when placing diagonal tiles
 
 
-        private TileRenderer() { }
+        public TileRenderer() { }
 
-        public static TileRenderer Instance
-        {
-            get
-            {
-                if(instance == null)
-                {
-                    instance = new TileRenderer();
-                }
-                return instance;
-            }
-        }
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load

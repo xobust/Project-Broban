@@ -21,8 +21,8 @@ namespace Project_Broban
         private float size;
         private float depth;
         private int hp;
-        private Texture2D texture;
         private Player target;
+        private TextureManager Textures;
         public float range;
         public float pullRange;
         public Boolean attacking;
@@ -31,7 +31,7 @@ namespace Project_Broban
 
         public Monster(float x, float y, TextureManager tm)
         {
-            texture = tm.GetTexture("blobbie");
+            Textures = tm;
             position = new Vector2(x, y);
             hp = 1;
             size = 2;
@@ -98,9 +98,8 @@ namespace Project_Broban
             // Example 1 - 0.2 = 0.8 reverts 0.2 at the top to 0.8 instead
             depth = 1 - (position.Y / GameManager.screenHeight); 
             depth = MathHelper.Clamp(depth, 0, 1);
-
-            sb.Draw(texture, position, null, Color.White, 0,
-                    Vector2.Zero, size, SpriteEffects.None, depth);
+            
+            Textures.DrawTexture("blobbie", sb, position, size, depth);
         }
 
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
