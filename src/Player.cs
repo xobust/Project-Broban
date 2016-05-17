@@ -57,7 +57,7 @@ namespace Project_Broban
                                  (PlayerTexture.Height * Size));
 
             Depth = 1 - (Position.Y / GameManager.screenHeight);
-            Depth = MathHelper.Clamp(Depth, 0, 1);
+            Depth = MathHelper.Clamp(Depth, 0, 0.99f);
 
             sb.Draw(PlayerTexture, Position, null, Color.White, 0,
                     Origin, Size, SpriteEffects.None, Depth);
