@@ -35,6 +35,7 @@ namespace Project_Broban
         /// <param name="size"></param>
         public void DrawTexture(String name, SpriteBatch sb, Vector2 position, float size, float depth)
         {
+            // The origin of the texture will have to be added to this aswell
             sb.Draw(GetTexture(name), position, null, Color.White, 0, 
                     Vector2.Zero, size, SpriteEffects.None, depth); 
         }
