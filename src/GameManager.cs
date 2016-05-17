@@ -10,6 +10,8 @@ namespace Project_Broban
     public class GameManager : Game
     {
         GraphicsDeviceManager graphics;
+        public static int screenHeight;
+        public static int screenWidth;
         SpriteBatch spriteBatch;
         public World GameWorld;
         public Player player;
@@ -19,6 +21,8 @@ namespace Project_Broban
 
         public GameManager()
         {
+            screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "content";
             player = new Player();
@@ -88,7 +92,7 @@ namespace Project_Broban
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.BackToFront);
             GameWorld.Draw(spriteBatch);
             player.Draw(spriteBatch);
 
