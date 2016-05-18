@@ -95,7 +95,7 @@ namespace Project_Broban
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin(SpriteSortMode.BackToFront);
+            spriteBatch.Begin(SpriteSortMode.FrontToBack);
             GameWorld.Draw(spriteBatch);
             player.Draw(spriteBatch);
 

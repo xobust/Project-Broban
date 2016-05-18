@@ -72,7 +72,7 @@ namespace Project_Broban
             //below this line
             
             sb.Draw(tileSet, destination, tileSource, Color.White, 0, new Vector2(0, 0),
-                    SpriteEffects.None, 1);
+                    SpriteEffects.None, 0);
         }
 
         public void UnloadContent()

@@ -55,7 +55,7 @@ namespace Project_Broban
             Origin = new Vector2((PlayerTexture.Width * Size) / 2,
                                  (PlayerTexture.Height * Size));
 
-            Depth = 1 - (Position.Y / GameManager.screenHeight);
+            Depth = (Position.Y / GameManager.screenHeight);
             Depth = MathHelper.Clamp(Depth, 0, 0.99f);
 
             sb.Draw(PlayerTexture, Position, null, Color.White, 0,
