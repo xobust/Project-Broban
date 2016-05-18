@@ -36,7 +36,7 @@ namespace Project_Broban
             Textures = tm;
             position = new Vector2(x, y);
             hp = 1;
-            size = 1;
+            size = 1; // 1 means 100% of the sprite size
             range = 10;
             pullRange = 150;
             attacking = false;

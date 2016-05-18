@@ -45,7 +45,12 @@ namespace Project_Broban
         }
 
         //Todo: Implement Draw function for sprite sheets, animation etc.
-        
+
+        /// <summary>
+        /// Fetches a texture from the project and returns it.
+        /// </summary>
+        /// <param name="name">The file name of the texture.</param>
+        /// <returns>The texture.</returns>
         public Texture2D GetTexture(String name)
         {
             Texture2D temp = null;
