@@ -13,8 +13,8 @@ namespace Project_Broban
     {
         private static TileRenderer instance;
         private Texture2D tileSet;                  // The sprite sheet for the tiles
-        private const int tileHeight = 32;          // The height of one tile
-        private const int tileWidth = 64;           // The width of one tile
+        private const int tileWidth = 256;           // The width of one tile
+        private const int tileHeight = 128;          // The height of one tile
         private const int tileOffset = tileWidth/2; // The position offset when placing diagonal tiles
 
 
