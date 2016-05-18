@@ -19,10 +19,10 @@ namespace Project_Broban
         private float waitingForAttack;
         private float attackChargeTime;
         private float size;
+        private float depth;
         private int hp;
-        private Texture2D texture;
         private Player target;
-        private Vector2 origin; // The "base" of the monster
+        private TextureManager Textures;
         public float range;
         public float pullRange;
         public Boolean attacking;
@@ -31,10 +31,10 @@ namespace Project_Broban
 
         public Monster(float x, float y, TextureManager tm)
         {
-            texture = tm.GetTexture("blobbie");
+            Textures = tm;
             position = new Vector2(x, y);
             hp = 1;
-            size = 1; // 1 means 100% of the sprite
+            size = 1;
             range = 10;
             pullRange = 150;
             attacking = false;
@@ -93,11 +93,13 @@ namespace Project_Broban
 
         public void Draw(SpriteBatch sb)
         {
-            // The original texture should have the origin in the middle-bottom
-            origin = new Vector2((texture.Width * size) / 2,
-                                 (texture.Height * size));
-            sb.Draw(texture, position, null, Color.White, 0,
-                    origin, size, SpriteEffects.None, 0);
+            // We need to make it 1 - the depth since we want 1 to be on 
+            // the top of the screen instead of 0 being on the top.
+            // Example 1 - 0.2 = 0.8 reverts 0.2 at the top to 0.8 instead
+            depth = 1 - (position.Y / GameManager.screenHeight); 
+            depth = MathHelper.Clamp(depth, 0, 0.99f);
+            
+            Textures.DrawTexture("blobbie", sb, position, size, depth);
         }
 
         public void LoadContent(GraphicsDevice gd, ContentManager cm)

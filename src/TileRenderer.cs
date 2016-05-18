@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Project_Broban
 {
-    class TileRenderer
+    public class TileRenderer
     {
         private static TileRenderer instance;
         private Texture2D tileSet;                  // The sprite sheet for the tiles
@@ -18,19 +18,8 @@ namespace Project_Broban
         private const int tileOffset = tileWidth/2; // The position offset when placing diagonal tiles
 
 
-        private TileRenderer() { }
+        public TileRenderer() { }
 
-        public static TileRenderer Instance
-        {
-            get
-            {
-                if(instance == null)
-                {
-                    instance = new TileRenderer();
-                }
-                return instance;
-            }
-        }
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
@@ -81,8 +70,9 @@ namespace Project_Broban
 
             //TODO: Implement some if-statements that differentiate between tile types
             //below this line
-
-            sb.Draw(tileSet, destination, tileSource, Color.White);
+            
+            sb.Draw(tileSet, destination, tileSource, Color.White, 0, new Vector2(0, 0),
+                    SpriteEffects.None, 1);
         }
 
         public void UnloadContent()

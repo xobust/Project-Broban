@@ -16,6 +16,7 @@ namespace Project_Broban
         Room[][] WorldMap;
         public Room currentRoom;
         private TextureManager Textures;
+        private TileRenderer Tiles;
 
         /// <summary>
         /// Creates a world with a given size
@@ -26,6 +27,7 @@ namespace Project_Broban
         public World(int size, int startX, int startY)
         {
             Textures = new TextureManager();
+            Tiles = new TileRenderer();
             WorldMap = new Room[size][];
             for (int i = 0; i < size; i++)
             {
@@ -33,7 +35,7 @@ namespace Project_Broban
             }
 
             //TODO create a special Room class for the starting room
-            WorldMap[startX][startY] = new Room(startX, startY, Textures);
+            WorldMap[startX][startY] = new Room(startX, startY, Textures, Tiles);
             CurrentXPosition = startX;
             CurrentYPosition = startY;
 
@@ -49,7 +51,7 @@ namespace Project_Broban
         {
             if(WorldMap[x][y] == null)
             {
-                WorldMap[x][y] = new Room(x, y, Textures);
+                WorldMap[x][y] = new Room(x, y, Textures, Tiles);
                 WorldMap[x][y].Generate();
             }
             CurrentXPosition = x;
@@ -82,6 +84,7 @@ namespace Project_Broban
             // Maybe make a singleton for all textures?
             currentRoom.LoadContent(gd, cm);
             Textures.LoadContent(cm);
+            Tiles.LoadContent(gd, cm);
             currentRoom.Generate();
         }
 

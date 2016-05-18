@@ -16,7 +16,9 @@ namespace Project_Broban
         private float Size;
         public int hp;
         public Vector2 Position;
+
         private Vector2 Origin;
+        private float Depth;
 
         public Player()
         {
@@ -53,8 +55,11 @@ namespace Project_Broban
             Origin = new Vector2((PlayerTexture.Width * Size) / 2,
                                  (PlayerTexture.Height * Size));
 
+            Depth = 1 - (Position.Y / GameManager.screenHeight);
+            Depth = MathHelper.Clamp(Depth, 0, 0.99f);
+
             sb.Draw(PlayerTexture, Position, null, Color.White, 0,
-                    Origin, Size, SpriteEffects.None, 0);
+                    Origin, Size, SpriteEffects.None, Depth);
         }
 
         public void LoadContent(GraphicsDevice gd, ContentManager cm)

@@ -10,15 +10,18 @@ namespace Project_Broban
     public class GameManager : Game
     {
         GraphicsDeviceManager graphics;
+        public static int screenHeight;
+        public static int screenWidth;
         SpriteBatch spriteBatch;
         public World GameWorld;
         public Player player;
         MonsterController monsterController;
-        TileRenderer tr;
         
 
         public GameManager()
         {
+            screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "content";
             graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
@@ -31,7 +34,6 @@ namespace Project_Broban
             monsterController = new MonsterController(this);
 
             GameWorld = new World(10, 5, 5);
-            tr = TileRenderer.Instance;
         }
 
         /// <summary>
@@ -54,7 +56,6 @@ namespace Project_Broban
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             player.LoadContent(GraphicsDevice, Content);
-            tr.LoadContent(GraphicsDevice, Content);
             GameWorld.LoadContent(GraphicsDevice, Content);
         }
 
@@ -94,7 +95,7 @@ namespace Project_Broban
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.BackToFront);
             GameWorld.Draw(spriteBatch);
             player.Draw(spriteBatch);
 
