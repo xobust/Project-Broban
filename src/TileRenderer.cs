@@ -13,8 +13,8 @@ namespace Project_Broban
     {
         private static TileRenderer instance;
         private Texture2D tileSet;                  // The sprite sheet for the tiles
-        private const int tileHeight = 32;          // The height of one tile
-        private const int tileWidth = 64;           // The width of one tile
+        private const int tileWidth = 256;           // The width of one tile
+        private const int tileHeight = 128;          // The height of one tile
         private const int tileOffset = tileWidth/2; // The position offset when placing diagonal tiles
 
 
@@ -72,7 +72,7 @@ namespace Project_Broban
             //below this line
             
             sb.Draw(tileSet, destination, tileSource, Color.White, 0, new Vector2(0, 0),
-                    SpriteEffects.None, 1);
+                    SpriteEffects.None, 0);
         }
 
         public void UnloadContent()
