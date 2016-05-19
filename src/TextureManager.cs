@@ -25,12 +25,12 @@ namespace Project_Broban
             }
         }
 
-        Dictionary<String, Texture2D> TextureDicionary;
+        Dictionary<String, Texture2D> TextureDictionary;
         Dictionary<String, Atlas> AtlasDictionary;
 
         public TextureManager()
         {
-            TextureDicionary = new Dictionary<String, Texture2D>();
+            TextureDictionary = new Dictionary<String, Texture2D>();
             AtlasDictionary = new Dictionary<String, Atlas>();
         }
 
@@ -39,7 +39,7 @@ namespace Project_Broban
         /// </summary>
         public void LoadContent(ContentManager cm)
         {
-            TextureDicionary.Add("blobbie", cm.Load<Texture2D>("blobbie")); 
+            TextureDictionary.Add("blobbie", cm.Load<Texture2D>("blobbie")); 
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Project_Broban
         public Texture2D GetTexture(String name)
         {
             Texture2D temp = null;
-            if(TextureDicionary.TryGetValue(name,out temp))
+            if(TextureDictionary.TryGetValue(name,out temp))
             {
                 return temp;
             }else
