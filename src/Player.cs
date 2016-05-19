@@ -43,20 +43,25 @@ namespace Project_Broban
 
             if (state.IsKeyDown(Keys.W))
             {
+                PlayerDirection = Direction.Up;
                 Position.Y --;
             }
             if (state.IsKeyDown(Keys.A))
             {
+                PlayerDirection = Direction.Left;
                 Position.X --;
             }
             if (state.IsKeyDown(Keys.S))
             {
+                PlayerDirection = Direction.Down;
                 Position.Y ++;
             }
             if (state.IsKeyDown(Keys.D))
             {
+                PlayerDirection = Direction.Right;
                 Position.X ++;
             }
+
         }
 
         public void Draw(SpriteBatch sb)
@@ -68,6 +73,7 @@ namespace Project_Broban
             Depth = (Position.Y / GameManager.screenHeight);
             Depth = MathHelper.Clamp(Depth, 0.01f, 1);
 
+            //TODO: Draw player sprite acording to the direction of the player
             sb.Draw(PlayerTexture, Position, null, Color.White, 0,
                     Origin, Size, SpriteEffects.None, Depth);
         }
