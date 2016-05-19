@@ -20,6 +20,9 @@ namespace Project_Broban
     {
         private Direction PlayerDirection;
         private Texture2D PlayerTexture;
+        private int TextureHeight;
+        private int TextureWidth;
+        private int SpriteRow = 0; // Which row of the spritesheet to draw
         private float Size;
         public int hp;
         public Vector2 Position;
@@ -67,20 +70,39 @@ namespace Project_Broban
         public void Draw(SpriteBatch sb)
         {
             // The original texture should have the origin in the middle-bottom
-            Origin = new Vector2((PlayerTexture.Width * Size) / 2,
-                                 (PlayerTexture.Height * Size));
+            Origin = new Vector2((TextureWidth * Size) / 2,
+                                 (TextureHeight/4 * Size));
 
             Depth = (Position.Y / GameManager.screenHeight);
             Depth = MathHelper.Clamp(Depth, 0.01f, 1);
 
+            switch (PlayerDirection)
+            {
+                case Direction.Down:
+                    SpriteRow = 0;
+                    break;
+                case Direction.Up:
+                    SpriteRow = 1;
+                    break;
+                case Direction.Right:
+                    SpriteRow = 2;
+                    break;
+                case Direction.Left:
+                    SpriteRow = 3;
+                    break;
+            }
+            Rectangle SourceRect = new Rectangle(0, SpriteRow * TextureHeight / 4, TextureWidth, TextureHeight / 4);
+
             //TODO: Draw player sprite acording to the direction of the player
-            sb.Draw(PlayerTexture, Position, null, Color.White, 0,
+            sb.Draw(PlayerTexture, Position, SourceRect, Color.White, 0,
                     Origin, Size, SpriteEffects.None, Depth);
         }
 
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
         {
             PlayerTexture = cm.Load<Texture2D>("player");
+            TextureHeight = PlayerTexture.Height;
+            TextureWidth = PlayerTexture.Width;
         }
 
         public void UnloadContent()
