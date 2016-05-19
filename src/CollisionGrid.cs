@@ -8,7 +8,7 @@ namespace Project_Broban
 {
     class CollisionGrid
     {
-        public int[][] map;
+        public int[][] grid;
 
         public void GenerateGrid(int mapSizeX, int mapSizeY)
         {
@@ -16,7 +16,7 @@ namespace Project_Broban
             {
                 for (int y = 0; y < mapSizeY; y++)
                 {
-                    map[x][y] = 0;
+                    grid[x][y] = 0;
                 }
             }
         }
