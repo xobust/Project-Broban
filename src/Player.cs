@@ -32,6 +32,7 @@ namespace Project_Broban
 
         public bool Attacking;
         public int AttackRange;
+        public TimeSpan AttackTime;
         int AttackDamage;
 
         public Player()
@@ -42,6 +43,7 @@ namespace Project_Broban
             hp = 100;
             Attacking = false;
             AttackRange = 150;
+            AttackTime = new TimeSpan(0,0,0,0,200);
             AttackDamage = 1;
         }
 
@@ -54,27 +56,29 @@ namespace Project_Broban
         {
             KeyboardState state = Keyboard.GetState();
 
-            if (state.IsKeyDown(Keys.W))
+            if (!Attacking)
             {
-                PlayerDirection = Direction.Up;
-                Position.Y --;
+                if (state.IsKeyDown(Keys.W))
+                {
+                    PlayerDirection = Direction.Up;
+                    Position.Y--;
+                }
+                if (state.IsKeyDown(Keys.A))
+                {
+                    PlayerDirection = Direction.Left;
+                    Position.X--;
+                }
+                if (state.IsKeyDown(Keys.S))
+                {
+                    PlayerDirection = Direction.Down;
+                    Position.Y++;
+                }
+                if (state.IsKeyDown(Keys.D))
+                {
+                    PlayerDirection = Direction.Right;
+                    Position.X++;
+                }
             }
-            if (state.IsKeyDown(Keys.A))
-            {
-                PlayerDirection = Direction.Left;
-                Position.X --;
-            }
-            if (state.IsKeyDown(Keys.S))
-            {
-                PlayerDirection = Direction.Down;
-                Position.Y ++;
-            }
-            if (state.IsKeyDown(Keys.D))
-            {
-                PlayerDirection = Direction.Right;
-                Position.X ++;
-            }
-
         }
 
         public void Draw(SpriteBatch sb)

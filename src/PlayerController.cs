@@ -13,6 +13,7 @@ namespace Project_Broban
         GameManager GameManager;
         Player player;
         KeyboardState OldState;
+        TimeSpan AttackTime;
 
         public PlayerController(GameManager gameManager)
         {
@@ -24,8 +25,10 @@ namespace Project_Broban
         {
             KeyboardState state = Keyboard.GetState();
 
-            if(state.IsKeyDown(Keys.Space) && OldState.IsKeyUp(Keys.Space))
+            if(state.IsKeyDown(Keys.Space) && OldState.IsKeyUp(Keys.Space) && !player.Attacking)
             {
+                player.Attacking = true;
+                AttackTime = gameTime.TotalGameTime;
                 Monster[] monsters = GameManager.GameWorld.currentRoom.monsters;
 
                 foreach (Monster monster in monsters)
@@ -53,6 +56,14 @@ namespace Project_Broban
                             break;
                     }
                     }
+                }
+            }
+
+            if (player.Attacking)
+            {
+                if (gameTime.TotalGameTime - AttackTime > player.AttackTime)
+                {
+                    player.Attacking = false;
                 }
             }
 
