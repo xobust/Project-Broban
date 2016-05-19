@@ -51,6 +51,11 @@ namespace Project_Broban
             attacking = true;
         }
 
+        public void TakeDamage(int damage)
+        {
+            hp -= damage;
+        }
+
         public void Move(Vector2 targetPos)
         {
             float deltaY = targetPos.Y - position.Y;

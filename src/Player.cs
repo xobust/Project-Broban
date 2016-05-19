@@ -32,12 +32,24 @@ namespace Project_Broban
 
         KeyboardState OldState;
 
+        public bool Attacking;
+        public int AttackRange;
+        int AttackDamage;
+
         public Player()
         {
             Position = new Vector2(100, 100);
             PlayerDirection = Direction.Down;
             Size = 1;
             hp = 100;
+            Attacking = false;
+            AttackRange = 50;
+            AttackDamage = 1;
+        }
+
+        public void Attack(Monster monster)
+        {
+            monster.TakeDamage(AttackDamage);
         }
 
         public void Update(GameTime gameTime)
