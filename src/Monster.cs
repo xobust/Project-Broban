@@ -29,13 +29,15 @@ namespace Project_Broban
         public float pullRange;
         public Boolean attacking;
         public Vector2 startPos;
-        Vector2 position;
+        public Boolean alive;
+        public Vector2 position;
 
         public Monster(float x, float y, TextureManager tm)
         {
             Textures = tm;
             position = new Vector2(x, y);
             hp = 1;
+            alive = true;
             size = 1; // 1 means 100% of the sprite size
             range = 10;
             pullRange = 150;
@@ -49,6 +51,17 @@ namespace Project_Broban
         {
             target = player;
             attacking = true;
+        }
+
+        public void TakeDamage(int damage)
+        {
+            hp -= damage;
+            if(hp<= 0)
+            {
+                this.UnloadContent();
+                hp = 0;
+                alive = false;
+            }
         }
 
         public void Move(Vector2 targetPos)

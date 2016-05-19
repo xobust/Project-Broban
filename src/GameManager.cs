@@ -16,6 +16,7 @@ namespace Project_Broban
         public World GameWorld;
         public Player player;
         MonsterController monsterController;
+        PlayerController playerController;
         
 
         public GameManager()
@@ -36,6 +37,7 @@ namespace Project_Broban
 
             player = new Player();
             monsterController = new MonsterController(this);
+            playerController = new PlayerController(this);
 
             GameWorld = new World(10, 5, 5);
         }
@@ -87,8 +89,10 @@ namespace Project_Broban
 
             base.Update(gameTime);
             GameWorld.Update(gameTime);
+            playerController.Update(gameTime);
             player.Update(gameTime);
             monsterController.Update(gameTime);
+           
         }
 
         /// <summary>

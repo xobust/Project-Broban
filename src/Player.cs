@@ -11,14 +11,14 @@ using Microsoft.Xna.Framework.Content;
 namespace Project_Broban
 {
     
-    enum Direction
+    public enum Direction
     {
         Up, Down, Left, Right
     }
 
     public class Player : GameObject
     {
-        private Direction PlayerDirection;
+        public Direction PlayerDirection;
         private Texture2D PlayerTexture;
         private int TextureHeight;
         private int TextureWidth;
@@ -30,7 +30,10 @@ namespace Project_Broban
         private Vector2 Origin;
         private float Depth;
 
-        KeyboardState OldState;
+        public bool Attacking;
+        public int AttackRange;
+        public TimeSpan AttackTime;
+        int AttackDamage;
 
         public Player()
         {
@@ -38,33 +41,44 @@ namespace Project_Broban
             PlayerDirection = Direction.Down;
             Size = 1;
             hp = 100;
+            Attacking = false;
+            AttackRange = 150;
+            AttackTime = new TimeSpan(0,0,0,0,200);
+            AttackDamage = 1;
+        }
+
+        public void Attack(Monster monster)
+        {
+            monster.TakeDamage(AttackDamage);
         }
 
         public void Update(GameTime gameTime)
         {
             KeyboardState state = Keyboard.GetState();
 
-            if (state.IsKeyDown(Keys.W))
+            if (!Attacking)
             {
-                PlayerDirection = Direction.Up;
-                Position.Y --;
+                if (state.IsKeyDown(Keys.W))
+                {
+                    PlayerDirection = Direction.Up;
+                    Position.Y--;
+                }
+                if (state.IsKeyDown(Keys.A))
+                {
+                    PlayerDirection = Direction.Left;
+                    Position.X--;
+                }
+                if (state.IsKeyDown(Keys.S))
+                {
+                    PlayerDirection = Direction.Down;
+                    Position.Y++;
+                }
+                if (state.IsKeyDown(Keys.D))
+                {
+                    PlayerDirection = Direction.Right;
+                    Position.X++;
+                }
             }
-            if (state.IsKeyDown(Keys.A))
-            {
-                PlayerDirection = Direction.Left;
-                Position.X --;
-            }
-            if (state.IsKeyDown(Keys.S))
-            {
-                PlayerDirection = Direction.Down;
-                Position.Y ++;
-            }
-            if (state.IsKeyDown(Keys.D))
-            {
-                PlayerDirection = Direction.Right;
-                Position.X ++;
-            }
-
         }
 
         public void Draw(SpriteBatch sb)

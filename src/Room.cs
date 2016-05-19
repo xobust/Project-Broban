@@ -73,7 +73,10 @@ namespace Project_Broban
         {
             foreach (Monster monster in monsters)
             {
-                monster.Update(gameTime);
+                if (monster.alive)
+                {
+                    monster.Update(gameTime);
+                }
             }
         }
 
@@ -85,7 +88,10 @@ namespace Project_Broban
             Tiles.Draw(sb, map);
             foreach (Monster monster in monsters)
             {
-                monster.Draw(sb);
+                if (monster.alive)
+                {
+                    monster.Draw(sb);
+                }
             }
         }
 

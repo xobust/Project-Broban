@@ -46,6 +46,7 @@
     <Compile Include="src\GameObject.cs" />
     <Compile Include="src\Monster.cs" />
     <Compile Include="src\Player.cs" />
+    <Compile Include="src\PlayerController.cs" />
     <Compile Include="src\Program.cs" />
     <Compile Include="src\TextureManager.cs" />
     <Compile Include="src\TileRenderer.cs" />
