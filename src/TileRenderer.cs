@@ -11,7 +11,6 @@ namespace Project_Broban
 {
     public class TileRenderer
     {
-        private static TileRenderer instance;
         private Texture2D tileSet;                  // The sprite sheet for the tiles
         private const int tileWidth = 256;           // The width of one tile
         private const int tileHeight = 128;          // The height of one tile
