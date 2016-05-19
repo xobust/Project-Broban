@@ -30,7 +30,7 @@ namespace Project_Broban
         public Boolean attacking;
         public Vector2 startPos;
         public Boolean alive;
-        Vector2 position;
+        public Vector2 position;
 
         public Monster(float x, float y, TextureManager tm)
         {

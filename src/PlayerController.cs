@@ -33,7 +33,25 @@ namespace Project_Broban
                     double distToPlayer = monster.Distance(player.Position);
                     if (distToPlayer < player.AttackRange)
                     {
-                        player.Attack(monster);
+                    switch (player.PlayerDirection)
+                    {
+                        case Direction.Down:
+                            if (monster.position.Y > player.Position.Y)
+                                player.Attack(monster);
+                            break;
+                        case Direction.Up:
+                            if (monster.position.Y < player.Position.Y)
+                                player.Attack(monster);
+                            break;
+                        case Direction.Right:
+                            if (monster.position.X > player.Position.X)
+                                player.Attack(monster);
+                            break;
+                        case Direction.Left:
+                            if (monster.position.X < player.Position.X)
+                                player.Attack(monster);
+                            break;
+                    }
                     }
                 }
             }

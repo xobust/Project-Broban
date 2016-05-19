@@ -11,14 +11,14 @@ using Microsoft.Xna.Framework.Content;
 namespace Project_Broban
 {
     
-    enum Direction
+    public enum Direction
     {
         Up, Down, Left, Right
     }
 
     public class Player : GameObject
     {
-        private Direction PlayerDirection;
+        public Direction PlayerDirection;
         private Texture2D PlayerTexture;
         private int TextureHeight;
         private int TextureWidth;
@@ -29,8 +29,6 @@ namespace Project_Broban
 
         private Vector2 Origin;
         private float Depth;
-
-        KeyboardState OldState;
 
         public bool Attacking;
         public int AttackRange;
@@ -43,7 +41,7 @@ namespace Project_Broban
             Size = 1;
             hp = 100;
             Attacking = false;
-            AttackRange = 50;
+            AttackRange = 150;
             AttackDamage = 1;
         }
 
