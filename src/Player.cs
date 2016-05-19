@@ -10,8 +10,15 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Project_Broban
 {
+    
+    enum Direction
+    {
+        Up, Down, Left, Right
+    }
+
     public class Player : GameObject
     {
+        private Direction PlayerDirection;
         private Texture2D PlayerTexture;
         private float Size;
         public int hp;
@@ -20,9 +27,12 @@ namespace Project_Broban
         private Vector2 Origin;
         private float Depth;
 
+        KeyboardState OldState;
+
         public Player()
         {
             Position = new Vector2(100, 100);
+            PlayerDirection = Direction.Down;
             Size = 1;
             hp = 100;
         }
