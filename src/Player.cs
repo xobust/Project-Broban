@@ -92,8 +92,7 @@ namespace Project_Broban
                     break;
             }
             Rectangle SourceRect = new Rectangle(0, SpriteRow * TextureHeight / 4, TextureWidth, TextureHeight / 4);
-
-            //TODO: Draw player sprite acording to the direction of the player
+            
             sb.Draw(PlayerTexture, Position, SourceRect, Color.White, 0,
                     Origin, Size, SpriteEffects.None, Depth);
         }
