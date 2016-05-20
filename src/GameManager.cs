@@ -22,8 +22,6 @@ namespace Project_Broban
 
         public GameManager()
         {
-            screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "content";
             graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
@@ -53,6 +51,8 @@ namespace Project_Broban
         protected override void Initialize()
         {
             base.Initialize();
+            screenHeight = GraphicsDevice.Viewport.Height;
+            screenWidth = GraphicsDevice.Viewport.Width;
         }
 
         /// <summary>
