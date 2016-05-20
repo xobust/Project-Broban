@@ -17,6 +17,7 @@ namespace Project_Broban
         public Player player;
         MonsterController monsterController;
         PlayerController playerController;
+        UIController uiController;
         
 
         public GameManager()
@@ -38,6 +39,7 @@ namespace Project_Broban
             player = new Player();
             monsterController = new MonsterController(this);
             playerController = new PlayerController(this);
+            uiController = new UIController(this);
 
             GameWorld = new World(10, 5, 5);
         }
@@ -63,6 +65,7 @@ namespace Project_Broban
             spriteBatch = new SpriteBatch(GraphicsDevice);
             player.LoadContent(GraphicsDevice, Content);
             GameWorld.LoadContent(GraphicsDevice, Content);
+            uiController.LoadContent(GraphicsDevice, Content);
         }
 
         /// <summary>
@@ -92,6 +95,7 @@ namespace Project_Broban
             playerController.Update(gameTime);
             player.Update(gameTime);
             monsterController.Update(gameTime);
+            uiController.Update(gameTime);
            
         }
 
@@ -106,6 +110,7 @@ namespace Project_Broban
             spriteBatch.Begin(SpriteSortMode.FrontToBack);
             GameWorld.Draw(spriteBatch);
             player.Draw(spriteBatch);
+            uiController.Draw(spriteBatch);
 
             spriteBatch.End();
 
