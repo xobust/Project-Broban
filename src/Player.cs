@@ -40,7 +40,7 @@ namespace Project_Broban
             Position = new Vector2(100, 100);
             PlayerDirection = Direction.Down;
             Size = 1;
-            hp = 100;
+            hp = 5;
             Attacking = false;
             AttackRange = 150;
             AttackTime = new TimeSpan(0,0,0,0,200);
