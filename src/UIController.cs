@@ -17,26 +17,45 @@ namespace Project_Broban
         private int heartWidth;
         private int heartHeight;
         private int leftOffsetX = 10; // Adds extra space to the left of the hearts
+        private TimeSpan playTime;
+        private SpriteFont font;
 
         public UIController(GameManager gameManager)
         {
             this.gameManager = gameManager;
+            font = gameManager.font;
         }
 
         public void Update(GameTime gameTime)
         {
             player = gameManager.player;
+            playTime = gameManager.playTime;
         }
 
         public void Draw(SpriteBatch sb)
         {
-            for(int i = 0; i < player.hp; i++)
+            font = gameManager.font;
+            for (int i = 0; i < player.hp; i++)
             {
                 Rectangle destRectangle = new Rectangle(heartWidth * i + leftOffsetX, 0, heartWidth, heartHeight);
                 
                 sb.Draw(heartTexture, destRectangle, null, Color.White, 0, Vector2.Zero,
                     SpriteEffects.None, 1);
             }
+
+            DrawTimer(sb);
+        }
+
+        private void DrawTimer(SpriteBatch sb)
+        {
+            // Format the time
+            string outputTime = playTime.ToString(@"hh\:mm\:ss");
+            Vector2 textSize = font.MeasureString(outputTime);
+            
+            // Display formatted time
+            Vector2 timerOrigin = new Vector2(textSize.X, 0);
+            sb.DrawString(font, outputTime, new Vector2(GameManager.screenWidth - 50, 30),
+                Color.White, 0, timerOrigin, 1, SpriteEffects.None, 1);
         }
 
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
