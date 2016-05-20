@@ -46,6 +46,11 @@ namespace Project_Broban
             DrawTimer(sb);
         }
 
+        /// <summary>
+        /// Formats the playtime from milliseconds to hh:mm:ss and draws
+        /// it on the screen in the upper right corner.
+        /// </summary>
+        /// <param name="sb">The SpriteBatch to draw with.</param>
         private void DrawTimer(SpriteBatch sb)
         {
             // Format the time
