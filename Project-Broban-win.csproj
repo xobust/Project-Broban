@@ -51,6 +51,7 @@
     <Compile Include="src\TextureManager.cs" />
     <Compile Include="src\TileRenderer.cs" />
     <Compile Include="src\Room.cs" />
+    <Compile Include="src\UIController.cs" />
     <Compile Include="src\World.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +74,9 @@
     </Content>
     <Content Include="content\player.png" />
     <Content Include="content\playerTemp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="content\font.spritefont" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

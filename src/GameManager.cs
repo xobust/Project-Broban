@@ -1,4 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -17,12 +22,14 @@ namespace Project_Broban
         public Player player;
         MonsterController monsterController;
         PlayerController playerController;
+        UIController uiController;
+        public TimeSpan playTime;          // used to display formatted time
+        private float elapsedPlayTime = 0; // float representation of the playtime
+        public SpriteFont font;
         
 
         public GameManager()
         {
-            screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "content";
             graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
@@ -38,8 +45,11 @@ namespace Project_Broban
             player = new Player();
             monsterController = new MonsterController(this);
             playerController = new PlayerController(this);
+            uiController = new UIController(this);
 
             GameWorld = new World(10, 5, 5);
+
+            playTime = new TimeSpan(0);
         }
 
         /// <summary>
@@ -51,6 +61,8 @@ namespace Project_Broban
         protected override void Initialize()
         {
             base.Initialize();
+            screenHeight = GraphicsDevice.Viewport.Height;
+            screenWidth = GraphicsDevice.Viewport.Width;
         }
 
         /// <summary>
@@ -63,6 +75,8 @@ namespace Project_Broban
             spriteBatch = new SpriteBatch(GraphicsDevice);
             player.LoadContent(GraphicsDevice, Content);
             GameWorld.LoadContent(GraphicsDevice, Content);
+            uiController.LoadContent(GraphicsDevice, Content);
+            font = Content.Load<SpriteFont>("font");
         }
 
         /// <summary>
@@ -92,7 +106,10 @@ namespace Project_Broban
             playerController.Update(gameTime);
             player.Update(gameTime);
             monsterController.Update(gameTime);
-           
+            uiController.Update(gameTime);
+
+            elapsedPlayTime += (float)gameTime.ElapsedGameTime.Milliseconds;
+            playTime = TimeSpan.FromMilliseconds(elapsedPlayTime);
         }
 
         /// <summary>
@@ -106,6 +123,7 @@ namespace Project_Broban
             spriteBatch.Begin(SpriteSortMode.FrontToBack);
             GameWorld.Draw(spriteBatch);
             player.Draw(spriteBatch);
+            uiController.Draw(spriteBatch);
 
             spriteBatch.End();
 
