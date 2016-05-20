@@ -73,3 +73,9 @@
 /processorParam:TextureFormat=Color
 /build:heart.png
 
+#begin font.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:font.spritefont
+
