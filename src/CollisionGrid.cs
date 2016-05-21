@@ -16,14 +16,6 @@ namespace Project_Broban
             GenerateGrid(10,10);
         }
 
-        public struct tile
-        {
-            Vector2 A;
-            Vector2 B;
-            Vector2 C;
-            Vector2 D;
-        }
-
         public void GenerateGrid(int mapSizeX, int mapSizeY)
         {
             grid = new int[mapSizeX][];
