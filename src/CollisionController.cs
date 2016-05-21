@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 
 namespace Project_Broban
 {
-    class CollisionController
+    class CollisionController : Controller
     {
         public int[][] grid;
         private CollisionTile currentTile;
 
-        public CollisionGrid()
+        public CollisionController()
         {
             currentTile = new CollisionTile(2);
             GenerateGrid(10,10);
@@ -28,6 +29,11 @@ namespace Project_Broban
                     grid[x][y] = 0;
                 }
             }
+        }
+
+        public void Update(GameTime gameTime)
+        {
+
         }
 
     }
