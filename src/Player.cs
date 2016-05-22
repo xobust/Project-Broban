@@ -26,6 +26,13 @@ namespace Project_Broban
         private float Size;
         public int hp;
         public Vector2 Position;
+        public Vector2 NewPos;
+
+        public Boolean MovingRight;
+        public Boolean MovingLeft;
+        public Boolean MovingUp;
+        public Boolean MovingDown;
+
         private const float moveSpeed = 0.25f;
 
         private Vector2 Origin;
