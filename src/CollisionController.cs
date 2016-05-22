@@ -37,21 +37,26 @@ namespace Project_Broban
         {
             Player player = gameManager.player;
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            float moveDistance = player.MoveSpeed * deltaTime;
 
             if (player.MovingUp)
             {
+                player.NextPos = new Vector2(player.Position.X,
+                                             player.Position.Y - moveDistance);
                 // Implement loop of every tile to check
                 if (IsColliding(player, currentTile))
                 {
                 } else
                 {
-                    player.Position.Y -= player.MoveSpeed * deltaTime;
+                    player.Position.Y -= moveDistance;
                 }
                 player.PlayerDirection = Direction.Up;
                 player.MovingUp = false;
             }
             if (player.MovingLeft)
             {
+                player.NextPos = new Vector2(player.Position.X - moveDistance,
+                                             player.Position.Y);
                 // Implement loop of every tile to check
                 if (IsColliding(player, currentTile))
                 {
@@ -59,13 +64,15 @@ namespace Project_Broban
                 }
                 else
                 {
-                    player.Position.X -= player.MoveSpeed * deltaTime;
+                    player.Position.X -= moveDistance;
                 }
                 player.PlayerDirection = Direction.Left;
                 player.MovingLeft = false;
             }
             if (player.MovingDown)
             {
+                player.NextPos = new Vector2(player.Position.X,
+                                             player.Position.Y + moveDistance);
                 // Implement loop of every tile to check
                 if (IsColliding(player, currentTile))
                 {
@@ -73,13 +80,15 @@ namespace Project_Broban
                 }
                 else
                 {
-                    player.Position.Y += player.MoveSpeed * deltaTime;
+                    player.Position.Y += moveDistance;
                 }
                 player.PlayerDirection = Direction.Down;
                 player.MovingDown = false;
             }
             if (player.MovingRight)
             {
+                player.NextPos = new Vector2(player.Position.X + moveDistance,
+                                             player.Position.Y);
                 // Implement loop of every tile to check
                 if (IsColliding(player, currentTile))
                 {
@@ -99,5 +108,9 @@ namespace Project_Broban
             return false;
         }
 
+        private float CalculateArea(Vector2 a, Vector2 b, Vector2 c)
+        {
+            return 0;
+        }
     }
 }
