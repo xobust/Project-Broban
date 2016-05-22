@@ -9,36 +9,49 @@ namespace Project_Broban
 {
     class CollisionController : Controller
     {
-        public int[][] grid;
-        private float tileArea;
-        private CollisionTile currentTile;
-        GameManager gameManager;
+        public Tuple<Vector2, int>[][] Grid;
+        private float TileArea;
+        private int SqrtSize = 2;
+        private CollisionTile CurrentTile;
+        GameManager GameManager;
 
         public CollisionController(GameManager gameManager)
         {
-            currentTile = new CollisionTile(2);
-            currentTile.CalculateTilePos(new Vector2(200, 200));
+            CurrentTile = new CollisionTile(SqrtSize);
+            CurrentTile.CalculateTilePos(new Vector2(200, 200));
             GenerateGrid(10,10);
-            this.gameManager = gameManager;
-            tileArea = CalculateArea(currentTile.A, currentTile.B, currentTile.D, currentTile.C);
+            this.GameManager = gameManager;
+            TileArea = CalculateArea(CurrentTile.A, CurrentTile.B, CurrentTile.D, CurrentTile.C);
         }
 
         public void GenerateGrid(int mapSizeX, int mapSizeY)
         {
-            grid = new int[mapSizeX][];
+            Grid = new Tuple<Vector2, int>[mapSizeX][];
             for (int x = 0; x < mapSizeX; x++)
             {
-                grid[x] = new int[mapSizeY];
+                Grid[x] = new Tuple<Vector2, int>[mapSizeY];
                 for (int y = 0; y < mapSizeY; y++)
                 {
-                    grid[x][y] = 0;
+                    if (y % 2 == 0) // Even numbered tiles
+                    {
+                        Grid[x][y] = new Tuple<Vector2, int>
+                                    (new Vector2((CurrentTile.TileWidth / SqrtSize) * x, 
+                                                 (CurrentTile.TileHeight / SqrtSize) * y), 0);
+                    }
+                    else
+                    {
+                        Grid[x][y] = new Tuple<Vector2, int>
+                                    (new Vector2((CurrentTile.TileWidth / SqrtSize) * x + 
+                                                  CurrentTile.TileWidth / (SqrtSize/2), // the offset
+                                                 (CurrentTile.TileHeight / SqrtSize) * y), 0);
+                    }
                 }
             }
         }
 
         public void Update(GameTime gameTime)
         {
-            Player player = gameManager.player;
+            Player player = GameManager.player;
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             float moveDistance = player.MoveSpeed * deltaTime;
 
@@ -47,7 +60,7 @@ namespace Project_Broban
                 player.NextPos = new Vector2(player.Position.X,
                                              player.Position.Y - moveDistance);
                 // Implement loop of every tile to check
-                if (IsColliding(player, currentTile))
+                if (IsColliding(player, CurrentTile))
                 {
                     // Implement collision positioning (pixel perfect collision)
                     // As of now, the player just stops if it's colliding and can't
@@ -65,7 +78,7 @@ namespace Project_Broban
                 player.NextPos = new Vector2(player.Position.X - moveDistance,
                                              player.Position.Y);
                 // Implement loop of every tile to check
-                if (IsColliding(player, currentTile))
+                if (IsColliding(player, CurrentTile))
                 {
                     // Implement collision positioning (pixel perfect collision)
                     // As of now, the player just stops if it's colliding and can't
@@ -83,7 +96,7 @@ namespace Project_Broban
                 player.NextPos = new Vector2(player.Position.X,
                                              player.Position.Y + moveDistance);
                 // Implement loop of every tile to check
-                if (IsColliding(player, currentTile))
+                if (IsColliding(player, CurrentTile))
                 {
                     // Implement collision positioning (pixel perfect collision)
                     // As of now, the player just stops if it's colliding and can't
@@ -101,7 +114,7 @@ namespace Project_Broban
                 player.NextPos = new Vector2(player.Position.X + moveDistance,
                                              player.Position.Y);
                 // Implement loop of every tile to check
-                if (IsColliding(player, currentTile))
+                if (IsColliding(player, CurrentTile))
                 {
                     // Implement collision positioning (pixel perfect collision)
                     // As of now, the player just stops if it's colliding and can't
@@ -121,7 +134,7 @@ namespace Project_Broban
             if ((CalculateArea(player.NextPos, collisionTile.A, collisionTile.D)+
                  CalculateArea(player.NextPos, collisionTile.D, collisionTile.C)+
                  CalculateArea(player.NextPos, collisionTile.C, collisionTile.B)+
-                 CalculateArea(player.NextPos, collisionTile.B, collisionTile.A)) < tileArea)
+                 CalculateArea(player.NextPos, collisionTile.B, collisionTile.A)) < TileArea)
             {
                 return true;
             }
