@@ -10,14 +10,17 @@ namespace Project_Broban
     class CollisionController : Controller
     {
         public int[][] grid;
+        private float tileArea;
         private CollisionTile currentTile;
         GameManager gameManager;
 
         public CollisionController(GameManager gameManager)
         {
             currentTile = new CollisionTile(2);
+            currentTile.CalculateTilePos(new Vector2(200, 200));
             GenerateGrid(10,10);
             this.gameManager = gameManager;
+            tileArea = CalculateArea(currentTile.A, currentTile.B, currentTile.D, currentTile.C);
         }
 
         public void GenerateGrid(int mapSizeX, int mapSizeY)
@@ -46,7 +49,11 @@ namespace Project_Broban
                 // Implement loop of every tile to check
                 if (IsColliding(player, currentTile))
                 {
-                } else
+                    // Implement collision positioning (pixel perfect collision)
+                    // As of now, the player just stops if it's colliding and can't
+                    // move in the direction it's facing.
+                }
+                else
                 {
                     player.Position.Y -= moveDistance;
                 }
@@ -60,7 +67,9 @@ namespace Project_Broban
                 // Implement loop of every tile to check
                 if (IsColliding(player, currentTile))
                 {
-
+                    // Implement collision positioning (pixel perfect collision)
+                    // As of now, the player just stops if it's colliding and can't
+                    // move in the direction it's facing.
                 }
                 else
                 {
@@ -76,7 +85,9 @@ namespace Project_Broban
                 // Implement loop of every tile to check
                 if (IsColliding(player, currentTile))
                 {
-
+                    // Implement collision positioning (pixel perfect collision)
+                    // As of now, the player just stops if it's colliding and can't
+                    // move in the direction it's facing.
                 }
                 else
                 {
@@ -92,7 +103,9 @@ namespace Project_Broban
                 // Implement loop of every tile to check
                 if (IsColliding(player, currentTile))
                 {
-
+                    // Implement collision positioning (pixel perfect collision)
+                    // As of now, the player just stops if it's colliding and can't
+                    // move in the direction it's facing.
                 }
                 else
                 {
@@ -105,12 +118,27 @@ namespace Project_Broban
 
         private Boolean IsColliding(Player player, CollisionTile collisionTile)
         {
+            if ((CalculateArea(player.NextPos, collisionTile.A, collisionTile.D)+
+                 CalculateArea(player.NextPos, collisionTile.D, collisionTile.C)+
+                 CalculateArea(player.NextPos, collisionTile.C, collisionTile.B)+
+                 CalculateArea(player.NextPos, collisionTile.B, collisionTile.A)) < tileArea)
+            {
+                return true;
+            }
             return false;
         }
 
         private float CalculateArea(Vector2 a, Vector2 b, Vector2 c)
         {
-            return 0;
+            return Math.Abs((a.X * (b.Y - c.Y) + b.X * (c.Y - a.Y) + c.X * (a.Y - b.Y)) / 2);
+        }
+
+        private float CalculateArea(Vector2 a, Vector2 b, Vector2 c, Vector2 d)
+        {
+            return Math.Abs (((a.X * b.Y - a.Y * b.X) +
+                              (b.X * c.Y - b.Y * c.X) + 
+                              (c.X * d.Y - c.Y * d.X) +
+                              (d.X * a.Y - d.Y * a.X))/2);
         }
     }
 }
