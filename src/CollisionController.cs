@@ -11,11 +11,13 @@ namespace Project_Broban
     {
         public int[][] grid;
         private CollisionTile currentTile;
+        GameManager gameManager;
 
-        public CollisionController()
+        public CollisionController(GameManager gameManager)
         {
             currentTile = new CollisionTile(2);
             GenerateGrid(10,10);
+            this.gameManager = gameManager;
         }
 
         public void GenerateGrid(int mapSizeX, int mapSizeY)
@@ -33,7 +35,68 @@ namespace Project_Broban
 
         public void Update(GameTime gameTime)
         {
+            Player player = gameManager.player;
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
+            if (player.MovingUp)
+            {
+                // Implement loop of every tile to check
+                if (IsColliding(player, currentTile))
+                {
+                } else
+                {
+                    player.Position.Y -= player.MoveSpeed * deltaTime;
+                }
+                player.PlayerDirection = Direction.Up;
+                player.MovingUp = false;
+            }
+            if (player.MovingLeft)
+            {
+                // Implement loop of every tile to check
+                if (IsColliding(player, currentTile))
+                {
+
+                }
+                else
+                {
+                    player.Position.X -= player.MoveSpeed * deltaTime;
+                }
+                player.PlayerDirection = Direction.Left;
+                player.MovingLeft = false;
+            }
+            if (player.MovingDown)
+            {
+                // Implement loop of every tile to check
+                if (IsColliding(player, currentTile))
+                {
+
+                }
+                else
+                {
+                    player.Position.Y += player.MoveSpeed * deltaTime;
+                }
+                player.PlayerDirection = Direction.Down;
+                player.MovingDown = false;
+            }
+            if (player.MovingRight)
+            {
+                // Implement loop of every tile to check
+                if (IsColliding(player, currentTile))
+                {
+
+                }
+                else
+                {
+                    player.Position.X += player.MoveSpeed * deltaTime;
+                }
+                player.PlayerDirection = Direction.Right;
+                player.MovingRight = false;
+            }
+        }
+
+        private Boolean IsColliding(Player player, CollisionTile collisionTile)
+        {
+            return false;
         }
 
     }

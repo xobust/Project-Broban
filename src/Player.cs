@@ -33,7 +33,7 @@ namespace Project_Broban
         public Boolean MovingUp;
         public Boolean MovingDown;
 
-        private const float moveSpeed = 0.25f;
+        public float MoveSpeed;
 
         private Vector2 Origin;
         private float Depth;
@@ -49,6 +49,7 @@ namespace Project_Broban
             PlayerDirection = Direction.Down;
             Size = 1;
             hp = 5;
+            MoveSpeed = 0.2f;
             Attacking = false;
             AttackRange = 150;
             AttackTime = new TimeSpan(0,0,0,0,200);
@@ -63,29 +64,26 @@ namespace Project_Broban
         public void Update(GameTime gameTime)
         {
             KeyboardState state = Keyboard.GetState();
+
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
             if (!Attacking)
             {
                 if (state.IsKeyDown(Keys.W))
                 {
-                    PlayerDirection = Direction.Up;
-                    Position.Y -= moveSpeed * deltaTime;
+                    MovingUp = true;
                 }
                 if (state.IsKeyDown(Keys.A))
                 {
-                    PlayerDirection = Direction.Left;
-                    Position.X -= moveSpeed * deltaTime;
+                    MovingLeft = true;
                 }
                 if (state.IsKeyDown(Keys.S))
                 {
-                    PlayerDirection = Direction.Down;
-                    Position.Y += moveSpeed * deltaTime;
+                    MovingDown = true;
                 }
                 if (state.IsKeyDown(Keys.D))
                 {
-                    PlayerDirection = Direction.Right;
-                    Position.X += moveSpeed * deltaTime;
+                    MovingRight = true;
                 }
             }
         }
