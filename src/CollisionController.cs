@@ -45,7 +45,9 @@ namespace Project_Broban
                                      CurrentTile.D, 
                                      CurrentTile.C);
 
-            CenterTileIndex = new Vector2(20, 20);
+            Grid[20][20] = new Tuple<Vector2, int>(Grid[5][5].Item1, 1);
+
+            CenterTileIndex = new Vector2(5, 5);
             CalcSurrTiles();
         }
 
@@ -61,20 +63,18 @@ namespace Project_Broban
                     {
                         Grid[x][y] = new Tuple<Vector2, int>
                                     (new Vector2((CurrentTile.TileWidth / SqrtSize) * x, 
-                                                 (CurrentTile.TileHeight / SqrtSize) * y), 0);
+                                                 (CurrentTile.TileHeight / SqrtSize) * y), 1);
                     }
                     else
                     {
                         Grid[x][y] = new Tuple<Vector2, int>
                                     (new Vector2((CurrentTile.TileWidth / SqrtSize) * x + 
                                                   CurrentTile.TileWidth / (SqrtSize/2), // the offset
-                                                 (CurrentTile.TileHeight / SqrtSize) * y), 0);
+                                                 (CurrentTile.TileHeight / SqrtSize) * y), 1);
                     }
                 }
             }
         }
-
-
 
         public void Update(GameTime gameTime)
         {
@@ -89,11 +89,11 @@ namespace Project_Broban
                 // Implement loop of every tile to check
                 for (int i = 0; i < SurroundingTiles.Length; i++)
                 {
+                    CurrentTile.CalculateTilePos(SurroundingTiles[i].Item1, 
+                                                 SurroundingTiles[i].Item2);
+                    
                     if (IsColliding(player, CurrentTile))
                     {
-                        // Implement collision positioning (pixel perfect collision)
-                        // As of now, the player just stops if it's colliding and can't
-                        // move in the direction it's facing.
                         if (SurroundingTiles[i].Item2 == 0)
                         {
                             CenterTileIndex = SurroundingTiles[i].Item3;
@@ -107,10 +107,10 @@ namespace Project_Broban
                 if (!Collided)
                 {
                     MoveVector = new Vector2(MoveVector.X, MoveVector.Y - moveDistance);
-                    Collided = false;
                 }
                 player.PlayerDirection = Direction.Up;
                 player.MovingUp = false;
+                Collided = false;
             }
 
             if (player.MovingLeft)
@@ -118,18 +118,30 @@ namespace Project_Broban
                 player.NextPos = new Vector2(player.Position.X - moveDistance,
                                              player.Position.Y);
                 // Implement loop of every tile to check
-                if (IsColliding(player, CurrentTile))
+                for (int i = 0; i < SurroundingTiles.Length; i++)
                 {
-                    // Implement collision positioning (pixel perfect collision)
-                    // As of now, the player just stops if it's colliding and can't
-                    // move in the direction it's facing.
+                    CurrentTile.CalculateTilePos(SurroundingTiles[i].Item1,
+                                                 SurroundingTiles[i].Item2);
+
+                    if (IsColliding(player, CurrentTile))
+                    {
+                        if (SurroundingTiles[i].Item2 == 0)
+                        {
+                            CenterTileIndex = SurroundingTiles[i].Item3;
+                        }
+                        else if (SurroundingTiles[i].Item2 == 1)
+                        {
+                            Collided = true;
+                        }
+                    }
                 }
-                else
+                if (!Collided)
                 {
                     MoveVector = new Vector2(MoveVector.X - moveDistance, MoveVector.Y);
                 }
                 player.PlayerDirection = Direction.Left;
                 player.MovingLeft = false;
+                Collided = false;
             }
 
             if (player.MovingDown)
@@ -137,41 +149,60 @@ namespace Project_Broban
                 player.NextPos = new Vector2(player.Position.X,
                                              player.Position.Y + moveDistance);
                 // Implement loop of every tile to check
-                if (IsColliding(player, CurrentTile))
+                for (int i = 0; i < SurroundingTiles.Length; i++)
                 {
-                    // Implement collision positioning (pixel perfect collision)
-                    // As of now, the player just stops if it's colliding and can't
-                    // move in the direction it's facing.
+                    CurrentTile.CalculateTilePos(SurroundingTiles[i].Item1,
+                                                 SurroundingTiles[i].Item2);
+
+                    if (IsColliding(player, CurrentTile))
+                    {
+                        if (SurroundingTiles[i].Item2 == 0)
+                        {
+                            CenterTileIndex = SurroundingTiles[i].Item3;
+                        }
+                        else if (SurroundingTiles[i].Item2 == 1)
+                        {
+                            Collided = true;
+                        }
+                    }
                 }
-                else
-                {
+                if (!Collided)
+                { 
                     MoveVector = new Vector2(MoveVector.X, MoveVector.Y + moveDistance);
                 }
                 player.PlayerDirection = Direction.Down;
                 player.MovingDown = false;
+                Collided = false;
             }
 
             if (player.MovingRight)
             {
                 player.NextPos = new Vector2(player.Position.X + moveDistance,
                                              player.Position.Y);
-                // Implement loop of every tile to check
-                /*for (int i = 0; i < SurroundingTiles.Length; i++)
+                for (int i = 0; i < SurroundingTiles.Length; i++)
                 {
+                    CurrentTile.CalculateTilePos(SurroundingTiles[i].Item1,
+                                                 SurroundingTiles[i].Item2);
 
-                }*/
-                if (IsColliding(player, CurrentTile))
-                {
-                    // Implement collision positioning (pixel perfect collision)
-                    // As of now, the player just stops if it's colliding and can't
-                    // move in the direction it's facing.
+                    if (IsColliding(player, CurrentTile))
+                    {
+                        if (SurroundingTiles[i].Item2 == 0)
+                        {
+                            CenterTileIndex = SurroundingTiles[i].Item3;
+                        }
+                        else if (SurroundingTiles[i].Item2 == 1)
+                        {
+                            Collided = true;
+                        }
+                    }
                 }
-                else
-                {
+                if (!Collided)
+                { 
                     MoveVector = new Vector2(MoveVector.X + moveDistance, MoveVector.Y);
                 }
                 player.PlayerDirection = Direction.Right;
                 player.MovingRight = false;
+                Collided = false;
             }
 
             player.Position = new Vector2(player.Position.X + MoveVector.X, 
