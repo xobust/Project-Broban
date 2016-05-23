@@ -63,13 +63,15 @@ namespace Project_Broban
             Rectangle destination = new Rectangle(xPos, yPos, tileWidth, tileHeight);
             Rectangle tileSource = new Rectangle(0, 0, tileWidth, tileHeight);
 
-            //TODO: Implement some if-statements that differentiate between tile types
-            //below this line
+            //TODO: Draw different sprites depending on the string tileType
             
             sb.Draw(tileSet, destination, tileSource, Color.White, 0, new Vector2(0, 0),
                     SpriteEffects.None, 0);
         }
 
+        /// <summary>
+        /// Unloads content from the gameObject.
+        /// </summary>
         public void UnloadContent()
         {
         }
