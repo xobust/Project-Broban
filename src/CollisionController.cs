@@ -50,7 +50,7 @@ namespace Project_Broban
                                      CurrentTile.C);
             
 
-            CenterTileIndex = new Vector2(2, 3);
+            CenterTileIndex = new Vector2(1, 1); // Fixa jämna tal
             CalcSurrTiles();
         }
 
@@ -89,7 +89,7 @@ namespace Project_Broban
             {
                 player.NextPos = new Vector2(player.Position.X,
                                              player.Position.Y - moveDistance);
-                // Implement loop of every tile to check
+
                 for (int i = 0; i < SurroundingTiles.Length; i++)
                 {
                     CurrentTile.CalculateTilePos(SurroundingTiles[i].Item1, 
@@ -120,7 +120,7 @@ namespace Project_Broban
             {
                 player.NextPos = new Vector2(player.Position.X - moveDistance,
                                              player.Position.Y);
-                // Implement loop of every tile to check
+
                 for (int i = 0; i < SurroundingTiles.Length; i++)
                 {
                     CurrentTile.CalculateTilePos(SurroundingTiles[i].Item1,
@@ -151,7 +151,7 @@ namespace Project_Broban
             {
                 player.NextPos = new Vector2(player.Position.X,
                                              player.Position.Y + moveDistance);
-                // Implement loop of every tile to check
+
                 for (int i = 0; i < SurroundingTiles.Length; i++)
                 {
                     CurrentTile.CalculateTilePos(SurroundingTiles[i].Item1,
@@ -238,59 +238,82 @@ namespace Project_Broban
                               (d.X * a.Y - d.Y * a.X))/2);
         }
 
+        private Boolean InsideBounds(float indexOne, float indexTwo)
+        {
+            if (indexOne > 0 && indexOne < Grid.Length-1 &&
+                indexTwo > 0 && indexTwo < Grid.Length-1)
+            {
+                return true;
+            }
+            Console.WriteLine("DAFUQ");
+            return false;
+        }
+
         private void CalcSurrTiles()
         {
             // http://bit.ly/1TsUSgX - explanation of the indexes below
             // Top to bottom - Left to right following to the image above:
 
-            up = Grid[(int)CenterTileIndex.X][(int)CenterTileIndex.Y - 2];
-            upLeft = Grid[(int)CenterTileIndex.X][(int)CenterTileIndex.Y - 1];
-            upRight = Grid[(int)CenterTileIndex.X + 1][(int)CenterTileIndex.Y - 1];
-            left = Grid[(int)CenterTileIndex.X - 1][(int)CenterTileIndex.Y];
-            right = Grid[(int)CenterTileIndex.X + 1][(int)CenterTileIndex.Y];
-            downLeft = Grid[(int)CenterTileIndex.X][(int)CenterTileIndex.Y + 1];
-            downRight = Grid[(int)CenterTileIndex.X + 1][(int)CenterTileIndex.Y + 1];
-            down = Grid[(int)CenterTileIndex.X][(int)CenterTileIndex.Y + 2];
-
-            if (up != null)
+            if (InsideBounds(CenterTileIndex.X, CenterTileIndex.Y - 2))
             {
+                up = Grid[(int)CenterTileIndex.X][(int)CenterTileIndex.Y - 2];
+
                 SurroundingTiles[0] = new Tuple<Vector2, int, Vector2>(up.Item1, up.Item2,
                                       new Vector2(CenterTileIndex.X, CenterTileIndex.Y - 2));
             }
 
-            if (upLeft != null)
+            if (InsideBounds(CenterTileIndex.X, CenterTileIndex.Y - 1))
             {
+                upLeft = Grid[(int)CenterTileIndex.X][(int)CenterTileIndex.Y - 1];
+
                 SurroundingTiles[1] = new Tuple<Vector2, int, Vector2>(upLeft.Item1, upLeft.Item2,
                                       new Vector2(CenterTileIndex.X, CenterTileIndex.Y - 1));
             }
 
-            if (upRight != null)
+            if (InsideBounds(CenterTileIndex.X + 1, CenterTileIndex.Y - 1))
             {
+                upRight = Grid[(int)CenterTileIndex.X + 1][(int)CenterTileIndex.Y - 1];
+                
                 SurroundingTiles[2] = new Tuple<Vector2, int, Vector2>(upRight.Item1, upRight.Item2,
                                       new Vector2(CenterTileIndex.X + 1, CenterTileIndex.Y - 1));
             }
-            if (left != null)
+
+            if (InsideBounds(CenterTileIndex.X - 1, CenterTileIndex.Y))
             {
+                left = Grid[(int)CenterTileIndex.X - 1][(int)CenterTileIndex.Y];
+
                 SurroundingTiles[3] = new Tuple<Vector2, int, Vector2>(left.Item1, left.Item2,
                                       new Vector2(CenterTileIndex.X - 1, CenterTileIndex.Y));
             }
-            if (right != null)
+
+            if (InsideBounds(CenterTileIndex.X + 1, CenterTileIndex.Y))
             {
+                right = Grid[(int)CenterTileIndex.X + 1][(int)CenterTileIndex.Y];
+
                 SurroundingTiles[4] = new Tuple<Vector2, int, Vector2>(right.Item1, right.Item2,
                                       new Vector2(CenterTileIndex.X + 1, CenterTileIndex.Y));
             }
-            if (downLeft != null)
+
+            if (InsideBounds(CenterTileIndex.X, CenterTileIndex.Y + 1))
             {
+                downLeft = Grid[(int)CenterTileIndex.X][(int)CenterTileIndex.Y + 1];
+
                 SurroundingTiles[5] = new Tuple<Vector2, int, Vector2>(downLeft.Item1, downLeft.Item2,
-                                      new Vector2(CenterTileIndex.X, CenterTileIndex.Y - 1));
+                                      new Vector2(CenterTileIndex.X, CenterTileIndex.Y + 1));
             }
-            if (downRight != null)
+
+            if (InsideBounds(CenterTileIndex.X + 1, CenterTileIndex.Y + 1))
             {
+                downRight = Grid[(int)CenterTileIndex.X + 1][(int)CenterTileIndex.Y + 1];
+
                 SurroundingTiles[6] = new Tuple<Vector2, int, Vector2>(downRight.Item1, downRight.Item2,
                                       new Vector2(CenterTileIndex.X + 1, CenterTileIndex.Y + 1));
             }
-            if (down != null)
+
+            if (InsideBounds(CenterTileIndex.X, CenterTileIndex.Y + 2))
             {
+                down = Grid[(int)CenterTileIndex.X][(int)CenterTileIndex.Y + 2];
+
                 SurroundingTiles[7] = new Tuple<Vector2, int, Vector2>(down.Item1, down.Item2,
                                       new Vector2(CenterTileIndex.X, CenterTileIndex.Y + 2));
             }
