@@ -18,7 +18,7 @@ namespace Project_Broban
         private int heartHeight;
         private int leftOffsetX = 10; // Adds extra space to the left of the hearts
         private TimeSpan playTime;
-        private SpriteFont font;
+        private SpriteFont font;      // The font to display the time with
 
         public UIController(GameManager gameManager)
         {
@@ -26,12 +26,21 @@ namespace Project_Broban
             font = gameManager.font;
         }
 
+        /// <summary>
+        /// Updates the player reference and gets the playtime from GameManager.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
             player = gameManager.player;
             playTime = gameManager.playTime;
         }
 
+        /// <summary>
+        /// Draws the player health in the upper left corner and
+        /// the playtime in the upper right corner.
+        /// </summary>
+        /// <param name="sb">The spriteBatch to draw with.</param>
         public void Draw(SpriteBatch sb)
         {
             font = gameManager.font;
@@ -63,6 +72,11 @@ namespace Project_Broban
                 Color.White, 0, timerOrigin, 1, SpriteEffects.None, 1);
         }
 
+        /// <summary>
+        /// Loads necessary content of the gameObject.
+        /// </summary>
+        /// <param name="gd">The GraphicsDevice from GameManager.</param>
+        /// <param name="cm">The ContentManager from GameManager.</param>
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
         {
             heartTexture = cm.Load<Texture2D>("heart");
