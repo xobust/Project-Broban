@@ -12,8 +12,8 @@ namespace Project_Broban
     {
         GameManager GameManager;
         Player player;
-        KeyboardState currentState;
-        KeyboardState OldState;
+        KeyboardState CurrentState; // The current pressed down key
+        KeyboardState OldState;     // The previous keyboard state
         TimeSpan AttackTime;
 
         public PlayerController(GameManager gameManager)
@@ -21,15 +21,22 @@ namespace Project_Broban
             this.GameManager = gameManager;
             player = gameManager.player;
         }
-        
+
+        /// <summary>
+        /// Checks if the player presses the Space bar, then checks if any monsters are in range.
+        /// Those monsters then take damage.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public void Update(GameTime gameTime)
         {
-            currentState = Keyboard.GetState();
+            CurrentState = Keyboard.GetState();
 
-            if(currentState.IsKeyDown(Keys.Space) && OldState.IsKeyUp(Keys.Space) && !player.Attacking)
+            if(CurrentState.IsKeyDown(Keys.Space) && OldState.IsKeyUp(Keys.Space) && !player.Attacking)
             {
                 player.Attacking = true;
                 AttackTime = gameTime.TotalGameTime;
+
+                // An array of all monsters in the current room.
                 Monster[] monsters = GameManager.GameWorld.currentRoom.monsters;
 
                 foreach (Monster monster in monsters)
@@ -68,7 +75,7 @@ namespace Project_Broban
                 }
             }
 
-            OldState = currentState;
+            OldState = CurrentState;
         }
     }
 }
