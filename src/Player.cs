@@ -26,7 +26,8 @@ namespace Project_Broban
         private float Size;
         public int hp;
         public Vector2 Position;
-        public Vector2 NewPos;
+        public Vector2 TileStartPos;
+        public Vector2 NextPos;
 
         public Boolean MovingRight;
         public Boolean MovingLeft;
@@ -43,13 +44,13 @@ namespace Project_Broban
         public TimeSpan AttackTime;
         int AttackDamage;
 
-        public Player()
+        public Player(Vector2 tileStartPos)
         {
-            Position = new Vector2(100, 100);
+            TileStartPos = tileStartPos;
             PlayerDirection = Direction.Down;
             Size = 1;
             hp = 5;
-            MoveSpeed = 0.2f;
+            MoveSpeed = 0.1f;
             Attacking = false;
             AttackRange = 150;
             AttackTime = new TimeSpan(0,0,0,0,200);
