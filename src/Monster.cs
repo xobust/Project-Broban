@@ -12,26 +12,32 @@ namespace Project_Broban
 {
     public class Monster : GameObject
     {
-        private const float moveSpeed = 0.5f;
-        private const int damage = 1;
-        private const float attackTime = 100; // in milliseconds
-        private const float coolDown = 1000;
-        private float waitingForAttack;
-        private float attackChargeTime;
-        private float size;
-        private float depth;
-        private int hp;
-        private Player target;
-        private Vector2 spriteOrigin;
-        private TextureManager Textures;
-        private Texture2D texture;
-        public float range;
-        public float pullRange;
-        public Boolean attacking;
-        public Vector2 startPos;
-        public Boolean alive;
-        public Vector2 position;
+        private const float moveSpeed = 0.5f; // The movement speed
+        private const int damage = 1;         // The attack damage
+        private const float attackTime = 100; // The startup time for an attack
+        private const float coolDown = 1000;  // How long before the next attack
+        private float waitingForAttack;     // The current cool down time
+        private float attackChargeTime;     // The current start up time that has passed
+        private float size;     // The size of the monster
+        private float depth;    // Which layer to draw the monster on
+        private int hp;         // The health of the monster
+        private Player target;  // The target to attack and move towards
+        private Vector2 spriteOrigin;   // The sprite origin
+        private TextureManager Textures;    // Contains the monster sprites
+        private Texture2D texture;          // The sprite for this monster
+        public float range;         // The attack range of the monster
+        public float pullRange;     // How close the player has to be for the monster to move
+        public Boolean attacking;   // Is the monster attack or not
+        public Vector2 startPos;    // The starting position of the monster
+        public Boolean alive;       // If the monster is alive
+        public Vector2 position;    // The current position of the monster
 
+        /// <summary>
+        /// Creates a monster at a specified position.
+        /// </summary>
+        /// <param name="x">The starting x-coordinate of the monster.</param>
+        /// <param name="y">The starting y-coordinate of the monster.</param>
+        /// <param name="tm">The TextureManager that contains the monster sprite.</param>
         public Monster(float x, float y, TextureManager tm)
         {
             Textures = tm;
@@ -47,12 +53,21 @@ namespace Project_Broban
             startPos.Y = y;
         }
 
+        /// <summary>
+        /// Attack the player.
+        /// </summary>
+        /// <param name="player">A reference to the player object.</param>
         public void Attacking(Player player)
         {
             target = player;
             attacking = true;
         }
 
+        /// <summary>
+        /// Take damange when the Player attacks the monster.
+        /// See the class PlayerController.
+        /// </summary>
+        /// <param name="damage"></param>
         public void TakeDamage(int damage)
         {
             hp -= damage;
@@ -64,6 +79,10 @@ namespace Project_Broban
             }
         }
 
+        /// <summary>
+        /// Handles Monster movement.
+        /// </summary>
+        /// <param name="targetPos">The position to move to.</param>
         public void Move(Vector2 targetPos)
         {
             float deltaY = targetPos.Y - position.Y;
@@ -73,6 +92,11 @@ namespace Project_Broban
             position.Y += moveSpeed * (float)Math.Sin(Math.Atan2(deltaY, deltaX));
         }
 
+        /// <summary>
+        /// Returns the distance between the monster and the target.
+        /// </summary>
+        /// <param name="targetPos">The target to move to.</param>
+        /// <returns></returns>
         public double Distance(Vector2 targetPos)
         {
             float deltaY = position.Y - targetPos.Y;
@@ -81,6 +105,12 @@ namespace Project_Broban
             return Math.Abs(Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2)));
         }
 
+        /// <summary>
+        /// Update the monster object. Handles attack charge and cooldown. 
+        /// See also the class MonsterController.
+        /// The Room class calls this method.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public void Update(GameTime gameTime)
         {
             if (attacking)
@@ -106,6 +136,10 @@ namespace Project_Broban
                                // it can still attack the target.
         }
 
+        /// <summary>
+        /// Render the monster on screen.
+        /// </summary>
+        /// <param name="sb">The spriteBatch to draw with.</param>
         public void Draw(SpriteBatch sb)
         {
             texture = Textures.GetTexture("blobbie"); // temporary solution
@@ -123,10 +157,18 @@ namespace Project_Broban
             Textures.DrawTexture("blobbie", sb, position, size, depth, spriteOrigin);
         }
 
+        /// <summary>
+        /// Loads necessary content of the gameObject.
+        /// </summary>
+        /// <param name="gd">The GraphicsDevice from GameManager.</param>
+        /// <param name="cm">The ContentManager from GameManager.</param>
         public void LoadContent(GraphicsDevice gd, ContentManager cm)
         {
         }
 
+        /// <summary>
+        /// Unloads content from the gameObject.
+        /// </summary>
         public void UnloadContent()
         {
         }
