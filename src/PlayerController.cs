@@ -12,6 +12,7 @@ namespace Project_Broban
     {
         GameManager GameManager;
         Player player;
+        KeyboardState currentState;
         KeyboardState OldState;
         TimeSpan AttackTime;
 
@@ -20,12 +21,12 @@ namespace Project_Broban
             this.GameManager = gameManager;
             player = gameManager.player;
         }
-
+        
         public void Update(GameTime gameTime)
         {
-            KeyboardState state = Keyboard.GetState();
+            currentState = Keyboard.GetState();
 
-            if(state.IsKeyDown(Keys.Space) && OldState.IsKeyUp(Keys.Space) && !player.Attacking)
+            if(currentState.IsKeyDown(Keys.Space) && OldState.IsKeyUp(Keys.Space) && !player.Attacking)
             {
                 player.Attacking = true;
                 AttackTime = gameTime.TotalGameTime;
@@ -67,7 +68,7 @@ namespace Project_Broban
                 }
             }
 
-            OldState = state;
+            OldState = currentState;
         }
     }
 }
