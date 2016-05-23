@@ -33,21 +33,24 @@ namespace Project_Broban
         {
             MoveVector = Vector2.Zero;
             CurrentTile = new CollisionTile(SqrtSize);
-            CurrentTile.CalculateTilePos(Vector2.Zero, 0);
             SurroundingTiles = new Tuple<Vector2, int, Vector2>[8];
 
             GenerateGrid(gameManager.GameWorld.WorldSize * 4,
                          gameManager.GameWorld.WorldSize * 4);
+
             this.GameManager = gameManager;
+            CurrentTile.CalculateTilePos(Grid[0][3].Item1, 0);
+            Console.WriteLine(CurrentTile.B);
+            CurrentTile.CalculateTilePos(Grid[0][4].Item1, 0);
+            Console.WriteLine(CurrentTile.A);
 
             TileArea = CalculateArea(CurrentTile.A, 
                                      CurrentTile.B, 
                                      CurrentTile.D, 
                                      CurrentTile.C);
+            
 
-            Grid[20][20] = new Tuple<Vector2, int>(Grid[5][5].Item1, 1);
-
-            CenterTileIndex = new Vector2(5, 5);
+            CenterTileIndex = new Vector2(2, 3);
             CalcSurrTiles();
         }
 
@@ -62,15 +65,15 @@ namespace Project_Broban
                     if (y % 2 == 0) // Even numbered tiles
                     {
                         Grid[x][y] = new Tuple<Vector2, int>
-                                    (new Vector2((CurrentTile.TileWidth / SqrtSize) * x, 
-                                                 (CurrentTile.TileHeight / SqrtSize) * y), 1);
+                                    (new Vector2((CurrentTile.TileWidth / (SqrtSize)) * x, 
+                                                 (CurrentTile.TileHeight / (SqrtSize*2)) * y), 1);
                     }
                     else
                     {
                         Grid[x][y] = new Tuple<Vector2, int>
-                                    (new Vector2((CurrentTile.TileWidth / SqrtSize) * x + 
-                                                  CurrentTile.TileWidth / (SqrtSize/2), // the offset
-                                                 (CurrentTile.TileHeight / SqrtSize) * y), 1);
+                                    (new Vector2((CurrentTile.TileWidth / (SqrtSize)) * x + 
+                                                  CurrentTile.TileWidth / (SqrtSize*2), // the offset
+                                                 (CurrentTile.TileHeight / (SqrtSize*2)) * y), 1);
                     }
                 }
             }
