@@ -16,10 +16,6 @@ namespace Project_Broban
         private const int tileHeight = 128;          // The height of one tile
         private const int tileOffset = tileWidth/2; // The position offset when placing diagonal tiles
 
-
-        public TileRenderer() { }
-
-
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
