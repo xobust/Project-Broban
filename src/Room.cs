@@ -64,14 +64,31 @@ namespace Project_Broban
         /// </summary>
         public void Generate()
         {
-            for (int x = 0; x < mapSizeX; x++)
+            if (RoomType == 1) // Boss room
             {
-                for (int y = 0; y < mapSizeY; y++)
+                for (int x = 0; x < mapSizeX; x++)
                 {
-                    map[x][y] = "grass";
+                    for (int y = 0; y < mapSizeY; y++)
+                    {
+                        map[x][y] = "darkGrass";
+                    }
                 }
+
+                // Add one boss to `monsters`
+                Monster boss = new Monster(700, 600, Textures, "boss", 2, 10);
+                monsters.Add(boss);
             }
-            SpawnMonsters();
+            else // Regular rooms
+            {
+                for (int x = 0; x < mapSizeX; x++)
+                {
+                    for (int y = 0; y < mapSizeY; y++)
+                    {
+                        map[x][y] = "grass";
+                    }
+                }
+                SpawnMonsters();
+            }
         }
 
         /// <summary>

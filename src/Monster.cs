@@ -12,19 +12,21 @@ namespace Project_Broban
 {
     public class Monster : GameObject
     {
-        private const float moveSpeed = 0.5f; // The movement speed
-        private const int damage = 1;         // The attack damage
-        private const float attackTime = 100; // The startup time for an attack
-        private const float coolDown = 1000;  // How long before the next attack
-        private float waitingForAttack;     // The current cool down time
-        private float attackChargeTime;     // The current start up time that has passed
-        private float size;     // The size of the monster
-        private float depth;    // Which layer to draw the monster on
-        private int hp;         // The health of the monster
-        private Player target;  // The target to attack and move towards
-        private Vector2 spriteOrigin;   // The sprite origin
-        private TextureManager Textures;    // Contains the monster sprites
-        private Texture2D texture;          // The sprite for this monster
+        private const float moveSpeed = 0.5f;   // The movement speed
+        private int damage;                     // The attack damage
+        private const float attackTime = 100;   // The startup time for an attack
+        private const float coolDown = 1000;    // How long before the next attack
+        private float waitingForAttack;         // The current cool down time
+        private float attackChargeTime;         // The current start up time that has passed
+        private float size;                     // The size of the monster
+        private float depth;                    // Which layer to draw the monster on
+        private int hp;                         // The health of the monster
+        private Player target;                  // The target to attack and move towards
+        private Vector2 spriteOrigin;           // The sprite origin
+        private TextureManager Textures;        // Contains the monster sprites
+        private string textureName;             // The name of the enemy sprite
+        private Texture2D texture;              // The sprite for this monster
+
         public float range;         // The attack range of the monster
         public float pullRange;     // How close the player has to be for the monster to move
         public Boolean attacking;   // Is the monster attack or not
@@ -48,6 +50,31 @@ namespace Project_Broban
             range = 10;
             pullRange = 150;
             attacking = false;
+            textureName = "blobbie";
+            damage = 1;
+
+            startPos.X = x;
+            startPos.Y = y;
+        }
+
+        /// <summary>
+        /// Creates a monster at a specified position.
+        /// </summary>
+        /// <param name="x">The starting x-coordinate of the monster.</param>
+        /// <param name="y">The starting y-coordinate of the monster.</param>
+        /// <param name="tm">The TextureManager that contains the monster sprite.</param>
+        public Monster(float x, float y, TextureManager tm, string textureName, int damage, int hp)
+        {
+            Textures = tm;
+            position = new Vector2(x, y);
+            this.hp = hp;
+            alive = true;
+            size = 1; // 1 means 100% of the sprite size
+            range = 50;
+            pullRange = 150;
+            attacking = false;
+            this.textureName = textureName;
+            this.damage = damage;
 
             startPos.X = x;
             startPos.Y = y;
@@ -142,7 +169,7 @@ namespace Project_Broban
         /// <param name="sb">The spriteBatch to draw with.</param>
         public void Draw(SpriteBatch sb)
         {
-            texture = Textures.GetTexture("blobbie"); // temporary solution
+            texture = Textures.GetTexture(textureName); // temporary solution
 
             // The original texture should have the origin in the middle-bottom
             spriteOrigin = new Vector2((texture.Width * size) / 2,
@@ -154,7 +181,7 @@ namespace Project_Broban
             depth = (position.Y / GameManager.screenHeight); 
             depth = MathHelper.Clamp(depth, 0.01f, 1);
             
-            Textures.DrawTexture("blobbie", sb, position, size, depth, spriteOrigin);
+            Textures.DrawTexture(textureName, sb, position, size, depth, spriteOrigin);
         }
 
         /// <summary>

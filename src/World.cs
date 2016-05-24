@@ -18,6 +18,7 @@ namespace Project_Broban
         private TextureManager Textures;    // Holds all the textures
         private TileRenderer Tiles;         // Renders the tile textures
         public int WorldSize;               // The size of the world
+        private Point BossRoom;             // The coordinates of the boss room;
 
         /// <summary>
         /// Creates a world with a given size.
@@ -54,7 +55,16 @@ namespace Project_Broban
         {
             if(WorldMap[x][y] == null)
             {
-                WorldMap[x][y] = new Room(x, y, Textures, Tiles);
+                int RoomType;
+                if(x == BossRoom.X && y == BossRoom.Y)
+                {
+                    RoomType = 1;
+                }
+                else
+                {
+                    RoomType = 0;
+                }
+                WorldMap[x][y] = new Room(x, y, Textures, Tiles, RoomType);
                 WorldMap[x][y].Generate();
             }
             CurrentXPosition = x;
