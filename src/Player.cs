@@ -26,7 +26,14 @@ namespace Project_Broban
         private float Size;               // The size of the player. 1 = 100% of the sprite
         public int hp;                    // The player's health
         public Vector2 Position;          // The player's position
-        private const float moveSpeed = 0.25f; // The player's movement speed
+        public float MoveSpeed;           // The player's movement speed
+        public Vector2 TileStartPos;
+        public Vector2 NextPos;
+
+        public Boolean MovingRight;
+        public Boolean MovingLeft;
+        public Boolean MovingUp;
+        public Boolean MovingDown;
 
         private Vector2 Origin;     // The sprite origin
         private float Depth;        // Which layer to draw the player on
@@ -39,12 +46,13 @@ namespace Project_Broban
         /// <summary>
         /// Instantiate the Player.
         /// </summary>
-        public Player()
+        public Player(Vector2 tileStartPos)
         {
-            Position = new Vector2(100, 100);
+            TileStartPos = tileStartPos;
             PlayerDirection = Direction.Down;
             Size = 1;
             hp = 5;
+            MoveSpeed = 0.1f;
             Attacking = false;
             AttackRange = 150;
             AttackTime = new TimeSpan(0,0,0,0,200);
@@ -68,29 +76,26 @@ namespace Project_Broban
         public void Update(GameTime gameTime)
         {
             KeyboardState state = Keyboard.GetState();
+
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
             if (!Attacking)
             {
                 if (state.IsKeyDown(Keys.W))
                 {
-                    PlayerDirection = Direction.Up;
-                    Position.Y -= moveSpeed * deltaTime;
+                    MovingUp = true;
                 }
                 if (state.IsKeyDown(Keys.A))
                 {
-                    PlayerDirection = Direction.Left;
-                    Position.X -= moveSpeed * deltaTime;
+                    MovingLeft = true;
                 }
                 if (state.IsKeyDown(Keys.S))
                 {
-                    PlayerDirection = Direction.Down;
-                    Position.Y += moveSpeed * deltaTime;
+                    MovingDown = true;
                 }
                 if (state.IsKeyDown(Keys.D))
                 {
-                    PlayerDirection = Direction.Right;
-                    Position.X += moveSpeed * deltaTime;
+                    MovingRight = true;
                 }
             }
         }

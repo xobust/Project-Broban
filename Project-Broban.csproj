@@ -38,6 +38,8 @@
     <ApplicationIcon>content\Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="src\CollisionController.cs" />
+    <Compile Include="src\CollisionTile.cs" />
     <Compile Include="src\Controller.cs" />
     <Compile Include="src\GameManager.cs" />
     <Compile Include="src\GameObject.cs" />

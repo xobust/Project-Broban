@@ -17,6 +17,7 @@ namespace Project_Broban
         public Room currentRoom;    // The current room
         private TextureManager Textures;    // Holds all the textures
         private TileRenderer Tiles;         // Renders the tile textures
+        public int WorldSize;               // The size of the world
 
         /// <summary>
         /// Creates a world with a given size.
@@ -28,6 +29,7 @@ namespace Project_Broban
         {
             Textures = new TextureManager();
             Tiles = new TileRenderer();
+            WorldSize = size;
             WorldMap = new Room[size][];
             for (int i = 0; i < size; i++)
             {
