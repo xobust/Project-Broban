@@ -11,13 +11,14 @@ namespace Project_Broban
 {
     public class World : GameObject
     {
-        int CurrentXPosition;   // The x-coordinate of the current room in WorldMap
-        int CurrentYPosition;   // The y-coordinate of the current room in WorldMap
+        public int CurrentXPosition;   // The x-coordinate of the current room in WorldMap
+        public int CurrentYPosition;   // The y-coordinate of the current room in WorldMap
         Room[][] WorldMap;      // A 2D array of all the rooms
-        public Room currentRoom;    // The current room
+        public Room currentRoom;            // The current room
         private TextureManager Textures;    // Holds all the textures
         private TileRenderer Tiles;         // Renders the tile textures
         public int WorldSize;               // The size of the world
+        private Point BossRoom;             // The coordinates of the boss room;
 
         /// <summary>
         /// Creates a world with a given size.
@@ -35,9 +36,10 @@ namespace Project_Broban
             {
                 WorldMap[i] = new Room[size];
             }
+            BossRoom = new Point(1, 1);
 
             //TODO create a special Room class for the starting room
-            WorldMap[startX][startY] = new Room(startX, startY, Textures, Tiles);
+            WorldMap[startX][startY] = new Room(startX, startY, Textures, Tiles, 0);
             CurrentXPosition = startX;
             CurrentYPosition = startY;
 
@@ -49,16 +51,26 @@ namespace Project_Broban
         /// </summary>
         /// <param name="x">X position for the room.</param>
         /// <param name="y">Y position for the room.</param>
-        public void EnterRoom(int x, int y)
+        public void EnterRoom(int x, int y, Player player)
         {
             if(WorldMap[x][y] == null)
             {
-                WorldMap[x][y] = new Room(x, y, Textures, Tiles);
+                int RoomType;
+                if(x == BossRoom.X && y == BossRoom.Y)
+                {
+                    RoomType = 1;
+                }
+                else
+                {
+                    RoomType = 0;
+                }
+                WorldMap[x][y] = new Room(x, y, Textures, Tiles, RoomType);
                 WorldMap[x][y].Generate();
             }
             CurrentXPosition = x;
             CurrentYPosition = y;
             currentRoom = WorldMap[CurrentXPosition][CurrentYPosition];
+            player.Position = new Vector2(1920/2, 1080/2);
         }
 
         /// <summary>

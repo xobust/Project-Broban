@@ -66,8 +66,19 @@ namespace Project_Broban
             Rectangle destination = new Rectangle(xPos, yPos, tileWidth, tileHeight);
             Rectangle tileSource = new Rectangle(0, 0, tileWidth, tileHeight);
 
-            //TODO: Draw different sprites depending on the string tileType
-            
+            switch (tileType)
+            {
+                case "grass":
+                    tileSource = new Rectangle(0, 0, tileWidth, tileHeight);
+                    break;
+                case "darkGrass":
+                    tileSource = new Rectangle(tileWidth, 0, tileWidth, tileHeight);
+                    break;
+                default:
+                    tileSource = new Rectangle(0, 0, tileWidth, tileHeight);
+                    break;
+            }
+
             sb.Draw(tileSet, destination, tileSource, Color.White, 0, new Vector2(0, 0),
                     SpriteEffects.None, 0);
         }
