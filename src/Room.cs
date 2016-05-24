@@ -72,8 +72,8 @@ namespace Project_Broban
         {
             for (int i = 0; i < monsters.Length; i++)
             {
-                monsters[i] = new Monster(rngGenerator.Next(0,700),
-                                          rngGenerator.Next(0,400), Textures);
+                monsters[i] = new Monster(rngGenerator.Next(0, 1920),
+                                          rngGenerator.Next(0, 1080), Textures);
             }
         }
 
