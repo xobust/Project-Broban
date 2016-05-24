@@ -36,6 +36,7 @@ namespace Project_Broban
 
         Texture2D startScreen;
         Texture2D gameOverScreen;
+        Texture2D winScreen;
 
         public GameManager()
         {
@@ -86,6 +87,7 @@ namespace Project_Broban
 
             startScreen = Content.Load<Texture2D>("startScreen");
             gameOverScreen = Content.Load<Texture2D>("gameOver");
+            winScreen = Content.Load<Texture2D>("winScreen");
 
             player.LoadContent(GraphicsDevice, Content);
             GameWorld.LoadContent(GraphicsDevice, Content);
@@ -206,6 +208,8 @@ namespace Project_Broban
                         Color.White);
                     break;
                 case GameState.WIN:
+                    spriteBatch.Draw(winScreen, new Rectangle(0, 0, screenWidth, screenHeight),
+                        Color.White);
                     Vector2 textSize = font.MeasureString(Name);
 
                     // Display formatted time
