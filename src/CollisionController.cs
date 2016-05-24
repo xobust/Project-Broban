@@ -31,26 +31,38 @@ namespace Project_Broban
 
         public CollisionController(GameManager gameManager)
         {
+            this.GameManager = gameManager;
             MoveVector = Vector2.Zero;
-            CurrentTile = new CollisionTile(SqrtSize);
             SurroundingTiles = new Tuple<Vector2, int, Vector2>[8];
+
+            CurrentTile = new CollisionTile(SqrtSize);
+            CurrentTile.CalculateTilePos(gameManager.player.Position, 0);
+            TileArea = CalculateArea(CurrentTile.A,
+                                     CurrentTile.B,
+                                     CurrentTile.D,
+                                     CurrentTile.C);
 
             GenerateGrid(gameManager.GameWorld.WorldSize * 4,
                          gameManager.GameWorld.WorldSize * 4);
 
-            this.GameManager = gameManager;
-            CurrentTile.CalculateTilePos(Grid[0][3].Item1, 0);
-            Console.WriteLine(CurrentTile.B);
-            CurrentTile.CalculateTilePos(Grid[0][4].Item1, 0);
-            Console.WriteLine(CurrentTile.A);
 
-            TileArea = CalculateArea(CurrentTile.A, 
-                                     CurrentTile.B, 
-                                     CurrentTile.D, 
-                                     CurrentTile.C);
-            
+            // Set the starter position
+            Vector2 tileOffset = new Vector2(CurrentTile.TileWidth/2, CurrentTile.TileHeight/4);
+            Vector2 startPos = gameManager.player.TileStartPos;
+            CenterTileIndex = startPos;
 
-            CenterTileIndex = new Vector2(2, 2); // Fixa jämna tal
+            gameManager.player.Position = 
+            new Vector2(Grid[(int)startPos.X][(int)startPos.Y].Item1.X + tileOffset.X,
+                        Grid[(int)startPos.X][(int)startPos.Y].Item1.Y + tileOffset.Y);
+
+            // Placing collision tiles in these places below: 
+            // (feel free to test or remove this)
+            Grid[5][5] = new Tuple<Vector2, int>(Grid[5][5].Item1, 1);
+            Grid[4][4] = new Tuple<Vector2, int>(Grid[4][4].Item1, 1);
+            Grid[3][3] = new Tuple<Vector2, int>(Grid[3][3].Item1, 1);
+            Grid[2][2] = new Tuple<Vector2, int>(Grid[2][2].Item1, 1);
+            Grid[1][1] = new Tuple<Vector2, int>(Grid[1][1].Item1, 1);
+
             CalcSurrTiles();
         }
 
@@ -66,14 +78,14 @@ namespace Project_Broban
                     {
                         Grid[x][y] = new Tuple<Vector2, int>
                                     (new Vector2((CurrentTile.TileWidth / (SqrtSize)) * x, 
-                                                 (CurrentTile.TileHeight / (SqrtSize*2)) * y), 1);
+                                                 (CurrentTile.TileHeight / (SqrtSize*2)) * y), 0);
                     }
                     else
                     {
                         Grid[x][y] = new Tuple<Vector2, int>
                                     (new Vector2((CurrentTile.TileWidth / (SqrtSize)) * x + 
                                                   CurrentTile.TileWidth / (SqrtSize*2), // the offset
-                                                 (CurrentTile.TileHeight / (SqrtSize*2)) * y), 1);
+                                                 (CurrentTile.TileHeight / (SqrtSize*2)) * y), 0);
                     }
                 }
             }
@@ -84,7 +96,7 @@ namespace Project_Broban
             Player player = GameManager.player;
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             float moveDistance = player.MoveSpeed * deltaTime;
-            
+
             if (player.MovingUp)
             {
                 player.NextPos = new Vector2(player.Position.X,
@@ -96,9 +108,10 @@ namespace Project_Broban
                     {
                         continue;
                     }
+
                     CurrentTile.CalculateTilePos(SurroundingTiles[i].Item1, 
                                                  SurroundingTiles[i].Item2);
-                    
+
                     if (IsColliding(player, CurrentTile))
                     {
                         if (SurroundingTiles[i].Item2 == 0)
@@ -137,7 +150,7 @@ namespace Project_Broban
                     if (IsColliding(player, CurrentTile))
                     {
                         if (SurroundingTiles[i].Item2 == 0)
-                        {
+                        {   
                             CenterTileIndex = SurroundingTiles[i].Item3;
                         }
                         else if (SurroundingTiles[i].Item2 == 1)
@@ -185,6 +198,7 @@ namespace Project_Broban
                 { 
                     MoveVector = new Vector2(MoveVector.X, MoveVector.Y + moveDistance);
                 }
+                
                 player.PlayerDirection = Direction.Down;
                 player.MovingDown = false;
                 Collided = false;
@@ -219,11 +233,15 @@ namespace Project_Broban
                 { 
                     MoveVector = new Vector2(MoveVector.X + moveDistance, MoveVector.Y);
                 }
+
                 player.PlayerDirection = Direction.Right;
                 player.MovingRight = false;
                 Collided = false;
             }
 
+
+            CalcSurrTiles();
+            Console.WriteLine(CenterTileIndex);
             player.Position = new Vector2(player.Position.X + MoveVector.X, 
                                           player.Position.Y + MoveVector.Y);
             MoveVector = Vector2.Zero;
@@ -261,16 +279,15 @@ namespace Project_Broban
             {
                 return true;
             }
-            Console.WriteLine("DAFUQ");
             return false;
         }
 
         private void CalcSurrTiles()
         {
-
             // http://bit.ly/1TsUSgX - explanation of the indexes below (when on an odd column)
             // http://bit.ly/1TyiEdS - explanation of the indexes below (when on an even column)
             // Top to bottom - Left to right following to the image above:
+            Console.WriteLine(CenterTileIndex);
             if (CenterTileIndex.Y % 2 == 0)
             {
                 upLeft = new Vector2(CenterTileIndex.X - 1, CenterTileIndex.Y - 1);
@@ -330,7 +347,7 @@ namespace Project_Broban
             {
                 SurroundingTiles[5] = new Tuple<Vector2, int, Vector2>
                                      (Grid[(int)downLeft.X][(int)downLeft.Y].Item1,
-                                      Grid[(int)downLeft.X][(int)downLeft.Y].Item2, right);
+                                      Grid[(int)downLeft.X][(int)downLeft.Y].Item2, downLeft);
             }
 
             if (InsideBounds(downRight.X, downRight.Y))
