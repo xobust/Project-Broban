@@ -28,7 +28,7 @@ namespace Project_Broban
         private float elapsedPlayTime = 0; // float representation of the playtime
         public SpriteFont font;
 
-        public enum GameState { START, PLAY, END, WIN }
+        public enum GameState { START, PLAY, FAIL, WIN }
         GameState gameState = GameState.START;
 
         Texture2D startScreen;
@@ -132,11 +132,10 @@ namespace Project_Broban
 
                     if(player.hp <= 0)
                     {
-                        gameState = GameState.END;
+                        gameState = GameState.FAIL;
                     }
                     break;
-
-                case GameState.END:
+                case GameState.FAIL:
                     break;
                 case GameState.WIN:
                     break;
@@ -168,8 +167,7 @@ namespace Project_Broban
                     
                     break;
 
-                case GameState.END:
-                    spriteBatch.DrawString(font, "u dieded", new Vector2(500, 500), Color.White);
+                case GameState.FAIL:
                     break;
                 case GameState.WIN:
                     break;
