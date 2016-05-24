@@ -33,7 +33,9 @@ namespace Project_Broban
         KeyboardState OldState;
 
         public enum GameState { START, PLAY, FAIL, WIN }
-        GameState gameState = GameState.START;
+
+        // NOT SUPPOSED TO BE PUBLIC STATIC, CHANGE ASAP
+        public static GameState gameState = GameState.START;
 
         Texture2D startScreen;
         Texture2D gameOverScreen;

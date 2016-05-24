@@ -39,7 +39,7 @@ namespace Project_Broban
             BossRoom = new Point(1, 1);
 
             //TODO create a special Room class for the starting room
-            WorldMap[startX][startY] = new Room(startX, startY, Textures, Tiles, 0);
+            WorldMap[startX][startY] = new Room(startX, startY, Textures, Tiles, 1);
             CurrentXPosition = startX;
             CurrentYPosition = startY;
 
