@@ -117,6 +117,11 @@ namespace Project_Broban
                     monster.Update(gameTime);
                 }
             }
+            if(RoomType == 1 && !monsters[0].alive)
+            {
+                // CHANGE THIS ASAP
+                GameManager.gameState = GameManager.GameState.WIN;
+            }
         }
 
         /// <summary>
