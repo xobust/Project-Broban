@@ -32,7 +32,7 @@ namespace Project_Broban
             this.type = type;
 
             // top node
-            A = new Vector2(tilePos.X + TileWidth / 2, tilePos.Y);
+            A = new Vector2(tilePos.X, tilePos.Y);
             
             // left node
             B = new Vector2(A.X - (TileWidth / 2) / SqrtSize,

@@ -15,6 +15,7 @@ namespace Project_Broban
         private const int tileWidth = 256;           // The width of one tile
         private const int tileHeight = 128;          // The height of one tile
         private const int tileOffset = tileWidth/2; // The position offset when placing diagonal tiles
+        private const int gridOffset = 256;
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
@@ -39,11 +40,13 @@ namespace Project_Broban
                 {
                     if (y % 2 == 0) // Even numbered tiles
                     {
-                        DrawTile(sb, x * tileWidth, y * tileHeight/2, map[x][y]);
+                        DrawTile(sb, x * tileWidth - gridOffset, 
+                                     y * tileHeight/2 - gridOffset, map[x][y]);
                     }
                     else
                     {
-                        DrawTile(sb, x * tileWidth + tileOffset, y * tileHeight/2, map[x][y]);
+                        DrawTile(sb, x * tileWidth + tileOffset - gridOffset, 
+                                     y * tileHeight/2 - gridOffset, map[x][y]);
                     }
                 }
             }
