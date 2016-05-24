@@ -27,6 +27,9 @@ namespace Project_Broban
         public TimeSpan playTime;          // used to display formatted time
         private float elapsedPlayTime = 0; // float representation of the playtime
         public SpriteFont font;
+
+        public enum GameState { START, PLAY, END }
+        GameState gameState = GameState.START;
         
 
         public GameManager()
@@ -102,16 +105,33 @@ namespace Project_Broban
 
             // TODO: Add your update logic here
 
-            base.Update(gameTime);
-            GameWorld.Update(gameTime);
-            playerController.Update(gameTime);
-            player.Update(gameTime);
-            monsterController.Update(gameTime);
-            collisionController.Update(gameTime);
-            uiController.Update(gameTime);
+            
 
-            elapsedPlayTime += (float)gameTime.ElapsedGameTime.Milliseconds;
-            playTime = TimeSpan.FromMilliseconds(elapsedPlayTime);
+            switch (gameState)
+            {
+                case GameState.START:
+                    if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                    {
+                        gameState = GameState.PLAY;
+                    }
+                    break;
+
+                case GameState.PLAY:
+                    GameWorld.Update(gameTime);
+                    playerController.Update(gameTime);
+                    player.Update(gameTime);
+                    monsterController.Update(gameTime);
+                    collisionController.Update(gameTime);
+                    uiController.Update(gameTime);
+                    elapsedPlayTime += (float)gameTime.ElapsedGameTime.Milliseconds;
+                    playTime = TimeSpan.FromMilliseconds(elapsedPlayTime);
+
+                    break;
+
+                case GameState.END:
+                    break;
+            }
+            base.Update(gameTime);
         }
 
         /// <summary>
@@ -121,14 +141,27 @@ namespace Project_Broban
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
             spriteBatch.Begin(SpriteSortMode.FrontToBack);
-            GameWorld.Draw(spriteBatch);
-            player.Draw(spriteBatch);
-            uiController.Draw(spriteBatch);
+
+            switch (gameState)
+            {
+                case GameState.START:
+
+                    break;
+
+                case GameState.PLAY:
+                    GameWorld.Draw(spriteBatch);
+                    player.Draw(spriteBatch);
+                    uiController.Draw(spriteBatch);
+
+                    
+                    break;
+
+                case GameState.END:
+                    break;
+            }
 
             spriteBatch.End();
-
             base.Draw(gameTime);
         }
     }
