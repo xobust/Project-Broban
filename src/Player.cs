@@ -110,7 +110,7 @@ namespace Project_Broban
         {
             // The original texture should have the origin in the middle-bottom
             Origin = new Vector2((TextureWidth * Size) / 2,
-                                 (TextureHeight/4 * Size));
+                                 (TextureHeight/4 * Size - 25));
 
             Depth = (Position.Y / GameManager.screenHeight);
             Depth = MathHelper.Clamp(Depth, 0.01f, 1);
