@@ -13,11 +13,12 @@ namespace Project_Broban
     {
         int XPosition;                      // The x-coordinate of the room in the world map
         int YPosition;                      // The y-coordinate of the room in the world map
-        private string[][] map;             // A 2D array of the tiles in the room
-        private const int mapSizeX = 12;    // The width of the room
-        private const int mapSizeY = 29;    // The height of the room
-        public Monster[] monsters;          // An array of all monsters in the room
-        private Random rngGenerator;        // Random number generator
+        private string[][] Map;             // A 2D array of the tiles in the room
+        private const int MapSizeX = 12;    // The width of the room
+        private const int MapSizeY = 29;    // The height of the room
+        public Monster[] Monsters;          // An array of all monsters in the room
+        public List<Entity> Entitys;        // A list of entitys in the room
+        private Random RngGenerator;        // Random number generator
         private TextureManager Textures;    // Holds all the sprites
         private TileRenderer Tiles;         // Renders the actual tile sprites
 
@@ -31,21 +32,22 @@ namespace Project_Broban
         /// <param name="tr">The TileRenderer draws the tile sprites.</param>
         public Room(int xPosition, int yPosition, TextureManager tm, TileRenderer tr)
         {
+            Entitys = new List<Entity>();
             Textures = tm;
-            monsters = new Monster[30];
+            Monsters = new Monster[30];
             Tiles = tr;
-            rngGenerator = new Random();
+            RngGenerator = new Random();
             
             XPosition = xPosition;
             YPosition = yPosition;
-            map = new string[mapSizeX][];
+            Map = new string[MapSizeX][];
 
-            for (int x = 0; x < mapSizeX; x++)
+            for (int x = 0; x < MapSizeX; x++)
             {
-                map[x] = new string[mapSizeY];
-                for (int y = 0; y < mapSizeY; y++)
+                Map[x] = new string[MapSizeY];
+                for (int y = 0; y < MapSizeY; y++)
                 {
-                    map[x][y] = null;
+                    Map[x][y] = null;
                 }
             }
         }
@@ -55,14 +57,23 @@ namespace Project_Broban
         /// </summary>
         public void Generate()
         {
-            for (int x = 0; x < mapSizeX; x++)
+            for (int x = 0; x < MapSizeX; x++)
             {
-                for (int y = 0; y < mapSizeY; y++)
+                for (int y = 0; y < MapSizeY; y++)
                 {
-                    map[x][y] = "Grass";
+                    Map[x][y] = "Grass";
                 }
             }
             SpawnMonsters();
+            GenerateEntitys(5);
+        }
+
+        public void GenerateEntitys(int amount)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                Entitys.Add(new Entity(new Vector2(5,i)));
+            }
         }
 
         /// <summary>
@@ -70,10 +81,10 @@ namespace Project_Broban
         /// </summary>
         public void SpawnMonsters()
         {
-            for (int i = 0; i < monsters.Length; i++)
+            for (int i = 0; i < Monsters.Length; i++)
             {
-                monsters[i] = new Monster(rngGenerator.Next(0,700),
-                                          rngGenerator.Next(0,400), Textures);
+                Monsters[i] = new Monster(RngGenerator.Next(0,700),
+                                          RngGenerator.Next(0,400), Textures);
             }
         }
 
@@ -83,7 +94,7 @@ namespace Project_Broban
         /// </summary>
         public void Update(GameTime gameTime)
         {
-            foreach (Monster monster in monsters)
+            foreach (Monster monster in Monsters)
             {
                 if (monster.alive)
                 {
@@ -98,8 +109,8 @@ namespace Project_Broban
         /// <param name="sb">The SpriteBatch to draw with.</param>
         public void Draw(SpriteBatch sb)
         {
-            Tiles.Draw(sb, map);
-            foreach (Monster monster in monsters)
+            Tiles.Draw(sb, Map);
+            foreach (Monster monster in Monsters)
             {
                 if (monster.alive)
                 {
