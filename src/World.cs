@@ -11,12 +11,12 @@ namespace Project_Broban
 {
     public class World : GameObject
     {
-        int CurrentXPosition;   // The x-coordinate of the current room in WorldMap
-        int CurrentYPosition;   // The y-coordinate of the current room in WorldMap
-        Room[][] WorldMap;      // A 2D array of all the rooms
+        public int CurrentXPosition;   // The x-coordinate of the current room in WorldMap
+        public int CurrentYPosition;   // The y-coordinate of the current room in WorldMap
+        public Room[][] WorldMap;      // A 2D array of all the rooms
         public Room currentRoom;    // The current room
-        private TextureManager Textures;    // Holds all the textures
-        private TileRenderer Tiles;         // Renders the tile textures
+        public TextureManager Textures;    // Holds all the textures
+        public TileRenderer Tiles;         // Renders the tile textures
         public int WorldSize;               // The size of the world
 
         /// <summary>
@@ -44,22 +44,7 @@ namespace Project_Broban
             currentRoom = WorldMap[startX][startY];
         }
 
-        /// <summary>
-        /// This function is executed when the player enters a room.
-        /// </summary>
-        /// <param name="x">X position for the room.</param>
-        /// <param name="y">Y position for the room.</param>
-        public void EnterRoom(int x, int y)
-        {
-            if(WorldMap[x][y] == null)
-            {
-                WorldMap[x][y] = new Room(x, y, Textures, Tiles);
-                WorldMap[x][y].Generate();
-            }
-            CurrentXPosition = x;
-            CurrentYPosition = y;
-            currentRoom = WorldMap[CurrentXPosition][CurrentYPosition];
-        }
+
 
         /// <summary>
         /// Updates the state of the world. 
@@ -90,7 +75,6 @@ namespace Project_Broban
             currentRoom.LoadContent(gd, cm);
             Textures.LoadContent(cm);
             Tiles.LoadContent(gd, cm);
-            currentRoom.Generate();
         }
 
         /// <summary>
