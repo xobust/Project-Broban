@@ -57,11 +57,11 @@ namespace Project_Broban
 
             // Placing collision tiles in these places below: 
             // (feel free to test or remove this)
-            Grid[5][5] = new Tuple<Vector2, int>(Grid[5][5].Item1, 1);
-            Grid[4][4] = new Tuple<Vector2, int>(Grid[4][4].Item1, 1);
-            Grid[3][3] = new Tuple<Vector2, int>(Grid[3][3].Item1, 1);
-            Grid[2][2] = new Tuple<Vector2, int>(Grid[2][2].Item1, 1);
-            Grid[1][1] = new Tuple<Vector2, int>(Grid[1][1].Item1, 1);
+            Grid[0][0] = new Tuple<Vector2, int>(Grid[0][0].Item1, 1);
+            Grid[0][2] = new Tuple<Vector2, int>(Grid[0][2].Item1, 1);
+            Grid[0][4] = new Tuple<Vector2, int>(Grid[0][4].Item1, 1);
+            Grid[0][6] = new Tuple<Vector2, int>(Grid[0][6].Item1, 1);
+            Grid[0][8] = new Tuple<Vector2, int>(Grid[0][8].Item1, 1);
 
             CalcSurrTiles();
         }
@@ -84,7 +84,7 @@ namespace Project_Broban
                     {
                         Grid[x][y] = new Tuple<Vector2, int>
                                     (new Vector2((CurrentTile.TileWidth / (SqrtSize)) * x + 
-                                                  CurrentTile.TileWidth / (SqrtSize*2), // the offset
+                                                  CurrentTile.TileWidth / (SqrtSize*2), // the tile offset
                                                  (CurrentTile.TileHeight / (SqrtSize*2)) * y), 0);
                     }
                 }
