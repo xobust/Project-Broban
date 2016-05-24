@@ -10,8 +10,9 @@ namespace Project_Broban
     interface Controller
     {
         /// <summary>
-        /// Updates the state of the gameobject
+        /// Updates the state of the gameObject
         /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         void Update(GameTime gameTime);
     }
 }

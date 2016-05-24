@@ -1,5 +1,6 @@
 # Project Broban
-ProjInda15 project
+Project Broban (placeholder name) is an isometric 2D game where the goal is to kill monsters and defeat the
+boss as fast as possible. If you beat the game, you will be able to post your score to the scoreboard linked below!
 
 #### Link to the website:
 
