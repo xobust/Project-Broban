@@ -12,7 +12,14 @@ namespace Project_Broban
 {
     public class Entity : GameObject
     {
-        public int size; // The size of the entity in collisiontiles
+        public int Size; // The size of the entity in collisiontiles
+        public Vector2 Position;
+        public Vector2 TilePosition;
+
+        public Entity(Vector2 tilePosition)
+        {
+            TilePosition = tilePosition;
+        }
 
         /// <summary>
         /// Updates the state of the gameObject
