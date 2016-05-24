@@ -45,7 +45,7 @@ namespace Project_Broban
 
             GameWorld = new World(10, 5, 5);
 
-            player = new Player(new Vector2(4, 3));
+            player = new Player(new Vector2(10,10 ));
             monsterController = new MonsterController(this);
             playerController = new PlayerController(this);
             collisionController = new CollisionController(this);

@@ -49,7 +49,7 @@ namespace Project_Broban
         /// </summary>
         /// <param name="x">X position for the room.</param>
         /// <param name="y">Y position for the room.</param>
-        public void EnterRoom(int x, int y)
+        public void EnterRoom(int x, int y, Player player)
         {
             if(WorldMap[x][y] == null)
             {
@@ -59,6 +59,7 @@ namespace Project_Broban
             CurrentXPosition = x;
             CurrentYPosition = y;
             currentRoom = WorldMap[CurrentXPosition][CurrentYPosition];
+            player.Position = new Vector2(1920/2, 1080/2);
         }
 
         /// <summary>
