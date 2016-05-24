@@ -37,6 +37,8 @@ namespace Project_Broban
         Texture2D startScreen;
         Texture2D gameOverScreen;
         Texture2D winScreen;
+        bool submittedScore = false;    // Has the player submitted their score
+        float submitTimer = 0;          // How long to wait before closing the game
 
         public GameManager()
         {
@@ -152,28 +154,40 @@ namespace Project_Broban
                     break;
                 case GameState.WIN:
                     KeyboardState keyState = Keyboard.GetState();
-                    foreach (Keys key in keyState.GetPressedKeys())
+                    if (!submittedScore)
                     {
-                        if(OldState.IsKeyUp(key))
-                            if (key == Keys.Back)
-                            {
-                                Name = Name.Remove(Name.Length - 1, 1);
-                            }
-                            else if (key == Keys.Enter)
-                            {
-                                new Publish().PostTime(Name, playTime.Seconds + 60*playTime.Minutes);
-                                
-                                Name = "";
-                            }else if (key == Keys.Space)
-                            {
-                                Name = Name + " ";
-                            }
-                            else
-                            {
-                               Name += key.ToString();
-                            }
+                        foreach (Keys key in keyState.GetPressedKeys())
+                        {
+                            if (OldState.IsKeyUp(key))
+                                if (key == Keys.Back)
+                                {
+                                    Name = Name.Remove(Name.Length - 1, 1);
+                                }
+                                else if (key == Keys.Enter)
+                                {
+                                    new Publish().PostTime(Name, playTime.Seconds + 60 * playTime.Minutes);
+                                    submittedScore = true;
+                                }
+                                else if (key == Keys.Space)
+                                {
+                                    Name = Name + " ";
+                                }
+                                else
+                                {
+                                    Name += key.ToString();
+                                }
+                        }
+                        OldState = keyState;
                     }
-                    OldState = keyState;
+                    else
+                    {
+                        submitTimer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                        Name = "Submitting..."; // Change this later to its own variable
+                        if (submitTimer >= 500) 
+                        {
+                            Exit();
+                        }
+                    }
                     break;
             }
             base.Update(gameTime);
