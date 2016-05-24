@@ -30,7 +30,8 @@ namespace Project_Broban
 
         public enum GameState { START, PLAY, END }
         GameState gameState = GameState.START;
-        
+
+        Texture2D startScreen;
 
         public GameManager()
         {
@@ -77,6 +78,9 @@ namespace Project_Broban
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            startScreen = Content.Load<Texture2D>("startScreen");
+
             player.LoadContent(GraphicsDevice, Content);
             GameWorld.LoadContent(GraphicsDevice, Content);
             uiController.LoadContent(GraphicsDevice, Content);
@@ -110,7 +114,7 @@ namespace Project_Broban
             switch (gameState)
             {
                 case GameState.START:
-                    if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                    if (Keyboard.GetState().IsKeyDown(Keys.Enter))
                     {
                         gameState = GameState.PLAY;
                     }
@@ -146,7 +150,8 @@ namespace Project_Broban
             switch (gameState)
             {
                 case GameState.START:
-
+                    spriteBatch.Draw(startScreen, 
+                        new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                     break;
 
                 case GameState.PLAY:
