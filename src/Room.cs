@@ -9,6 +9,12 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Project_Broban
 {
+    /// <summary>
+    /// A class for a Room in the world map.
+    /// Room types:
+    /// 0 = Regular
+    /// 1 = Boss
+    /// </summary>
     public class Room : GameObject
     {
         int XPosition;                      // The x-coordinate of the room in the world map
@@ -20,6 +26,7 @@ namespace Project_Broban
         private Random rngGenerator;        // Random number generator
         private TextureManager Textures;    // Holds all the sprites
         private TileRenderer Tiles;         // Renders the actual tile sprites
+        public int RoomType;                // Which type of room
 
         /// <summary>
         /// Creates an empty room. The room will be filled/generated when 
@@ -29,7 +36,7 @@ namespace Project_Broban
         /// <param name="yPosition">The world position of the room.</param>
         /// <param name="tm">The TextureManager </param>
         /// <param name="tr">The TileRenderer draws the tile sprites.</param>
-        public Room(int xPosition, int yPosition, TextureManager tm, TileRenderer tr)
+        public Room(int xPosition, int yPosition, TextureManager tm, TileRenderer tr, int type)
         {
             Textures = tm;
             monsters = new List<Monster>();
@@ -39,6 +46,8 @@ namespace Project_Broban
             XPosition = xPosition;
             YPosition = yPosition;
             map = new string[mapSizeX][];
+
+            RoomType = type;
 
             for (int x = 0; x < mapSizeX; x++)
             {

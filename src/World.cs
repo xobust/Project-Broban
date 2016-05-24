@@ -14,7 +14,7 @@ namespace Project_Broban
         int CurrentXPosition;   // The x-coordinate of the current room in WorldMap
         int CurrentYPosition;   // The y-coordinate of the current room in WorldMap
         Room[][] WorldMap;      // A 2D array of all the rooms
-        public Room currentRoom;    // The current room
+        public Room currentRoom;            // The current room
         private TextureManager Textures;    // Holds all the textures
         private TileRenderer Tiles;         // Renders the tile textures
         public int WorldSize;               // The size of the world
@@ -35,9 +35,10 @@ namespace Project_Broban
             {
                 WorldMap[i] = new Room[size];
             }
+            BossRoom = new Point(1, 1);
 
             //TODO create a special Room class for the starting room
-            WorldMap[startX][startY] = new Room(startX, startY, Textures, Tiles);
+            WorldMap[startX][startY] = new Room(startX, startY, Textures, Tiles, 0);
             CurrentXPosition = startX;
             CurrentYPosition = startY;
 
