@@ -23,6 +23,7 @@ namespace Project_Broban
         MonsterController monsterController;
         PlayerController playerController;
         CollisionController collisionController;
+        RoomController roomController;
         UIController uiController;
         public TimeSpan playTime;          // used to display formatted time
         private float elapsedPlayTime = 0; // float representation of the playtime
@@ -48,6 +49,7 @@ namespace Project_Broban
             monsterController = new MonsterController(this);
             playerController = new PlayerController(this);
             collisionController = new CollisionController(this);
+            roomController = new RoomController(this);
             uiController = new UIController(this);
 
             playTime = new TimeSpan(0);
@@ -108,6 +110,7 @@ namespace Project_Broban
             player.Update(gameTime);
             monsterController.Update(gameTime);
             collisionController.Update(gameTime);
+            roomController.Update(gameTime);
             uiController.Update(gameTime);
 
             elapsedPlayTime += (float)gameTime.ElapsedGameTime.Milliseconds;
