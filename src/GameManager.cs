@@ -28,8 +28,11 @@ namespace Project_Broban
         private float elapsedPlayTime = 0; // float representation of the playtime
         public SpriteFont font;
 
+        String Name;
+        KeyboardState OldState;
+
         public enum GameState { START, PLAY, FAIL, WIN }
-        GameState gameState = GameState.START;
+        GameState gameState = GameState.WIN;
 
         Texture2D startScreen;
         Texture2D gameOverScreen;
@@ -56,6 +59,7 @@ namespace Project_Broban
             uiController = new UIController(this);
 
             playTime = new TimeSpan(0);
+            Name = ""; 
         }
 
         /// <summary>
@@ -145,6 +149,28 @@ namespace Project_Broban
                     }
                     break;
                 case GameState.WIN:
+                    KeyboardState keyState = Keyboard.GetState();
+                    foreach (Keys key in keyState.GetPressedKeys())
+                    {
+                        if(OldState.IsKeyUp(key))
+                            if (key == Keys.Back)
+                            {
+                                Name = Name.Remove(Name.Length - 1, 1);
+                            }
+                            else if (key == Keys.Enter)
+                            {
+                                //Todo send data to server
+                                Name = "";
+                            }else if (key == Keys.Space)
+                            {
+                                Name = Name + " ";
+                            }
+                            else
+                            {
+                               Name += key.ToString();
+                            }
+                    }
+                    OldState = keyState;
                     break;
             }
             base.Update(gameTime);
@@ -179,6 +205,12 @@ namespace Project_Broban
                         Color.White);
                     break;
                 case GameState.WIN:
+                    Vector2 textSize = font.MeasureString(Name);
+
+                    // Display formatted time
+                    Vector2 Origin = new Vector2(textSize.X, 0);
+                    spriteBatch.DrawString(font, Name, new Vector2(GameManager.screenWidth/2, GameManager.screenHeight/2),
+                        Color.White, 0, Origin, 1, SpriteEffects.None, 1);
                     break;
             }
 
