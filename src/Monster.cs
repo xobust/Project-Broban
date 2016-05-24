@@ -47,7 +47,7 @@ namespace Project_Broban
             hp = 1;
             alive = true;
             size = 1; // 1 means 100% of the sprite size
-            range = 10;
+            range = 50;
             pullRange = 150;
             attacking = false;
             textureName = "blobbie";

@@ -28,7 +28,18 @@ namespace Project_Broban
         public TimeSpan playTime;          // used to display formatted time
         private float elapsedPlayTime = 0; // float representation of the playtime
         public SpriteFont font;
-        
+
+        String Name;
+        KeyboardState OldState;
+
+        public enum GameState { START, PLAY, FAIL, WIN }
+        GameState gameState = GameState.START;
+
+        Texture2D startScreen;
+        Texture2D gameOverScreen;
+        Texture2D winScreen;
+        bool submittedScore = false;    // Has the player submitted their score
+        float submitTimer = 0;          // How long to wait before closing the game
 
         public GameManager()
         {
@@ -53,6 +64,7 @@ namespace Project_Broban
             uiController = new UIController(this);
 
             playTime = new TimeSpan(0);
+            Name = ""; 
         }
 
         /// <summary>
@@ -76,6 +88,11 @@ namespace Project_Broban
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            startScreen = Content.Load<Texture2D>("startScreen");
+            gameOverScreen = Content.Load<Texture2D>("gameOver");
+            winScreen = Content.Load<Texture2D>("winScreen");
+
             player.LoadContent(GraphicsDevice, Content);
             GameWorld.LoadContent(GraphicsDevice, Content);
             uiController.LoadContent(GraphicsDevice, Content);
@@ -104,17 +121,79 @@ namespace Project_Broban
 
             // TODO: Add your update logic here
 
-            base.Update(gameTime);
-            GameWorld.Update(gameTime);
-            playerController.Update(gameTime);
-            player.Update(gameTime);
-            monsterController.Update(gameTime);
-            collisionController.Update(gameTime);
-            roomController.Update(gameTime);
-            uiController.Update(gameTime);
+            
 
-            elapsedPlayTime += (float)gameTime.ElapsedGameTime.Milliseconds;
-            playTime = TimeSpan.FromMilliseconds(elapsedPlayTime);
+            switch (gameState)
+            {
+                case GameState.START:
+                    if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                    {
+                        gameState = GameState.PLAY;
+                    }
+                    break;
+
+                case GameState.PLAY:
+                    GameWorld.Update(gameTime);
+                    playerController.Update(gameTime);
+                    player.Update(gameTime);
+                    monsterController.Update(gameTime);
+                    collisionController.Update(gameTime);
+                    roomController.Update(gameTime);
+                    uiController.Update(gameTime);
+
+                    elapsedPlayTime += (float)gameTime.ElapsedGameTime.Milliseconds;
+                    playTime = TimeSpan.FromMilliseconds(elapsedPlayTime);
+
+                    if (player.hp <= 0)
+                    {
+                        gameState = GameState.FAIL;
+                    }
+                    break;
+                case GameState.FAIL:
+                    if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                    {
+                        // TODO: reset the game
+                    }
+                    break;
+                case GameState.WIN:
+                    KeyboardState keyState = Keyboard.GetState();
+                    if (!submittedScore)
+                    {
+                        foreach (Keys key in keyState.GetPressedKeys())
+                        {
+                            if (OldState.IsKeyUp(key))
+                                if (key == Keys.Back)
+                                {
+                                    Name = Name.Remove(Name.Length - 1, 1);
+                                }
+                                else if (key == Keys.Enter)
+                                {
+                                    new Publish().PostTime(Name, playTime.Seconds + 60 * playTime.Minutes);
+                                    submittedScore = true;
+                                }
+                                else if (key == Keys.Space)
+                                {
+                                    Name = Name + " ";
+                                }
+                                else
+                                {
+                                    Name += key.ToString();
+                                }
+                        }
+                        OldState = keyState;
+                    }
+                    else
+                    {
+                        submitTimer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                        Name = "Submitting..."; // Change this later to its own variable
+                        if (submitTimer >= 500) 
+                        {
+                            Exit();
+                        }
+                    }
+                    break;
+            }
+            base.Update(gameTime);
         }
 
         /// <summary>
@@ -124,14 +203,40 @@ namespace Project_Broban
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
             spriteBatch.Begin(SpriteSortMode.FrontToBack);
-            GameWorld.Draw(spriteBatch);
-            player.Draw(spriteBatch);
-            uiController.Draw(spriteBatch);
+
+            switch (gameState)
+            {
+                case GameState.START:
+                    spriteBatch.Draw(startScreen, 
+                        new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+                    break;
+
+                case GameState.PLAY:
+                    GameWorld.Draw(spriteBatch);
+                    player.Draw(spriteBatch);
+                    uiController.Draw(spriteBatch);
+
+                    
+                    break;
+
+                case GameState.FAIL:
+                    spriteBatch.Draw(gameOverScreen, new Rectangle(0, 0, screenWidth, screenHeight),
+                        Color.White);
+                    break;
+                case GameState.WIN:
+                    spriteBatch.Draw(winScreen, new Rectangle(0, 0, screenWidth, screenHeight),
+                        Color.White);
+                    Vector2 textSize = font.MeasureString(Name);
+
+                    // Display formatted time
+                    Vector2 Origin = new Vector2(textSize.X, 0);
+                    spriteBatch.DrawString(font, Name, new Vector2(GameManager.screenWidth/2, GameManager.screenHeight/2),
+                        Color.White, 0, Origin, 1, SpriteEffects.None, 1);
+                    break;
+            }
 
             spriteBatch.End();
-
             base.Draw(gameTime);
         }
     }

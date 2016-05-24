@@ -24,6 +24,7 @@ namespace Project_Broban
         {
             this.gameManager = gameManager;
             font = gameManager.font;
+            player = gameManager.player;
         }
 
         /// <summary>
@@ -32,7 +33,6 @@ namespace Project_Broban
         /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
-            player = gameManager.player;
             playTime = gameManager.playTime;
         }
 

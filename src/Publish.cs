@@ -20,7 +20,7 @@ namespace Project_Broban
                 };
 
                 var content = new FormUrlEncodedContent(values);
-                var response = await client.PostAsync("http://127.0.0.1/website/publish.php", content);
+                var response = await client.PostAsync("http://broban.bladh.nu/publish.php", content);
                 var responseString = await response.Content.ReadAsStringAsync();
                 System.Console.WriteLine(responseString);
             }
