@@ -16,7 +16,7 @@ namespace Project_Broban
         private string[][] map;             // A 2D array of the tiles in the room
         private const int mapSizeX = 12;    // The width of the room
         private const int mapSizeY = 29;    // The height of the room
-        public Monster[] monsters;          // An array of all monsters in the room
+        public List<Monster> monsters;      // A list of all monsters in the room
         private Random rngGenerator;        // Random number generator
         private TextureManager Textures;    // Holds all the sprites
         private TileRenderer Tiles;         // Renders the actual tile sprites
@@ -32,7 +32,7 @@ namespace Project_Broban
         public Room(int xPosition, int yPosition, TextureManager tm, TileRenderer tr)
         {
             Textures = tm;
-            monsters = new Monster[30];
+            monsters = new List<Monster>();
             Tiles = tr;
             rngGenerator = new Random();
             
@@ -70,10 +70,11 @@ namespace Project_Broban
         /// </summary>
         public void SpawnMonsters()
         {
-            for (int i = 0; i < monsters.Length; i++)
+            int monsterAmount = rngGenerator.Next(20, 41);
+            for (int i = 0; i < monsterAmount; i++)
             {
-                monsters[i] = new Monster(rngGenerator.Next(0,700),
-                                          rngGenerator.Next(0,400), Textures);
+                monsters.Add(new Monster(rngGenerator.Next(0,1920), 
+                    rngGenerator.Next(0,1080), Textures));
             }
         }
 

@@ -37,7 +37,7 @@ namespace Project_Broban
                 AttackTime = gameTime.TotalGameTime;
 
                 // An array of all monsters in the current room.
-                Monster[] monsters = GameManager.GameWorld.currentRoom.monsters;
+                List<Monster> monsters = GameManager.GameWorld.currentRoom.monsters;
 
                 foreach (Monster monster in monsters)
                 {
