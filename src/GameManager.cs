@@ -32,6 +32,7 @@ namespace Project_Broban
         GameState gameState = GameState.START;
 
         Texture2D startScreen;
+        Texture2D gameOverScreen;
 
         public GameManager()
         {
@@ -80,6 +81,7 @@ namespace Project_Broban
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             startScreen = Content.Load<Texture2D>("startScreen");
+            gameOverScreen = Content.Load<Texture2D>("gameOver");
 
             player.LoadContent(GraphicsDevice, Content);
             GameWorld.LoadContent(GraphicsDevice, Content);
@@ -136,6 +138,11 @@ namespace Project_Broban
                     }
                     break;
                 case GameState.FAIL:
+                    if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                    {
+                        // TODO: reset the game
+                        gameState = GameState.PLAY;
+                    }
                     break;
                 case GameState.WIN:
                     break;
@@ -168,6 +175,8 @@ namespace Project_Broban
                     break;
 
                 case GameState.FAIL:
+                    spriteBatch.Draw(gameOverScreen, new Rectangle(0, 0, screenWidth, screenHeight),
+                        Color.White);
                     break;
                 case GameState.WIN:
                     break;
