@@ -71,7 +71,7 @@ namespace Project_Broban
             alive = true;
             size = 1; // 1 means 100% of the sprite size
             range = 50;
-            pullRange = 150;
+            pullRange = 1000;
             attacking = false;
             this.textureName = textureName;
             this.damage = damage;
