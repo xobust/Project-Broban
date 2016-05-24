@@ -10,12 +10,14 @@ namespace Project_Broban
     class CollisionTile
     {
         public Vector2 A, B, C, D;
-        private int TileHeight;
-        private int TileWidth;
-        private const int SqrtSize = 2; // SqrtSize = n, n root of the original tile size
+        public int TileHeight;
+        public int TileWidth;
+        public int type;
+        private int SqrtSize = 2; // SqrtSize = n, n root of the original tile size
 
-        public CollisionTile()
+        public CollisionTile(int squareSize)
         {
+            SqrtSize = squareSize;
             TileWidth = 256;
             TileHeight = 128;
         }
@@ -25,8 +27,10 @@ namespace Project_Broban
         /// each and every corner of the tile.
         /// </summary>
         /// <param name="tilePos"></param>
-        public void CalculateTilePos(Vector2 tilePos)
+        public void CalculateTilePos(Vector2 tilePos, int type)
         {
+            this.type = type;
+
             // top node
             A = new Vector2(tilePos.X + TileWidth / 2, tilePos.Y);
             
