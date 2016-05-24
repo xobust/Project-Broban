@@ -22,7 +22,8 @@ namespace Project_Broban
         public Player player;
         MonsterController monsterController;
         PlayerController playerController;
-        CollisionController collisionController;
+        public CollisionController collisionController;
+        RoomController roomController;
         UIController uiController;
         public TimeSpan playTime;          // used to display formatted time
         private float elapsedPlayTime = 0; // float representation of the playtime
@@ -49,6 +50,7 @@ namespace Project_Broban
             playerController = new PlayerController(this);
             collisionController = new CollisionController(this);
             uiController = new UIController(this);
+            roomController = new RoomController(this);
 
             playTime = new TimeSpan(0);
         }
