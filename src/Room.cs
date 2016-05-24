@@ -59,7 +59,7 @@ namespace Project_Broban
             {
                 for (int y = 0; y < mapSizeY; y++)
                 {
-                    map[x][y] = "Grass";
+                    map[x][y] = "grass";
                 }
             }
             SpawnMonsters();
