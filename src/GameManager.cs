@@ -159,7 +159,8 @@ namespace Project_Broban
                             }
                             else if (key == Keys.Enter)
                             {
-                                //Todo send data to server
+                                new Publish().PostTime(Name, playTime.Seconds);
+                                
                                 Name = "";
                             }else if (key == Keys.Space)
                             {
