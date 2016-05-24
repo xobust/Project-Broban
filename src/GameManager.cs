@@ -32,7 +32,7 @@ namespace Project_Broban
         KeyboardState OldState;
 
         public enum GameState { START, PLAY, FAIL, WIN }
-        GameState gameState = GameState.WIN;
+        GameState gameState = GameState.START;
 
         Texture2D startScreen;
         Texture2D gameOverScreen;
@@ -159,7 +159,7 @@ namespace Project_Broban
                             }
                             else if (key == Keys.Enter)
                             {
-                                new Publish().PostTime(Name, playTime.Seconds);
+                                new Publish().PostTime(Name, playTime.Seconds + 60*playTime.Minutes);
                                 
                                 Name = "";
                             }else if (key == Keys.Space)
