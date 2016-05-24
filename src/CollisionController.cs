@@ -239,9 +239,7 @@ namespace Project_Broban
                 Collided = false;
             }
 
-
             CalcSurrTiles();
-            Console.WriteLine(CenterTileIndex);
             player.Position = new Vector2(player.Position.X + MoveVector.X, 
                                           player.Position.Y + MoveVector.Y);
             MoveVector = Vector2.Zero;
@@ -287,7 +285,7 @@ namespace Project_Broban
             // http://bit.ly/1TsUSgX - explanation of the indexes below (when on an odd column)
             // http://bit.ly/1TyiEdS - explanation of the indexes below (when on an even column)
             // Top to bottom - Left to right following to the image above:
-            Console.WriteLine(CenterTileIndex);
+
             if (CenterTileIndex.Y % 2 == 0)
             {
                 upLeft = new Vector2(CenterTileIndex.X - 1, CenterTileIndex.Y - 1);
