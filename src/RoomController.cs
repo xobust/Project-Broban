@@ -24,7 +24,25 @@ namespace Project_Broban
         /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
-           
+            int xpos = world.CurrentXPosition;
+            int ypos = world.CurrentYPosition;
+            if (player.Position.X > 1920)
+            {
+                world.EnterRoom(xpos-1, ypos, player);
+            }
+            else if (player.Position.X < 0)
+            {
+                world.EnterRoom(xpos+1, ypos, player);
+            }
+            else if (player.Position.Y > 1080)
+            {
+                world.EnterRoom(xpos, ypos-1, player);
+            }
+            else if (player.Position.Y < 0)
+            {
+                world.EnterRoom(xpos, ypos+1, player);
+            }
+
         } 
         
     }

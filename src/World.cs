@@ -11,8 +11,8 @@ namespace Project_Broban
 {
     public class World : GameObject
     {
-        int CurrentXPosition;   // The x-coordinate of the current room in WorldMap
-        int CurrentYPosition;   // The y-coordinate of the current room in WorldMap
+        public int CurrentXPosition;   // The x-coordinate of the current room in WorldMap
+        public int CurrentYPosition;   // The y-coordinate of the current room in WorldMap
         Room[][] WorldMap;      // A 2D array of all the rooms
         public Room currentRoom;    // The current room
         private TextureManager Textures;    // Holds all the textures
