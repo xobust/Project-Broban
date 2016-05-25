@@ -30,7 +30,7 @@ namespace Project_Broban
         public void Update(GameTime gameTime)
         {
             // The monster list and player position changes so I'm keeping it in the update function
-            monsters = gameManager.GameWorld.currentRoom.monsters;
+            monsters = gameManager.GameWorld.currentRoom.Monsters;
             player = gameManager.player;
 
             foreach (Monster monster in monsters)
