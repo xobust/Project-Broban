@@ -46,16 +46,6 @@ namespace Project_Broban
             GenerateGrid(gameManager.GameWorld.WorldSize * 4,
                          gameManager.GameWorld.WorldSize * 4);
 
-
-            // Set the starter position
-            tileOffset = new Vector2(CurrentTile.TileWidth / 2, CurrentTile.TileHeight / 4);
-            Vector2 startPos = gameManager.player.TileStartPos;
-            CenterTileIndex = startPos;
-
-            gameManager.player.Position = 
-            new Vector2(Grid[(int)startPos.X][(int)startPos.Y].Item1.X + tileOffset.X,
-                        Grid[(int)startPos.X][(int)startPos.Y].Item1.Y + tileOffset.Y);
-
             // Placing collision tiles in these places below: 
             // (feel free to test or remove this)
             Grid[0][0] = new Tuple<Vector2, int>(Grid[0][0].Item1, 1);
@@ -65,6 +55,18 @@ namespace Project_Broban
             Grid[0][8] = new Tuple<Vector2, int>(Grid[0][8].Item1, 1);
 
             CalcSurrTiles();
+        }
+
+        public void SetPlayerPos()
+        {
+            // Set the starter position
+            tileOffset = new Vector2(CurrentTile.TileWidth / 2, CurrentTile.TileHeight / 4);
+            Vector2 startPos = GameManager.player.TileStartPos;
+            CenterTileIndex = startPos;
+
+            GameManager.player.Position =
+            new Vector2(Grid[(int)startPos.X][(int)startPos.Y].Item1.X + tileOffset.X,
+                        Grid[(int)startPos.X][(int)startPos.Y].Item1.Y + tileOffset.Y);
         }
 
         public void GenerateCollisionMap()
