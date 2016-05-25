@@ -12,10 +12,10 @@ namespace Project_Broban
 {
     public class Monster : GameObject
     {
-        private const float moveSpeed = 0.5f;   // The movement speed
+        private const float moveSpeed = 0.8f;   // The movement speed
         private int damage;                     // The attack damage
-        private const float attackTime = 100;   // The startup time for an attack
-        private const float coolDown = 1000;    // How long before the next attack
+        private const float attackTime = 30;   // The startup time for an attack
+        private const float coolDown = 300;    // How long before the next attack
         private float waitingForAttack;         // The current cool down time
         private float attackChargeTime;         // The current start up time that has passed
         private float size;                     // The size of the monster
@@ -48,7 +48,7 @@ namespace Project_Broban
             alive = true;
             size = 1; // 1 means 100% of the sprite size
             range = 50;
-            pullRange = 150;
+            pullRange = 300;
             attacking = false;
             textureName = "blobbie";
             damage = 1;
