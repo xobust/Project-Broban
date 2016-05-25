@@ -151,7 +151,7 @@ namespace Project_Broban
             // We need to make it 1 - the depth since we want 1 to be on 
             // the top of the screen instead of 0 being on the top.
             // Example 1 - 0.2 = 0.8 reverts 0.2 at the top to 0.8 instead
-            depth = (position.Y / GameManager.screenHeight); 
+            depth = (position.Y / GameManager.screenHeight);
             depth = MathHelper.Clamp(depth, 0.01f, 1);
             
             Textures.DrawTexture("blobbie", sb, position, size, depth, spriteOrigin);
