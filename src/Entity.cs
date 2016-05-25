@@ -15,9 +15,15 @@ namespace Project_Broban
         public int Size; // The size of the entity in collisiontiles
         public Vector2 Position;
         public Vector2 TilePosition;
+        private TextureManager Textures;
+        private Texture2D Texture;
 
-        public Entity(Vector2 tilePosition)
+        private float Depth;
+        private Vector2 SpriteOrigin;   // The sprite origin
+
+        public Entity(Vector2 tilePosition, TextureManager tm)
         {
+            Textures = tm;
             TilePosition = tilePosition;
         }
 
@@ -36,7 +42,16 @@ namespace Project_Broban
         /// <param name="sb">The spriteBatch to draw with.</param>
         public void Draw(SpriteBatch sb)
         {
+            Texture = Textures.GetTexture("tree"); // temporary solution
 
+            // The original texture should have the origin in the middle-bottom
+            SpriteOrigin = new Vector2((Texture.Width) / 2,
+                                 (Texture.Height - 90));
+
+            Depth = (Position.Y / GameManager.screenHeight);
+            Depth = MathHelper.Clamp(Depth, 0.01f, 1);
+
+            Textures.DrawTexture("tree", sb, Position, 1, Depth, SpriteOrigin);
         }
 
         /// <summary>
