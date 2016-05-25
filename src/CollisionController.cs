@@ -69,6 +69,7 @@ namespace Project_Broban
 
         public void GenerateCollisionMap()
         {
+            tileOffset = new Vector2(32, 32);
             foreach (Entity entity in GameManager.GameWorld.currentRoom.Entitys)
             {
                 entity.Position = new Vector2(Grid[(int)entity.TilePosition.X]
@@ -81,8 +82,8 @@ namespace Project_Broban
                 // For trees only (4 tiles)
                 SetTileType(entity.TilePosition, 1);
                 SetTileType(new Vector2(entity.TilePosition.X + 1, entity.TilePosition.Y), 1);
-                SetTileType(new Vector2(entity.TilePosition.X, entity.TilePosition.Y + 1), 1);
                 SetTileType(new Vector2(entity.TilePosition.X + 1, entity.TilePosition.Y + 1), 1);
+                SetTileType(new Vector2(entity.TilePosition.X + 1, entity.TilePosition.Y - 1), 1);
             }
         }
         
