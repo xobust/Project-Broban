@@ -65,15 +65,13 @@ namespace Project_Broban
                 }
             }
             SpawnMonsters();
-            GenerateEntitys(5);
+            GenerateEntitys();
         }
 
-        public void GenerateEntitys(int amount)
+        public void GenerateEntitys()
         {
-            for (int i = 0; i < amount; i++)
-            {
-                Entitys.Add(new Entity(new Vector2(5,i)));
-            }
+            Entitys.Add(new Entity(new Vector2(7,15), Textures));
+            Entitys.Add(new Entity(new Vector2(2, 31), Textures));
         }
 
         /// <summary>
@@ -116,6 +114,10 @@ namespace Project_Broban
                 {
                     monster.Draw(sb);
                 }
+            }
+            foreach (Entity entity in Entitys)
+            {
+                entity.Draw(sb);
             }
         }
 
