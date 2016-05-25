@@ -22,7 +22,7 @@ namespace Project_Broban
         public Player player;
         MonsterController monsterController;
         PlayerController playerController;
-        CollisionController collisionController;
+        public CollisionController collisionController;
         RoomController roomController;
         UIController uiController;
         public TimeSpan playTime;          // used to display formatted time
@@ -64,6 +64,7 @@ namespace Project_Broban
             collisionController = new CollisionController(this);
             roomController = new RoomController(this);
             uiController = new UIController(this);
+            roomController = new RoomController(this);
 
             playTime = new TimeSpan(0);
             Name = ""; 

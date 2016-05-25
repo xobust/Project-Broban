@@ -9,13 +9,20 @@ namespace Project_Broban
 {
     class RoomController : Controller
     {
-        Player player;
-        World world;
+        Player Player;
+        World World;
+        private GameManager GameManager;
+        private Point BossRoom;
 
         public RoomController(GameManager gameManager)
         {
-            this.player = gameManager.player;
-            this.world = gameManager.GameWorld;
+            this.Player = gameManager.player;
+            this.World = gameManager.GameWorld;
+            GameManager = gameManager;
+            EnterRoom(GameManager.GameWorld.CurrentXPosition,
+                      GameManager.GameWorld.CurrentYPosition);
+
+            BossRoom = new Point(4, 6);
         }
 
         /// <summary>
@@ -24,26 +31,58 @@ namespace Project_Broban
         /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
-            int xpos = world.CurrentXPosition;
-            int ypos = world.CurrentYPosition;
-            if (player.Position.X > 1920)
+            int xpos = World.CurrentXPosition;
+            int ypos = World.CurrentYPosition;
+            if (Player.Position.X > 1920)
             {
-                world.EnterRoom(xpos-1, ypos, player);
+                EnterRoom(xpos-1, ypos);
             }
-            else if (player.Position.X < 0)
+            else if (Player.Position.X < 0)
             {
-                world.EnterRoom(xpos+1, ypos, player);
+                EnterRoom(xpos+1, ypos);
             }
-            else if (player.Position.Y > 1080)
+            else if (Player.Position.Y > 1080)
             {
-                world.EnterRoom(xpos, ypos-1, player);
+                EnterRoom(xpos, ypos-1);
             }
-            else if (player.Position.Y < 0)
+            else if (Player.Position.Y < 0)
             {
-                world.EnterRoom(xpos, ypos+1, player);
+                EnterRoom(xpos, ypos+1);
             }
 
-        } 
-        
+        }
+
+        /// <summary>
+        /// This function is executed when the player enters a room.
+        /// </summary>
+        /// <param name="x">X position for the room.</param>
+        /// <param name="y">Y position for the room.</param>
+        public void EnterRoom(int x, int y)
+        { 
+            World world = GameManager.GameWorld;
+            if (world.WorldMap[x][y] == null)
+            {
+                int RoomType = 0;
+                if (x == BossRoom.X && y == BossRoom.Y)
+                {
+                    RoomType = 1;
+                }
+                else
+                {
+                    RoomType = 0;
+                }
+                world.WorldMap[x][y] = new Room(x, y, world.Textures, 
+                                                world.Tiles, RoomType);
+                world.WorldMap[x][y].Generate();
+            }
+            world.CurrentXPosition = x;
+            world.CurrentYPosition = y;
+            world.currentRoom.Generate();
+            world.currentRoom = world.WorldMap[world.CurrentXPosition][world.CurrentYPosition];
+
+            GameManager.collisionController.SetPlayerPos();
+
+            GameManager.collisionController.GenerateCollisionMap();
+        }
     }
 }

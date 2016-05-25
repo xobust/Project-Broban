@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace Project_Broban
 {
-    class CollisionController : Controller
+    public class CollisionController : Controller
     {
         public Tuple<Vector2, int>[][] Grid;
         private Tuple<Vector2, int, Vector2>[] SurroundingTiles;
@@ -23,6 +23,7 @@ namespace Project_Broban
 
         private Vector2 MoveVector;
         private Vector2 CenterTileIndex;
+        private Vector2 tileOffset;
         private float TileArea;
         private Boolean Collided;
         private int SqrtSize = 2;
@@ -31,7 +32,7 @@ namespace Project_Broban
 
         public CollisionController(GameManager gameManager)
         {
-            this.GameManager = gameManager;
+            GameManager = gameManager;
             MoveVector = Vector2.Zero;
             SurroundingTiles = new Tuple<Vector2, int, Vector2>[8];
 
@@ -45,16 +46,6 @@ namespace Project_Broban
             GenerateGrid(gameManager.GameWorld.WorldSize * 4,
                          gameManager.GameWorld.WorldSize * 4);
 
-
-            // Set the starter position
-            Vector2 tileOffset = new Vector2(CurrentTile.TileWidth/2, CurrentTile.TileHeight/4);
-            Vector2 startPos = gameManager.player.TileStartPos;
-            CenterTileIndex = startPos;
-
-            gameManager.player.Position = 
-            new Vector2(Grid[(int)startPos.X][(int)startPos.Y].Item1.X + tileOffset.X,
-                        Grid[(int)startPos.X][(int)startPos.Y].Item1.Y + tileOffset.Y);
-
             // Placing collision tiles in these places below: 
             // (feel free to test or remove this)
             Grid[0][0] = new Tuple<Vector2, int>(Grid[0][0].Item1, 1);
@@ -64,6 +55,45 @@ namespace Project_Broban
             Grid[0][8] = new Tuple<Vector2, int>(Grid[0][8].Item1, 1);
 
             CalcSurrTiles();
+        }
+
+        public void SetPlayerPos()
+        {
+            // Set the starter position
+            tileOffset = new Vector2(CurrentTile.TileWidth / 2, CurrentTile.TileHeight / 4);
+            Vector2 startPos = GameManager.player.TileStartPos;
+            CenterTileIndex = startPos;
+
+            GameManager.player.Position =
+            new Vector2(Grid[(int)startPos.X][(int)startPos.Y].Item1.X + tileOffset.X,
+                        Grid[(int)startPos.X][(int)startPos.Y].Item1.Y + tileOffset.Y);
+        }
+
+        public void GenerateCollisionMap()
+        {
+            tileOffset = new Vector2(32, 32);
+            foreach (Entity entity in GameManager.GameWorld.currentRoom.Entitys)
+            {
+                entity.Position = new Vector2(Grid[(int)entity.TilePosition.X]
+                                                  [(int)entity.TilePosition.Y].Item1.X 
+                                                  + tileOffset.X,
+                                              Grid[(int)entity.TilePosition.X]
+                                                  [(int)entity.TilePosition.Y].Item1.Y 
+                                                  + tileOffset.Y);
+
+                // For trees only (4 tiles)
+                SetTileType(entity.TilePosition, 1);
+                SetTileType(new Vector2(entity.TilePosition.X + 1, entity.TilePosition.Y), 1);
+                SetTileType(new Vector2(entity.TilePosition.X + 1, entity.TilePosition.Y + 1), 1);
+                SetTileType(new Vector2(entity.TilePosition.X + 1, entity.TilePosition.Y - 1), 1);
+            }
+        }
+        
+        private void SetTileType(Vector2 indexes, int tileType)
+        {
+            Grid[(int)indexes.X][(int)indexes.Y] = new Tuple<Vector2, int>
+                                                  (Grid[(int)indexes.X][(int)indexes.Y].Item1, 
+                                                   tileType);
         }
 
         public void GenerateGrid(int gridSizeX, int gridSizeY)
