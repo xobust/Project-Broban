@@ -37,12 +37,13 @@ namespace Project_Broban
         /// <param name="yPosition">The world position of the room.</param>
         /// <param name="tm">The TextureManager </param>
         /// <param name="tr">The TileRenderer draws the tile sprites.</param>
-        public Room(int xPosition, int yPosition, TextureManager tm, TileRenderer tr)
+        public Room(int xPosition, int yPosition, TextureManager tm, TileRenderer tr, int roomType)
         {
             Entitys = new List<Entity>();
-            Textures = tm;
             Monsters = new List<Monster>();
+            Textures = tm;
             Tiles = tr;
+            RoomType = roomType;
             RngGenerator = new Random();
             
             XPosition = xPosition;
@@ -88,9 +89,8 @@ namespace Project_Broban
                     }
                 }
                 SpawnMonsters();
+                GenerateEntitys();
             }
-            SpawnMonsters();
-            GenerateEntitys();
         }
 
         public void GenerateEntitys()

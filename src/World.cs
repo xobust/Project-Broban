@@ -37,7 +37,7 @@ namespace Project_Broban
             }
 
             //TODO create a special Room class for the starting room
-            WorldMap[startX][startY] = new Room(startX, startY, Textures, Tiles);
+            WorldMap[startX][startY] = new Room(startX, startY, Textures, Tiles, 0);
             CurrentXPosition = startX;
             CurrentYPosition = startY;
 

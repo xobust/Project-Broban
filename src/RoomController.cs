@@ -22,7 +22,7 @@ namespace Project_Broban
             EnterRoom(GameManager.GameWorld.CurrentXPosition,
                       GameManager.GameWorld.CurrentYPosition);
 
-            BossRoom = new Point(1, 1);
+            BossRoom = new Point(4, 6);
         }
 
         /// <summary>
@@ -62,15 +62,17 @@ namespace Project_Broban
             World world = GameManager.GameWorld;
             if (world.WorldMap[x][y] == null)
             {
+                int RoomType = 0;
                 if (x == BossRoom.X && y == BossRoom.Y)
                 {
-                    world.currentRoom.RoomType = 1;
+                    RoomType = 1;
                 }
                 else
                 {
-                    world.currentRoom.RoomType = 0;
+                    RoomType = 0;
                 }
-                world.WorldMap[x][y] = new Room(x, y, world.Textures, world.Tiles);
+                world.WorldMap[x][y] = new Room(x, y, world.Textures, 
+                                                world.Tiles, RoomType);
                 world.WorldMap[x][y].Generate();
             }
             world.CurrentXPosition = x;
@@ -78,7 +80,7 @@ namespace Project_Broban
             world.currentRoom.Generate();
             world.currentRoom = world.WorldMap[world.CurrentXPosition][world.CurrentYPosition];
 
-            GameManager.player.TileStartPos = new Vector2(10,10);
+            GameManager.collisionController.SetPlayerPos();
 
             GameManager.collisionController.GenerateCollisionMap();
         }
