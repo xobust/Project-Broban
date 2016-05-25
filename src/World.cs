@@ -44,8 +44,6 @@ namespace Project_Broban
             currentRoom = WorldMap[startX][startY];
         }
 
-
-
         /// <summary>
         /// Updates the state of the world. 
         /// </summary>

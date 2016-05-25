@@ -9,6 +9,12 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Project_Broban
 {
+    /// <summary>
+    /// A class for a Room in the world map.
+    /// Room types:
+    /// 0 = Regular
+    /// 1 = Boss
+    /// </summary>
     public class Room : GameObject
     {
         int XPosition;                      // The x-coordinate of the room in the world map
@@ -16,11 +22,12 @@ namespace Project_Broban
         private string[][] Map;             // A 2D array of the tiles in the room
         private const int MapSizeX = 12;    // The width of the room
         private const int MapSizeY = 29;    // The height of the room
-        public Monster[] Monsters;          // An array of all monsters in the room
+        public List<Monster> Monsters;      // A list of all monsters in the room
         public List<Entity> Entitys;        // A list of entitys in the room
         private Random RngGenerator;        // Random number generator
         private TextureManager Textures;    // Holds all the sprites
         private TileRenderer Tiles;         // Renders the actual tile sprites
+        public int RoomType;                // Which type of room
 
         /// <summary>
         /// Creates an empty room. The room will be filled/generated when 
@@ -34,7 +41,7 @@ namespace Project_Broban
         {
             Entitys = new List<Entity>();
             Textures = tm;
-            Monsters = new Monster[30];
+            Monsters = new List<Monster>();
             Tiles = tr;
             RngGenerator = new Random();
             
@@ -57,12 +64,30 @@ namespace Project_Broban
         /// </summary>
         public void Generate()
         {
-            for (int x = 0; x < MapSizeX; x++)
+            if (RoomType == 1) // Boss room
             {
-                for (int y = 0; y < MapSizeY; y++)
+                for (int x = 0; x < MapSizeX; x++)
                 {
-                    Map[x][y] = "Grass";
+                    for (int y = 0; y < MapSizeY; y++)
+                    {
+                        Map[x][y] = "darkGrass";
+                    }
                 }
+
+                // Add one boss to `monsters`
+                Monster boss = new Monster(700, 600, Textures, "boss", 2, 10);
+                Monsters.Add(boss);
+            }
+            else // Regular rooms
+            {
+                for (int x = 0; x < MapSizeX; x++)
+                {
+                    for (int y = 0; y < MapSizeY; y++)
+                    {
+                        Map[x][y] = "grass";
+                    }
+                }
+                SpawnMonsters();
             }
             SpawnMonsters();
             GenerateEntitys();
@@ -79,10 +104,11 @@ namespace Project_Broban
         /// </summary>
         public void SpawnMonsters()
         {
-            for (int i = 0; i < Monsters.Length; i++)
+            int monsterAmount = RngGenerator.Next(20, 41);
+            for (int i = 0; i < monsterAmount; i++)
             {
-                Monsters[i] = new Monster(RngGenerator.Next(0,700),
-                                          RngGenerator.Next(0,400), Textures);
+                Monsters.Add(new Monster(RngGenerator.Next(0, 1920),
+                    RngGenerator.Next(0, 1080), Textures));
             }
         }
 
@@ -98,6 +124,11 @@ namespace Project_Broban
                 {
                     monster.Update(gameTime);
                 }
+            }
+            if(RoomType == 1 && !Monsters[0].alive)
+            {
+                // CHANGE THIS ASAP
+                GameManager.gameState = GameManager.GameState.WIN;
             }
         }
 

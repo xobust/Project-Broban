@@ -25,7 +25,8 @@ namespace Project_Broban
         public void LoadContent(ContentManager cm)
         {
             TextureDicionary.Add("tree", cm.Load<Texture2D>("tree"));
-            TextureDicionary.Add("blobbie", cm.Load<Texture2D>("blobbie")); 
+            TextureDicionary.Add("blobbie", cm.Load<Texture2D>("blobbie"));
+            TextureDicionary.Add("boss", cm.Load<Texture2D>("boss"));
         }
 
         /// <summary>

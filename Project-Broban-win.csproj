@@ -51,6 +51,7 @@
     <Compile Include="src\Player.cs" />
     <Compile Include="src\PlayerController.cs" />
     <Compile Include="src\Program.cs" />
+    <Compile Include="src\Publish.cs" />
     <Compile Include="src\RoomController.cs" />
     <Compile Include="src\TextureManager.cs" />
     <Compile Include="src\TileRenderer.cs" />
@@ -63,6 +64,7 @@
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
