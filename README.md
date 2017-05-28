@@ -1,5 +1,5 @@
 # Project Broban
-ProjInda15 project
+ProjInda15 Project
 
 #### Link to the website:
 
